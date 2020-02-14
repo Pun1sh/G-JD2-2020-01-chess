@@ -7,14 +7,18 @@
 		<artifactId>parent-project</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>dao-api</artifactId>
+	<artifactId>web</artifactId>
+	<packaging>war</packaging>
 	<dependencies>
 
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>by.itacademy.karpuk.chess</groupId>
+			<artifactId>service</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
 
 	</dependencies>
 </project>
