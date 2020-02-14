@@ -26,3 +26,6 @@ web/.settings/org.eclipse.wst.common.project.facet.core.xml
 web/.settings/org.eclipse.wst.jsdt.ui.superType.container
 web/.settings/org.eclipse.wst.jsdt.ui.superType.name
 web/.settings/org.eclipse.wst.validation.prefs
+dao-api/.settings/org.eclipse.wst.validation.prefs
+dao-jdbc-impl/.settings/org.eclipse.wst.validation.prefs
+service/.settings/org.eclipse.wst.validation.prefs
