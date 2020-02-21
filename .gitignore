@@ -29,3 +29,4 @@ web/.settings/org.eclipse.wst.validation.prefs
 dao-api/.settings/org.eclipse.wst.validation.prefs
 dao-jdbc-impl/.settings/org.eclipse.wst.validation.prefs
 service/.settings/org.eclipse.wst.validation.prefs
+.settings/org.eclipse.core.resources.prefs
