@@ -24,7 +24,8 @@ public class AbstractTest {
 	@BeforeEach
 	public void setUpMethod() {
 		pieceService.deleteAll();
-
+		modeService.deleteAll();
+		countryService.deleteAll();
 	}
 
 	protected String getRandomPrefix() {
