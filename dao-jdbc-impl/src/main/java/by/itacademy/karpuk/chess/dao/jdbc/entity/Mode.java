@@ -21,4 +21,11 @@ public class Mode extends BaseEntity implements IMode {
 	public void setTimeMinutes(Integer timeMinutes) {
 		this.timeMinutes = timeMinutes;
 	}
+
+	@Override
+	public String toString() {
+		return "Mode [name=" + name + ", timeMinutes=" + timeMinutes + ", getName()=" + getName()
+				+ ", getTimeMinutes()=" + getTimeMinutes() + ", getId()=" + getId() + "]";
+	}
+
 }
