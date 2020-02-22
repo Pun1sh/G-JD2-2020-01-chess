@@ -4,12 +4,20 @@ import java.util.Random;
 
 import org.junit.jupiter.api.BeforeEach;
 
+import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
+import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
+import by.itacademy.karpuk.chess.service.ICountryService;
+import by.itacademy.karpuk.chess.service.IModeService;
 import by.itacademy.karpuk.chess.service.IPieceService;
+import by.itacademy.karpuk.chess.service.impl.CountryServiceImpl;
+import by.itacademy.karpuk.chess.service.impl.ModeServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.PieceServiceImpl;
 
 public class AbstractTest {
 	protected IPieceService pieceService = new PieceServiceImpl();
+	protected IModeService modeService = new ModeServiceImpl();
+	protected ICountryService countryService = new CountryServiceImpl();
 
 	private static final Random RANDOM = new Random();
 
@@ -35,6 +43,20 @@ public class AbstractTest {
 		final IPiece entity = pieceService.createEntity();
 		entity.setName("piece-" + getRandomPrefix());
 		pieceService.save(entity);
+		return entity;
+	}
+
+	protected IMode saveNewMode() {
+		final IMode entity = modeService.createEntity();
+		entity.setName("mode-" + getRandomPrefix());
+		modeService.save(entity);
+		return entity;
+	}
+
+	protected ICountry saveNewCountry() {
+		final ICountry entity = countryService.createEntity();
+		entity.setName("country-" + getRandomPrefix());
+		countryService.save(entity);
 		return entity;
 	}
 }
