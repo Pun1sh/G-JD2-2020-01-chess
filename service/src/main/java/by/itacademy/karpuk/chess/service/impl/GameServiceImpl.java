@@ -1,0 +1,50 @@
+package by.itacademy.karpuk.chess.service.impl;
+
+import java.util.List;
+
+import by.itacademy.karpuk.chess.dao.api.IGameDao;
+import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
+import by.itacademy.karpuk.chess.dao.jdbc.GameDaoImpl;
+import by.itacademy.karpuk.chess.service.IGameService;
+
+public class GameServiceImpl implements IGameService {
+	private IGameDao dao = new GameDaoImpl();
+
+	@Override
+	public IGame get(Integer id) {
+		final IGame entity = dao.get(id);
+		return entity;
+	}
+
+	@Override
+	public List<IGame> getAll() {
+		final List<IGame> all = dao.selectAll();
+		return all;
+	}
+
+	@Override
+	public void save(IGame entity) {
+		if (entity.getId() == null) {
+			dao.insert(entity);
+		} else {
+			dao.update(entity);
+		}
+	}
+
+	@Override
+	public void delete(Integer id) {
+		dao.delete(id);
+
+	}
+
+	@Override
+	public void deleteAll() {
+		dao.deleteAll();
+	}
+
+	@Override
+	public IGame createEntity() {
+		return dao.createEntity();
+	}
+
+}
