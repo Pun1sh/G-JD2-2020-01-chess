@@ -4,25 +4,31 @@ import java.util.Random;
 
 import org.junit.jupiter.api.BeforeEach;
 
+import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IClub;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
+import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
+import by.itacademy.karpuk.chess.service.IBoardService;
 import by.itacademy.karpuk.chess.service.IClubService;
 import by.itacademy.karpuk.chess.service.ICountryService;
 import by.itacademy.karpuk.chess.service.IGameService;
+import by.itacademy.karpuk.chess.service.IMessageService;
 import by.itacademy.karpuk.chess.service.IModeService;
 import by.itacademy.karpuk.chess.service.IMoveService;
 import by.itacademy.karpuk.chess.service.IPieceService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
 import by.itacademy.karpuk.chess.service.ITournamentService;
+import by.itacademy.karpuk.chess.service.impl.BoardServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.ClubServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.CountryServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.GameServiceImpl;
+import by.itacademy.karpuk.chess.service.impl.MessageServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.ModeServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.MoveServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.PieceServiceImpl;
@@ -38,6 +44,8 @@ public class AbstractTest {
 	protected ITournamentService tournamentService = new TournamentServiceImpl();
 	protected IGameService gameService = new GameServiceImpl();
 	protected IMoveService moveService = new MoveServiceImpl();
+	protected IBoardService boardService = new BoardServiceImpl();
+	protected IMessageService messageService = new MessageServiceImpl();
 
 	private static final Random RANDOM = new Random();
 
@@ -51,6 +59,8 @@ public class AbstractTest {
 		tournamentService.deleteAll();
 		gameService.deleteAll();
 		moveService.deleteAll();
+		boardService.deleteAll();
+		messageService.deleteAll();
 	}
 
 	protected String getRandomPrefix() {
@@ -116,6 +126,18 @@ public class AbstractTest {
 	protected IMove saveNewMove() {
 		final IMove entity = moveService.createEntity();
 		moveService.save(entity);
+		return entity;
+	}
+
+	protected IBoard saveNewBoard() {
+		final IBoard entity = boardService.createEntity();
+		boardService.save(entity);
+		return entity;
+	}
+
+	protected IMessage saveNewMessage() {
+		final IMessage entity = messageService.createEntity();
+		messageService.save(entity);
 		return entity;
 	}
 }
