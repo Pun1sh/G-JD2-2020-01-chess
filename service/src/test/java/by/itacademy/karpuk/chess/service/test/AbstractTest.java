@@ -85,6 +85,7 @@ public class AbstractTest {
 	protected IMode saveNewMode() {
 		final IMode entity = modeService.createEntity();
 		entity.setName("mode-" + getRandomPrefix());
+		entity.setTimeMinutes(getRandomObjectsCount());
 		modeService.save(entity);
 		return entity;
 	}
