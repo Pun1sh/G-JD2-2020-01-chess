@@ -13,10 +13,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
 public class MessageServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
-		final IMessage entity = messageService.createEntity();
-		entity.setGame(saveNewGame());
-		entity.setWriter(saveNewPlayer());
-		messageService.save(entity);
+		final IMessage entity = saveNewMessage();
 
 		final IMessage entityFromDb = messageService.get(entity.getId());
 

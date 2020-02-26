@@ -13,16 +13,14 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 public class BoardServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
-		final IBoard entity = boardService.createEntity();
-		entity.setGame(saveNewGame());
-		entity.setPiece(saveNewPiece());
-		boardService.save(entity);
+		IBoard entity = saveNewBoard();
 
 		final IBoard entityFromDb = boardService.get(entity.getId());
 
+		assertNotNull(entityFromDb.getId());
 		assertEquals(entity.getGame().getId(), entityFromDb.getGame().getId());
 		assertEquals(entity.getPiece().getId(), entityFromDb.getPiece().getId());
-		assertNotNull(entityFromDb.getId());
+
 	}
 
 	@Test

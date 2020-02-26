@@ -13,11 +13,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 public class MoveServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
-		final IMove entity = moveService.createEntity();
-		entity.setGame(saveNewGame());
-		entity.setPiece(saveNewPiece());
-		entity.setPlayer(saveNewPlayer());
-		moveService.save(entity);
+		final IMove entity = saveNewMove();
 
 		final IMove entityFromDb = moveService.get(entity.getId());
 

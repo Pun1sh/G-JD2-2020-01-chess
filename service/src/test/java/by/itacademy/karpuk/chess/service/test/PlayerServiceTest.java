@@ -13,11 +13,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 public class PlayerServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
-		final IPlayer entity = playerService.createEntity();
-		entity.setName("player-" + getRandomPrefix());
-		entity.setCountry(saveNewCountry());
-		entity.setClub(saveNewClub());
-		playerService.save(entity);
+		final IPlayer entity = saveNewPlayer();
 
 		final IPlayer entityFromDb = playerService.get(entity.getId());
 

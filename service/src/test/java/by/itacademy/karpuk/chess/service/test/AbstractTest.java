@@ -1,5 +1,6 @@
 package by.itacademy.karpuk.chess.service.test;
 
+import java.util.Date;
 import java.util.Random;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
+import by.itacademy.karpuk.chess.dao.api.entity.table.IParticipation;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
@@ -21,6 +23,7 @@ import by.itacademy.karpuk.chess.service.IGameService;
 import by.itacademy.karpuk.chess.service.IMessageService;
 import by.itacademy.karpuk.chess.service.IModeService;
 import by.itacademy.karpuk.chess.service.IMoveService;
+import by.itacademy.karpuk.chess.service.IParticipationService;
 import by.itacademy.karpuk.chess.service.IPieceService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
 import by.itacademy.karpuk.chess.service.ITournamentService;
@@ -31,6 +34,7 @@ import by.itacademy.karpuk.chess.service.impl.GameServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.MessageServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.ModeServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.MoveServiceImpl;
+import by.itacademy.karpuk.chess.service.impl.ParticipationServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.PieceServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.PlayerServiceImpl;
 import by.itacademy.karpuk.chess.service.impl.TournamentServiceImpl;
@@ -46,6 +50,7 @@ public class AbstractTest {
 	protected IMoveService moveService = new MoveServiceImpl();
 	protected IBoardService boardService = new BoardServiceImpl();
 	protected IMessageService messageService = new MessageServiceImpl();
+	protected IParticipationService participationService = new ParticipationServiceImpl();
 
 	private static final Random RANDOM = new Random();
 
@@ -61,6 +66,7 @@ public class AbstractTest {
 		moveService.deleteAll();
 		boardService.deleteAll();
 		messageService.deleteAll();
+		participationService.deleteAll();
 	}
 
 	protected String getRandomPrefix() {
@@ -100,6 +106,8 @@ public class AbstractTest {
 	protected IClub saveNewClub() {
 		final IClub entity = clubService.createEntity();
 		entity.setName("club-" + getRandomPrefix());
+		entity.setCreatedDate(new Date(System.currentTimeMillis()));
+		entity.setNumberOfMembers(getRandomObjectsCount());
 		clubService.save(entity);
 		return entity;
 	}
@@ -107,6 +115,16 @@ public class AbstractTest {
 	protected IPlayer saveNewPlayer() {
 		final IPlayer entity = playerService.createEntity();
 		entity.setName("player-" + getRandomPrefix());
+		entity.setSurname("player-" + getRandomPrefix());
+		entity.setNickname(getRandomPrefix());
+		entity.setCountry(saveNewCountry());
+		entity.setRegistratedDate(new Date(System.currentTimeMillis()));
+		entity.setGamesPlayed(getRandomObjectsCount());
+		entity.setBirthDate(new Date(System.currentTimeMillis()));
+		entity.setEmail(getRandomPrefix());
+		entity.setPassword(getRandomPrefix());
+		entity.setEloPoints(getRandomObjectsCount());
+		entity.setRank(getRandomPrefix());
 		playerService.save(entity);
 		return entity;
 	}
@@ -114,31 +132,59 @@ public class AbstractTest {
 	protected ITournament saveNewTournament() {
 		final ITournament entity = tournamentService.createEntity();
 		entity.setName("tournament-" + getRandomPrefix());
+		entity.setStarted(new Date(System.currentTimeMillis()));
 		tournamentService.save(entity);
 		return entity;
 	}
 
 	protected IGame saveNewGame() {
 		final IGame entity = gameService.createEntity();
+		entity.setWhitePlayer(saveNewPlayer());
+		entity.setBlackPlayer(saveNewPlayer());
+		entity.setStarted(new Date(System.currentTimeMillis()));
+		entity.setMode(saveNewMode());
 		gameService.save(entity);
 		return entity;
 	}
 
 	protected IMove saveNewMove() {
 		final IMove entity = moveService.createEntity();
+		entity.setGame(saveNewGame());
+		entity.setPlayer(saveNewPlayer());
+		entity.setPiece(saveNewPiece());
+		entity.setMoveNotationFrom(getRandomPrefix());
+		entity.setMoveNotationTo(getRandomPrefix());
+		entity.setMoveTime(getRandomObjectsCount());
 		moveService.save(entity);
 		return entity;
 	}
 
 	protected IBoard saveNewBoard() {
 		final IBoard entity = boardService.createEntity();
+		entity.setGame(saveNewGame());
+		entity.setPiece(saveNewPiece());
+		entity.setPositionLetter(getRandomPrefix());
+		entity.setPositionNumber(getRandomObjectsCount());
 		boardService.save(entity);
 		return entity;
 	}
 
 	protected IMessage saveNewMessage() {
 		final IMessage entity = messageService.createEntity();
+		entity.setWriter(saveNewPlayer());
+		entity.setContent(getRandomPrefix());
+		entity.setCreated(new Date(System.currentTimeMillis()));
+		entity.setGame(saveNewGame());
 		messageService.save(entity);
+		return entity;
+	}
+
+	protected IParticipation saveNewParticipation() {
+		final IParticipation entity = participationService.createEntity();
+		entity.setPlayer(saveNewPlayer());
+		entity.setTournament(saveNewTournament());
+		entity.setTournamentPoints(getRandomObjectsCount());
+		participationService.save(entity);
 		return entity;
 	}
 }

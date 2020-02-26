@@ -35,7 +35,7 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 				pStmt.setString(3, entity.getNickname());
 				pStmt.setInt(4, entity.getCountry().getId());
 				pStmt.setObject(5, entity.getRegistratedDate(), Types.TIMESTAMP);
-				pStmt.setInt(6, entity.getClub().getId());
+				pStmt.setObject(6, entity.getClub().getId());
 				pStmt.setInt(7, entity.getGamesPlayed());
 				pStmt.setObject(8, entity.getBirthDate(), Types.TIMESTAMP);
 				pStmt.setString(9, entity.getEmail());

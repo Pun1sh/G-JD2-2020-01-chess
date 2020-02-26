@@ -13,11 +13,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 public class TournamentServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
-		final ITournament entity = tournamentService.createEntity();
-		entity.setName("tournament-" + getRandomPrefix());
-		entity.setCountry(saveNewCountry());
-		entity.setWinner(saveNewPlayer());
-		tournamentService.save(entity);
+		final ITournament entity = saveNewTournament();
 
 		final ITournament entityFromDb = tournamentService.get(entity.getId());
 

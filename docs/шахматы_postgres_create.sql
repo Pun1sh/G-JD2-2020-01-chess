@@ -6,7 +6,7 @@ CREATE TABLE "player" (
 	"country_id" integer NOT NULL,
 	"registrated" TIMESTAMP NOT NULL,
 	"club_id" integer,
-	"games_played" integer NOT NULL,
+	"games_played" integer,
 	"birth_date" DATE NOT NULL,
 	"email" varchar NOT NULL UNIQUE,
 	"password" varchar(64) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "game" (
 	"winner_id" integer,
 	"loser_id" integer,
 	"started" TIMESTAMP NOT NULL,
-	"ended" TIMESTAMP NOT NULL,
+	"ended" TIMESTAMP,
 	"mode_id" integer NOT NULL,
 	CONSTRAINT "game_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -65,9 +65,9 @@ CREATE TABLE "tournament" (
 	"id" serial NOT NULL,
 	"name" varchar NOT NULL UNIQUE,
 	"started" DATE NOT NULL,
-	"ended" DATE NOT NULL,
-	"country_id" integer NOT NULL,
-	"winner_id" integer NOT NULL,
+	"ended" DATE,
+	"country_id" integer,
+	"winner_id" integer,
 	CONSTRAINT "tournament_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

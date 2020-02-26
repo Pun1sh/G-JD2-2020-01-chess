@@ -13,13 +13,8 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IClub;
 public class ClubServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
-		final IClub entity = clubService.createEntity();
-		entity.setName("model-" + getRandomPrefix());
-		entity.setCountry(saveNewCountry());
-		clubService.save(entity);
-
+		final IClub entity = saveNewClub();
 		final IClub entityFromDb = clubService.get(entity.getId());
-
 		assertEquals(entity.getName(), entityFromDb.getName());
 		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
 		assertNotNull(entityFromDb.getId());

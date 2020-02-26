@@ -13,15 +13,12 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 public class GameServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
-		final IGame entity = gameService.createEntity();
-		entity.setWhitePlayer(saveNewPlayer());
-		entity.setBlackPlayer(saveNewPlayer());
-		gameService.save(entity);
+		IGame entity = saveNewGame();
 
 		final IGame entityFromDb = gameService.get(entity.getId());
+		assertNotNull(entityFromDb.getId());
 		assertEquals(entity.getWhitePlayer().getId(), entityFromDb.getWhitePlayer().getId());
 		assertEquals(entity.getBlackPlayer().getId(), entityFromDb.getBlackPlayer().getId());
-		assertNotNull(entityFromDb.getId());
 	}
 
 	@Test
