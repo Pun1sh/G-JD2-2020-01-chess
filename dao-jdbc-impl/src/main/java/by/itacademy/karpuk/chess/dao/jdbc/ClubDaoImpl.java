@@ -33,7 +33,14 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 				pStmt.setObject(2, entity.getCreatedDate(), Types.TIMESTAMP);
 				pStmt.setObject(3, entity.getDeletedDate(), Types.TIMESTAMP);
 				pStmt.setInt(4, entity.getNumberOfMembers());
-				pStmt.setObject(5, entity.getCountry().getId(), java.sql.Types.INTEGER);
+				ICountry country = entity.getCountry();
+
+				if (country == null) {
+					pStmt.setNull(5, java.sql.Types.INTEGER);
+				} else {
+					Integer cId = country.getId();
+					pStmt.setObject(5, cId, java.sql.Types.INTEGER);
+				}
 
 				pStmt.executeUpdate();
 				final ResultSet rs = pStmt.getGeneratedKeys();
@@ -64,6 +71,7 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 	protected IClub parseRow(final ResultSet resultSet) throws SQLException {
 		final IClub entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
+		entity.setName(resultSet.getString("name"));
 		entity.setCreatedDate(resultSet.getTimestamp("created"));
 		entity.setCreatedDate(resultSet.getTimestamp("deleted"));
 		entity.setNumberOfMembers(resultSet.getInt("number_of_members"));
