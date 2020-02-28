@@ -16,9 +16,10 @@ public class ClubServiceTest extends AbstractTest {
 		final IClub entity = saveNewClub();
 		final IClub entityFromDb = clubService.get(entity.getId());
 		assertEquals(entity.getName(), entityFromDb.getName());
-		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
+		assertEquals(entity.getCreatedDate(), entity.getCreatedDate());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreatedDate());
+		assertEquals(entity.getNumberOfMembers(), entity.getNumberOfMembers());
 	}
 
 	@Test

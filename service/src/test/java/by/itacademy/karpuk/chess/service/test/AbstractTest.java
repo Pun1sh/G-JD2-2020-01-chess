@@ -58,8 +58,8 @@ public class AbstractTest {
 	public void setUpMethod() {
 		pieceService.deleteAll();
 		modeService.deleteAll();
-		countryService.deleteAll();
 		clubService.deleteAll();
+		countryService.deleteAll();
 		playerService.deleteAll();
 		tournamentService.deleteAll();
 		gameService.deleteAll();
@@ -108,6 +108,7 @@ public class AbstractTest {
 		entity.setName("club-" + getRandomPrefix());
 		entity.setCreatedDate(new Date(System.currentTimeMillis()));
 		entity.setNumberOfMembers(getRandomObjectsCount());
+		entity.setCountry(saveNewCountry());
 		clubService.save(entity);
 		return entity;
 	}
