@@ -17,8 +17,13 @@ public class ParticipationServiceTest extends AbstractTest {
 
 		final IParticipation entityFromDb = participationService.get(entity.getId());
 		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getPlayer().getId());
+		assertNotNull(entityFromDb.getTournament().getId());
+		assertNotNull(entityFromDb.getTournamentPoints());
 		assertEquals(entity.getPlayer().getId(), entityFromDb.getPlayer().getId());
 		assertEquals(entity.getTournament().getId(), entityFromDb.getTournament().getId());
+		assertEquals(entity.getTournamentPoints(), entityFromDb.getTournamentPoints());
+
 	}
 
 	@Test
@@ -33,6 +38,9 @@ public class ParticipationServiceTest extends AbstractTest {
 
 		for (final IParticipation entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getPlayer().getId());
+			assertNotNull(entityFromDb.getTournament().getId());
+			assertNotNull(entityFromDb.getTournamentPoints());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

@@ -34,11 +34,27 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 			public IGame doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getWhitePlayer().getId());
 				pStmt.setInt(2, entity.getBlackPlayer().getId());
-				pStmt.setInt(3, entity.getTournament().getId());
-				pStmt.setInt(4, entity.getWinner().getId());
-				pStmt.setInt(5, entity.getLoser().getId());
+				if (entity.getTournament() == null) {
+					pStmt.setNull(3, java.sql.Types.INTEGER);
+				} else {
+					pStmt.setObject(3, entity.getTournament().getId(), java.sql.Types.INTEGER);
+				}
+				if (entity.getWinner() == null) {
+					pStmt.setNull(4, java.sql.Types.INTEGER);
+				} else {
+					pStmt.setObject(4, entity.getWinner().getId(), java.sql.Types.INTEGER);
+				}
+				if (entity.getLoser() == null) {
+					pStmt.setNull(5, java.sql.Types.INTEGER);
+				} else {
+					pStmt.setObject(5, entity.getLoser().getId(), java.sql.Types.INTEGER);
+				}
 				pStmt.setObject(6, entity.getStarted(), Types.TIMESTAMP);
-				pStmt.setObject(7, entity.getEnded(), Types.TIMESTAMP);
+				if (entity.getEnded() == null) {
+					pStmt.setNull(7, java.sql.Types.TIMESTAMP);
+				} else {
+					pStmt.setObject(7, entity.getEnded(), java.sql.Types.TIMESTAMP);
+				}
 				pStmt.setInt(8, entity.getMode().getId());
 
 				pStmt.executeUpdate();
@@ -63,9 +79,13 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 
 		IPlayer player = new Player();
 		player.setId((Integer) resultSet.getObject("white_player_id"));
+		entity.setWhitePlayer(player);
 		player.setId((Integer) resultSet.getObject("black_player_id"));
+		entity.setBlackPlayer(player);
 		player.setId((Integer) resultSet.getObject("winner_id"));
+		entity.setWinner(player);
 		player.setId((Integer) resultSet.getObject("loser_id"));
+		entity.setLoser(player);
 
 		final ITournament tournament = new Tournament();
 		tournament.setId((Integer) resultSet.getObject("tournament_id"));

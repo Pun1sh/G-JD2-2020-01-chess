@@ -31,7 +31,6 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 			public IClub doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setObject(2, entity.getCreatedDate(), Types.TIMESTAMP);
-				pStmt.setObject(3, entity.getDeletedDate(), Types.TIMESTAMP);
 				if (entity.getDeletedDate() == null) {
 					pStmt.setNull(3, java.sql.Types.TIMESTAMP);
 				} else {

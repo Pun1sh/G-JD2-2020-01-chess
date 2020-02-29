@@ -17,8 +17,18 @@ public class GameServiceTest extends AbstractTest {
 
 		final IGame entityFromDb = gameService.get(entity.getId());
 		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getWhitePlayer().getId());
+		assertNotNull(entityFromDb.getBlackPlayer().getId());
+		assertNotNull(entityFromDb.getStarted());
+		assertNotNull(entityFromDb.getMode().getId());
 		assertEquals(entity.getWhitePlayer().getId(), entityFromDb.getWhitePlayer().getId());
 		assertEquals(entity.getBlackPlayer().getId(), entityFromDb.getBlackPlayer().getId());
+		assertEquals(entity.getWinner().getId(), entityFromDb.getWinner().getId());
+		assertEquals(entity.getLoser().getId(), entityFromDb.getLoser().getId());
+		assertEquals(entity.getStarted(), entityFromDb.getStarted());
+		assertEquals(entity.getEnded(), entityFromDb.getEnded());
+		assertEquals(entity.getMode().getId(), entityFromDb.getMode().getId());
+
 	}
 
 	@Test
@@ -33,6 +43,10 @@ public class GameServiceTest extends AbstractTest {
 
 		for (final IGame entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getWhitePlayer().getId());
+			assertNotNull(entityFromDb.getBlackPlayer().getId());
+			assertNotNull(entityFromDb.getStarted());
+			assertNotNull(entityFromDb.getMode().getId());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

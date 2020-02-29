@@ -114,6 +114,7 @@ public class AbstractTest {
 		return entity;
 	}
 
+	// problem
 	protected IPlayer saveNewPlayer() {
 		final IPlayer entity = playerService.createEntity();
 		entity.setName("player-" + getRandomPrefix());
@@ -132,19 +133,28 @@ public class AbstractTest {
 		return entity;
 	}
 
+//problem
 	protected ITournament saveNewTournament() {
 		final ITournament entity = tournamentService.createEntity();
 		entity.setName("tournament-" + getRandomPrefix());
 		entity.setStarted(new Date(System.currentTimeMillis()));
+		entity.setEnded(new Date(System.currentTimeMillis()));
+		entity.setCountry(saveNewCountry());
+		entity.setWinner(saveNewPlayer());
 		tournamentService.save(entity);
 		return entity;
 	}
 
+// problem
 	protected IGame saveNewGame() {
 		final IGame entity = gameService.createEntity();
 		entity.setWhitePlayer(saveNewPlayer());
 		entity.setBlackPlayer(saveNewPlayer());
+		entity.setWinner(saveNewPlayer());
+		entity.setLoser(saveNewPlayer());
+		entity.setTournament(saveNewTournament());
 		entity.setStarted(new Date(System.currentTimeMillis()));
+		entity.setEnded(new Date(System.currentTimeMillis()));
 		entity.setMode(saveNewMode());
 		gameService.save(entity);
 		return entity;
@@ -155,8 +165,8 @@ public class AbstractTest {
 		entity.setGame(saveNewGame());
 		entity.setPlayer(saveNewPlayer());
 		entity.setPiece(saveNewPiece());
-		entity.setMoveNotationFrom(getRandomPrefix());
-		entity.setMoveNotationTo(getRandomPrefix());
+		entity.setMoveNotationFrom("2");
+		entity.setMoveNotationTo("2");
 		entity.setMoveTime(getRandomObjectsCount());
 		moveService.save(entity);
 		return entity;
@@ -166,7 +176,7 @@ public class AbstractTest {
 		final IBoard entity = boardService.createEntity();
 		entity.setGame(saveNewGame());
 		entity.setPiece(saveNewPiece());
-		entity.setPositionLetter(getRandomPrefix());
+		entity.setPositionLetter("A");
 		entity.setPositionNumber(getRandomObjectsCount());
 		boardService.save(entity);
 		return entity;

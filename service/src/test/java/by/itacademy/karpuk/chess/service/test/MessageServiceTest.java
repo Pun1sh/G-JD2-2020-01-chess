@@ -16,10 +16,16 @@ public class MessageServiceTest extends AbstractTest {
 		final IMessage entity = saveNewMessage();
 
 		final IMessage entityFromDb = messageService.get(entity.getId());
-
+		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getWriter().getId());
+		assertNotNull(entityFromDb.getGame().getId());
+		assertNotNull(entityFromDb.getContent());
+		assertNotNull(entityFromDb.getCreated());
 		assertEquals(entity.getGame().getId(), entityFromDb.getGame().getId());
 		assertEquals(entity.getWriter().getId(), entityFromDb.getWriter().getId());
-		assertNotNull(entityFromDb.getId());
+		assertEquals(entity.getContent(), entityFromDb.getContent());
+		assertEquals(entity.getCreated(), entityFromDb.getCreated());
+
 	}
 
 	@Test
@@ -34,6 +40,10 @@ public class MessageServiceTest extends AbstractTest {
 
 		for (final IMessage entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getWriter().getId());
+			assertNotNull(entityFromDb.getGame().getId());
+			assertNotNull(entityFromDb.getContent());
+			assertNotNull(entityFromDb.getCreated());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

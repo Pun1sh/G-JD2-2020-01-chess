@@ -32,8 +32,7 @@ public class TournamentDaoImpl extends AbstractDaoImpl<ITournament, Integer> imp
 			@Override
 			public ITournament doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
-				pStmt.setObject(2, entity.getStarted(), Types.TIMESTAMP);
-				pStmt.setObject(3, entity.getEnded(), Types.TIMESTAMP);
+				pStmt.setObject(2, entity.getStarted(), Types.DATE);
 				if (entity.getEnded() == null) {
 					pStmt.setNull(3, java.sql.Types.DATE);
 				} else {
