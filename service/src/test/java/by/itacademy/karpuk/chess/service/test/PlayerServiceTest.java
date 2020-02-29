@@ -14,13 +14,31 @@ public class PlayerServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
 		final IPlayer entity = saveNewPlayer();
-
 		final IPlayer entityFromDb = playerService.get(entity.getId());
-
-		assertEquals(entity.getName(), entityFromDb.getName());
-		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
-		assertEquals(entity.getClub().getId(), entityFromDb.getClub().getId());
 		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getName());
+		assertNotNull(entityFromDb.getSurname());
+		assertNotNull(entityFromDb.getNickname());
+		assertNotNull(entityFromDb.getCountry().getId());
+		assertNotNull(entityFromDb.getRegistratedDate());
+		assertNotNull(entityFromDb.getGamesPlayed());
+		assertNotNull(entityFromDb.getBirthDate());
+		assertNotNull(entityFromDb.getEmail());
+		assertNotNull(entityFromDb.getPassword());
+		assertNotNull(entityFromDb.getEloPoints());
+		assertNotNull(entityFromDb.getRank());
+		assertEquals(entity.getName(), entityFromDb.getName());
+		assertEquals(entity.getSurname(), entityFromDb.getSurname());
+		assertEquals(entity.getNickname(), entityFromDb.getNickname());
+		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
+		assertEquals(entity.getRegistratedDate(), entityFromDb.getRegistratedDate());
+		assertEquals(entity.getClub().getId(), entityFromDb.getClub().getId());
+		assertEquals(entity.getGamesPlayed(), entityFromDb.getGamesPlayed());
+		assertEquals(entity.getBirthDate(), entityFromDb.getBirthDate());
+		assertEquals(entity.getEmail(), entityFromDb.getEmail());
+		assertEquals(entity.getPassword(), entityFromDb.getPassword());
+		assertEquals(entity.getEloPoints(), entityFromDb.getEloPoints());
+		assertEquals(entity.getRank(), entityFromDb.getRank());
 	}
 
 	@Test
@@ -34,8 +52,18 @@ public class PlayerServiceTest extends AbstractTest {
 		final List<IPlayer> allEntities = playerService.getAll();
 
 		for (final IPlayer entityFromDb : allEntities) {
-			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getName());
+			assertNotNull(entityFromDb.getSurname());
+			assertNotNull(entityFromDb.getNickname());
+			assertNotNull(entityFromDb.getCountry().getId());
+			assertNotNull(entityFromDb.getRegistratedDate());
+			assertNotNull(entityFromDb.getGamesPlayed());
+			assertNotNull(entityFromDb.getBirthDate());
+			assertNotNull(entityFromDb.getEmail());
+			assertNotNull(entityFromDb.getPassword());
+			assertNotNull(entityFromDb.getEloPoints());
+			assertNotNull(entityFromDb.getRank());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

@@ -15,11 +15,17 @@ public class ClubServiceTest extends AbstractTest {
 	public void createTest() {
 		final IClub entity = saveNewClub();
 		final IClub entityFromDb = clubService.get(entity.getId());
+		assertNotNull(entityFromDb);
+		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getName());
+		assertNotNull(entityFromDb.getCreatedDate());
+		assertNotNull(entityFromDb.getNumberOfMembers());
 		assertEquals(entity.getName(), entityFromDb.getName());
 		assertEquals(entity.getCreatedDate(), entity.getCreatedDate());
-		assertNotNull(entityFromDb.getId());
-		assertNotNull(entityFromDb.getCreatedDate());
+		assertEquals(entity.getDeletedDate(), entity.getDeletedDate());
 		assertEquals(entity.getNumberOfMembers(), entity.getNumberOfMembers());
+		assertEquals(entity.getCountry().getId(), entity.getCountry().getId());
+
 	}
 
 	@Test
@@ -33,8 +39,11 @@ public class ClubServiceTest extends AbstractTest {
 		final List<IClub> allEntities = clubService.getAll();
 
 		for (final IClub entityFromDb : allEntities) {
-			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getName());
+			assertNotNull(entityFromDb.getCreatedDate());
+			assertNotNull(entityFromDb.getNumberOfMembers());
+
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

@@ -56,17 +56,18 @@ public class AbstractTest {
 
 	@BeforeEach
 	public void setUpMethod() {
+		boardService.deleteAll();
+		moveService.deleteAll();
 		pieceService.deleteAll();
+		messageService.deleteAll();
+		gameService.deleteAll();
 		modeService.deleteAll();
+		participationService.deleteAll();
+		tournamentService.deleteAll();
+		playerService.deleteAll();
 		clubService.deleteAll();
 		countryService.deleteAll();
-		playerService.deleteAll();
-		tournamentService.deleteAll();
-		gameService.deleteAll();
-		moveService.deleteAll();
-		boardService.deleteAll();
-		messageService.deleteAll();
-		participationService.deleteAll();
+
 	}
 
 	protected String getRandomPrefix() {
@@ -120,6 +121,7 @@ public class AbstractTest {
 		entity.setNickname(getRandomPrefix());
 		entity.setCountry(saveNewCountry());
 		entity.setRegistratedDate(new Date(System.currentTimeMillis()));
+		entity.setClub(saveNewClub());
 		entity.setGamesPlayed(getRandomObjectsCount());
 		entity.setBirthDate(new Date(System.currentTimeMillis()));
 		entity.setEmail(getRandomPrefix());

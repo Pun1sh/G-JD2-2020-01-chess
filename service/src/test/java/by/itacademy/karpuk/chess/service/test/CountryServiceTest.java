@@ -16,8 +16,9 @@ public class CountryServiceTest extends AbstractTest {
 		final ICountry entity = saveNewCountry();
 		final ICountry entityFromDb = countryService.get(entity.getId());
 		assertNotNull(entityFromDb);
-		assertEquals(entity.getName(), entityFromDb.getName());
 		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getName());
+		assertEquals(entity.getName(), entityFromDb.getName());
 	}
 
 	@Test
@@ -31,8 +32,8 @@ public class CountryServiceTest extends AbstractTest {
 		final List<ICountry> allEntities = countryService.getAll();
 
 		for (final ICountry entityFromDb : allEntities) {
-			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getName());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

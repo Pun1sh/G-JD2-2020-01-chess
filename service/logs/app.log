@@ -1,6 +1,0 @@
-19:19:46.971 [main] INFO  by.itacademy.karpuk.chess.service.impl.PieceServiceImpl - new piece created: Piece [name=piece-51818, getName()=piece-51818, getId()=null]
-19:22:01.399 [main] INFO  by.itacademy.karpuk.chess.service.impl.PieceServiceImpl - new piece created: Piece [name=piece-64579, getName()=piece-64579, getId()=null]
-19:49:44.881 [main] INFO  mylogger - info message1
-19:49:44.882 [main] WARN  mylogger - warn message1
-19:49:44.915 [main] INFO  by.itacademy.karpuk.chess.service.test.logger.LoggerTest - info message2
-19:49:44.916 [main] WARN  by.itacademy.karpuk.chess.service.test.logger.LoggerTest - warn message2

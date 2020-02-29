@@ -16,8 +16,9 @@ public class PieceServiceTest extends AbstractTest {
 		final IPiece entity = saveNewPiece();
 		final IPiece entityFromDb = pieceService.get(entity.getId());
 		assertNotNull(entityFromDb);
-		assertEquals(entity.getName(), entityFromDb.getName());
 		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getName());
+		assertEquals(entity.getName(), entityFromDb.getName());
 	}
 
 	@Test

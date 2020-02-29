@@ -14,13 +14,14 @@ public class TournamentServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
 		final ITournament entity = saveNewTournament();
-
 		final ITournament entityFromDb = tournamentService.get(entity.getId());
-
+		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getName());
+		assertNotNull(entityFromDb.getStarted());
 		assertEquals(entity.getName(), entityFromDb.getName());
+		assertEquals(entity.getStarted(), entityFromDb.getStarted());
 		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
 		assertEquals(entity.getWinner().getId(), entityFromDb.getWinner().getId());
-		assertNotNull(entityFromDb.getId());
 	}
 
 	@Test
@@ -36,6 +37,7 @@ public class TournamentServiceTest extends AbstractTest {
 		for (final ITournament entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getStarted());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

@@ -35,9 +35,13 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 				pStmt.setString(3, entity.getNickname());
 				pStmt.setInt(4, entity.getCountry().getId());
 				pStmt.setObject(5, entity.getRegistratedDate(), Types.TIMESTAMP);
-				pStmt.setObject(6, entity.getClub().getId());
+				if (entity.getClub() == null) {
+					pStmt.setNull(6, java.sql.Types.INTEGER);
+				} else {
+					pStmt.setObject(6, entity.getClub().getId(), java.sql.Types.INTEGER);
+				}
 				pStmt.setInt(7, entity.getGamesPlayed());
-				pStmt.setObject(8, entity.getBirthDate(), Types.TIMESTAMP);
+				pStmt.setObject(8, entity.getBirthDate(), java.sql.Types.DATE);
 				pStmt.setString(9, entity.getEmail());
 				pStmt.setString(10, entity.getPassword());
 				pStmt.setInt(11, entity.getEloPoints());
@@ -84,7 +88,7 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 		entity.setNickname(resultSet.getString("nickname"));
 		entity.setRegistratedDate(resultSet.getTimestamp("registrated"));
 		entity.setGamesPlayed(resultSet.getInt("games_played"));
-		entity.setBirthDate(resultSet.getTimestamp("birth_date"));
+		entity.setBirthDate(resultSet.getDate("birth_date"));
 		entity.setEmail(resultSet.getString("email"));
 		entity.setPassword(resultSet.getString("password"));
 		entity.setEloPoints(resultSet.getInt("elo_points"));

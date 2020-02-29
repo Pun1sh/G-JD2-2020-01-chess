@@ -76,6 +76,8 @@ public class Player extends BaseEntity implements IPlayer {
 		this.gamesPlayed = gamesPlayed;
 	}
 
+	
+
 	public Date getBirthDate() {
 		return birthDate;
 	}

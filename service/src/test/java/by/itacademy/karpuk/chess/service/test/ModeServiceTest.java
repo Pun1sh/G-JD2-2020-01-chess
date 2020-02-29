@@ -16,9 +16,12 @@ public class ModeServiceTest extends AbstractTest {
 		final IMode entity = saveNewMode();
 		final IMode entityFromDb = modeService.get(entity.getId());
 		assertNotNull(entityFromDb);
+		assertNotNull(entityFromDb.getId());
+		assertNotNull(entityFromDb.getName());
+		assertNotNull(entityFromDb.getTimeMinutes());
 		assertEquals(entity.getName(), entityFromDb.getName());
 		assertEquals(entity.getTimeMinutes(), entityFromDb.getTimeMinutes());
-		assertNotNull(entityFromDb.getId());
+
 	}
 
 	@Test
@@ -32,9 +35,9 @@ public class ModeServiceTest extends AbstractTest {
 		final List<IMode> allEntities = modeService.getAll();
 
 		for (final IMode entityFromDb : allEntities) {
+			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getTimeMinutes());
-			assertNotNull(entityFromDb.getId());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

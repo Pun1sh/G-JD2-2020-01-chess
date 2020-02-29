@@ -32,6 +32,11 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 				pStmt.setString(1, entity.getName());
 				pStmt.setObject(2, entity.getCreatedDate(), Types.TIMESTAMP);
 				pStmt.setObject(3, entity.getDeletedDate(), Types.TIMESTAMP);
+				if (entity.getDeletedDate() == null) {
+					pStmt.setNull(3, java.sql.Types.TIMESTAMP);
+				} else {
+					pStmt.setObject(3, entity.getDeletedDate(), java.sql.Types.TIMESTAMP);
+				}
 				pStmt.setInt(4, entity.getNumberOfMembers());
 				if (entity.getCountry() == null) {
 					pStmt.setNull(5, java.sql.Types.INTEGER);
