@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.ICountryDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.filter.CountryFilter;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Country;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class CountryDaoImpl extends AbstractDaoImpl<ICountry, Integer> implements ICountryDao {
 	@Override
 	public ICountry createEntity() {

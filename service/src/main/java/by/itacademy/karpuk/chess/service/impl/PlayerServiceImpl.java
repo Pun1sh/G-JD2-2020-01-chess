@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.IPlayerDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
-import by.itacademy.karpuk.chess.dao.jdbc.PlayerDaoImpl;
 import by.itacademy.karpuk.chess.service.IPlayerService;
 
+@Service
 public class PlayerServiceImpl implements IPlayerService {
-	private IPlayerDao dao = new PlayerDaoImpl();
+	@Autowired
+	private IPlayerDao dao;
 
 	@Override
 	public IPlayer get(Integer id) {

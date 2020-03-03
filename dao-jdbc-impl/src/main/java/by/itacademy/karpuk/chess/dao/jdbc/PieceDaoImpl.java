@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.IPieceDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 import by.itacademy.karpuk.chess.dao.api.filter.PieceFilter;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Piece;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class PieceDaoImpl extends AbstractDaoImpl<IPiece, Integer> implements IPieceDao {
 
 	@Override

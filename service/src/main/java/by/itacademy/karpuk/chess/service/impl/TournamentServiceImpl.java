@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.ITournamentDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
-import by.itacademy.karpuk.chess.dao.jdbc.TournamentDaoImpl;
 import by.itacademy.karpuk.chess.service.ITournamentService;
 
+@Service
 public class TournamentServiceImpl implements ITournamentService {
-	private ITournamentDao dao = new TournamentDaoImpl();
+	@Autowired
+	private ITournamentDao dao;
 
 	@Override
 	public ITournament get(Integer id) {

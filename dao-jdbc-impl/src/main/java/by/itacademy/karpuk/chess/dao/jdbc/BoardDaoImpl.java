@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.IBoardDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
@@ -15,6 +17,7 @@ import by.itacademy.karpuk.chess.dao.jdbc.entity.Game;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Piece;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IBoardDao {
 
 	@Override

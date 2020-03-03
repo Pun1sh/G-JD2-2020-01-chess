@@ -4,16 +4,18 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IPieceDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
-import by.itacademy.karpuk.chess.dao.jdbc.PieceDaoImpl;
 import by.itacademy.karpuk.chess.service.IPieceService;
 
+@Service
 public class PieceServiceImpl implements IPieceService {
 	private static Logger LOGGER = LoggerFactory.getLogger(PieceServiceImpl.class);
-
-	private IPieceDao dao = new PieceDaoImpl();
+	@Autowired
+	private IPieceDao dao;
 
 	@Override
 	public IPiece createEntity() {

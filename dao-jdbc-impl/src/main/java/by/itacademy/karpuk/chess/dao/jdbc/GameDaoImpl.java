@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.IGameDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
@@ -18,6 +20,7 @@ import by.itacademy.karpuk.chess.dao.jdbc.entity.Player;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Tournament;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGameDao {
 
 	@Override
@@ -77,15 +80,23 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		entity.setStarted(resultSet.getTimestamp("started"));
 		entity.setEnded(resultSet.getTimestamp("ended"));
 
-		IPlayer player = new Player();
-		player.setId((Integer) resultSet.getObject("white_player_id"));
-		entity.setWhitePlayer(player);
-		player.setId((Integer) resultSet.getObject("black_player_id"));
-		entity.setBlackPlayer(player);
-		player.setId((Integer) resultSet.getObject("winner_id"));
-		entity.setWinner(player);
-		player.setId((Integer) resultSet.getObject("loser_id"));
-		entity.setLoser(player);
+		IPlayer whitePlayer = new Player();
+		whitePlayer.setId((Integer) resultSet.getObject("white_player_id"));
+		entity.setWhitePlayer(whitePlayer);
+		
+		
+		IPlayer blackPlayer = new Player();
+		blackPlayer.setId((Integer) resultSet.getObject("black_player_id"));
+		entity.setBlackPlayer(blackPlayer);
+		
+		
+		IPlayer winner = new Player();
+		winner.setId((Integer) resultSet.getObject("winner_id"));
+		entity.setWinner(winner);
+		
+		IPlayer loser = new Player();
+		loser.setId((Integer) resultSet.getObject("loser_id"));
+		entity.setLoser(loser);
 
 		final ITournament tournament = new Tournament();
 		tournament.setId((Integer) resultSet.getObject("tournament_id"));

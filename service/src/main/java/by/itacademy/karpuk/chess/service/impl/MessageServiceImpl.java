@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.IMessageDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
-import by.itacademy.karpuk.chess.dao.jdbc.MessageDaoImpl;
 import by.itacademy.karpuk.chess.service.IMessageService;
 
+@Service
 public class MessageServiceImpl implements IMessageService {
-	private IMessageDao dao = new MessageDaoImpl();
+	@Autowired
+	private IMessageDao dao;
 
 	@Override
 	public IMessage get(Integer id) {

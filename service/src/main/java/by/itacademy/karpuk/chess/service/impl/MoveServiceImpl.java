@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.IMoveDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
-import by.itacademy.karpuk.chess.dao.jdbc.MoveDaoImpl;
 import by.itacademy.karpuk.chess.service.IMoveService;
 
+@Service
 public class MoveServiceImpl implements IMoveService {
-	private IMoveDao dao = new MoveDaoImpl();
+	@Autowired
+	private IMoveDao dao;
 
 	@Override
 	public IMove get(Integer id) {

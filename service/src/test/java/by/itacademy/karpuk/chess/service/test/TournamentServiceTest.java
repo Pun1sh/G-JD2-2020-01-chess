@@ -20,6 +20,7 @@ public class TournamentServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getStarted());
 		assertEquals(entity.getName(), entityFromDb.getName());
 		assertEquals(entity.getStarted(), entityFromDb.getStarted());
+		assertEquals(entity.getEnded(), entityFromDb.getEnded());
 		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
 		assertEquals(entity.getWinner().getId(), entityFromDb.getWinner().getId());
 	}

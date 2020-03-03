@@ -21,6 +21,9 @@ public class GameServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getBlackPlayer().getId());
 		assertNotNull(entityFromDb.getStarted());
 		assertNotNull(entityFromDb.getMode().getId());
+		
+		
+		
 		assertEquals(entity.getWhitePlayer().getId(), entityFromDb.getWhitePlayer().getId());
 		assertEquals(entity.getBlackPlayer().getId(), entityFromDb.getBlackPlayer().getId());
 		assertEquals(entity.getWinner().getId(), entityFromDb.getWinner().getId());

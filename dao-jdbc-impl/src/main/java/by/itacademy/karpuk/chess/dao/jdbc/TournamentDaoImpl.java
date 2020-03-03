@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.ITournamentDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
@@ -16,6 +18,7 @@ import by.itacademy.karpuk.chess.dao.jdbc.entity.Player;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Tournament;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class TournamentDaoImpl extends AbstractDaoImpl<ITournament, Integer> implements ITournamentDao {
 
 	@Override

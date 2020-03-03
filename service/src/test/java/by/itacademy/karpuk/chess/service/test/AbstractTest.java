@@ -1,9 +1,24 @@
 package by.itacademy.karpuk.chess.service.test;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IClub;
@@ -27,47 +42,77 @@ import by.itacademy.karpuk.chess.service.IParticipationService;
 import by.itacademy.karpuk.chess.service.IPieceService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
 import by.itacademy.karpuk.chess.service.ITournamentService;
-import by.itacademy.karpuk.chess.service.impl.BoardServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.ClubServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.CountryServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.GameServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.MessageServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.ModeServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.MoveServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.ParticipationServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.PieceServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.PlayerServiceImpl;
-import by.itacademy.karpuk.chess.service.impl.TournamentServiceImpl;
 
-public class AbstractTest {
-	protected IPieceService pieceService = new PieceServiceImpl();
-	protected IModeService modeService = new ModeServiceImpl();
-	protected ICountryService countryService = new CountryServiceImpl();
-	protected IClubService clubService = new ClubServiceImpl();
-	protected IPlayerService playerService = new PlayerServiceImpl();
-	protected ITournamentService tournamentService = new TournamentServiceImpl();
-	protected IGameService gameService = new GameServiceImpl();
-	protected IMoveService moveService = new MoveServiceImpl();
-	protected IBoardService boardService = new BoardServiceImpl();
-	protected IMessageService messageService = new MessageServiceImpl();
-	protected IParticipationService participationService = new ParticipationServiceImpl();
+@SpringJUnitConfig(locations = "classpath:service-context-test.xml")
+public abstract class AbstractTest {
+	@Autowired
+	protected IPieceService pieceService;
+	@Autowired
+	protected IModeService modeService;
+	@Autowired
+	protected ICountryService countryService;
+	@Autowired
+	protected IClubService clubService;
+	@Autowired
+	protected IPlayerService playerService;
+	@Autowired
+	protected ITournamentService tournamentService;
+	@Autowired
+	protected IGameService gameService;
+	@Autowired
+	protected IMoveService moveService;
+	@Autowired
+	protected IBoardService boardService;
+	@Autowired
+	protected IMessageService messageService;
+	@Autowired
+	protected IParticipationService participationService;
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
 
 	private static final Random RANDOM = new Random();
 
-	@BeforeEach
-	public void setUpMethod() {
-		boardService.deleteAll();
-		moveService.deleteAll();
-		pieceService.deleteAll();
-		messageService.deleteAll();
-		gameService.deleteAll();
-		modeService.deleteAll();
-		participationService.deleteAll();
-		tournamentService.deleteAll();
-		playerService.deleteAll();
-		clubService.deleteAll();
-		countryService.deleteAll();
+	@Value("${jdbc.url}")
+	private String url;
+	@Value("${jdbc.user}")
+	private String user;
+	@Value("${jdbc.password}")
+	private String password;
 
+	@BeforeEach
+	public final void recreateTestDB() throws SQLException, IOException {
+		final long stampBefore = System.currentTimeMillis();
+
+		final Connection conn = DriverManager.getConnection(url, user, password);
+
+		try {
+			final Statement stmt = conn.createStatement();
+			try {
+				stmt.execute("DROP SCHEMA IF EXISTS \"public\" CASCADE;");
+				stmt.execute("CREATE SCHEMA \"public\";");
+				stmt.execute(getScript());
+			} finally {
+				stmt.close();
+			}
+		} finally {
+			conn.close();
+		}
+
+		LOGGER.info("Database recreated in {} seconds.",
+				Double.valueOf((System.currentTimeMillis() - stampBefore) / 1000));
+	}
+
+	private String getScript() {
+
+		StringBuilder contentBuilder = new StringBuilder();
+
+		try (Stream<String> stream = Files.lines(Paths.get("../docs/шахматы_postgres_create.sql"),
+				StandardCharsets.UTF_8)) {
+			stream.forEach(s -> contentBuilder.append(s).append("\n"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return contentBuilder.toString();
 	}
 
 	protected String getRandomPrefix() {
@@ -137,8 +182,15 @@ public class AbstractTest {
 	protected ITournament saveNewTournament() {
 		final ITournament entity = tournamentService.createEntity();
 		entity.setName("tournament-" + getRandomPrefix());
-		entity.setStarted(new Date(System.currentTimeMillis()));
-		entity.setEnded(new Date(System.currentTimeMillis()));
+		
+		Calendar instance = Calendar.getInstance();
+		instance.set(Calendar.HOUR_OF_DAY, 0);
+		instance.set(Calendar.MINUTE, 0);
+		instance.set(Calendar.SECOND, 0);
+		instance.set(Calendar.MILLISECOND, 0);
+		
+		entity.setStarted(instance.getTime());
+		entity.setEnded(new Date());
 		entity.setCountry(saveNewCountry());
 		entity.setWinner(saveNewPlayer());
 		tournamentService.save(entity);

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.IMessageDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
@@ -16,6 +18,7 @@ import by.itacademy.karpuk.chess.dao.jdbc.entity.Message;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Player;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implements IMessageDao {
 
 	@Override

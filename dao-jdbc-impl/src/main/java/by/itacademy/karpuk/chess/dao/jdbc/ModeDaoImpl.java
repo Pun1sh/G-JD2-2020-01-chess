@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.IModeDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.filter.ModeFilter;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Mode;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class ModeDaoImpl extends AbstractDaoImpl<IMode, Integer> implements IModeDao {
 	@Override
 	public IMode createEntity() {

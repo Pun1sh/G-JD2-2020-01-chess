@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.IModeDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
-import by.itacademy.karpuk.chess.dao.jdbc.ModeDaoImpl;
 import by.itacademy.karpuk.chess.service.IModeService;
 
+@Service
 public class ModeServiceImpl implements IModeService {
-	private IModeDao dao = new ModeDaoImpl();
+	@Autowired
+	private IModeDao dao;
 
 	@Override
 	public IMode createEntity() {

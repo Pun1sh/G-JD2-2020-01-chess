@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.IParticipationDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IParticipation;
-import by.itacademy.karpuk.chess.dao.jdbc.ParticipationDaoImpl;
 import by.itacademy.karpuk.chess.service.IParticipationService;
 
+@Service
 public class ParticipationServiceImpl implements IParticipationService {
-	private IParticipationDao dao = new ParticipationDaoImpl();
+	@Autowired
+	private IParticipationDao dao;
 
 	@Override
 	public IParticipation get(Integer id) {

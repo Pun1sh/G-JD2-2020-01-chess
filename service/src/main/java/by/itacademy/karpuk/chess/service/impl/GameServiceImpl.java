@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.IGameDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
-import by.itacademy.karpuk.chess.dao.jdbc.GameDaoImpl;
 import by.itacademy.karpuk.chess.service.IGameService;
 
+@Service
 public class GameServiceImpl implements IGameService {
-	private IGameDao dao = new GameDaoImpl();
+	@Autowired
+	private IGameDao dao;
 
 	@Override
 	public IGame get(Integer id) {

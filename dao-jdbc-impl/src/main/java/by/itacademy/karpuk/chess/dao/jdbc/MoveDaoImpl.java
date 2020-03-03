@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import by.itacademy.karpuk.chess.dao.api.IMoveDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
@@ -17,6 +19,7 @@ import by.itacademy.karpuk.chess.dao.jdbc.entity.Piece;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Player;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
+@Repository
 public class MoveDaoImpl extends AbstractDaoImpl<IMove, Integer> implements IMoveDao {
 
 	@Override

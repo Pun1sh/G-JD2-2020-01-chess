@@ -1,6 +1,5 @@
 package by.itacademy.karpuk.chess.dao.jdbc;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,8 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import by.itacademy.karpuk.chess.dao.api.IDao;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
@@ -21,34 +23,26 @@ import by.itacademy.karpuk.chess.dao.jdbc.util.StatementAction;
 
 public abstract class AbstractDaoImpl<ENTITY, ID> implements IDao<ENTITY, ID> {
 
-	private static String url;
+	@Value("${jdbc.url}")
+	private String url;
+	@Value("${jdbc.user}")
+	private String user;
+	@Value("${jdbc.password}")
+	private String password;
 
-	private static String user;
+	@PostConstruct
+	private void init() {
 
-	private static String password;
+		if (url == null) {
+			throw new IllegalArgumentException("[url] cant be null");
+		}
 
-	static {
-		Properties props = new Properties();
-		try {
-			Class<?> clazz = AbstractDaoImpl.class;
-			props.load(clazz.getClassLoader().getResourceAsStream("jdbc-test.properties"));
-			url = props.getProperty("jdbc.url");
-			user = props.getProperty("jdbc.user");
-			password = props.getProperty("jdbc.password");
+		if (password == null) {
+			throw new IllegalArgumentException("[password] cant be null");
+		}
 
-			if (url == null) {
-				throw new IllegalAccessException("[url] cant be null");
-			}
-
-			if (password == null) {
-				throw new IllegalAccessException("[password] cant be null");
-			}
-
-			if (user == null) {
-				throw new IllegalAccessException("[user] cant be null");
-			}
-		} catch (IllegalAccessException | IOException e) {
-			e.printStackTrace();
+		if (user == null) {
+			throw new IllegalArgumentException("[user] cant be null");
 		}
 	}
 

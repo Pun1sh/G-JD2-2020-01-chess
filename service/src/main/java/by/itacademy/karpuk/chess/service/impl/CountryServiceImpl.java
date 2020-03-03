@@ -2,13 +2,18 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.ICountryDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
-import by.itacademy.karpuk.chess.dao.jdbc.CountryDaoImpl;
 import by.itacademy.karpuk.chess.service.ICountryService;
 
+@Service
 public class CountryServiceImpl implements ICountryService {
-	private ICountryDao dao = new CountryDaoImpl();
+
+	@Autowired
+	private ICountryDao dao;
 
 	@Override
 	public ICountry createEntity() {

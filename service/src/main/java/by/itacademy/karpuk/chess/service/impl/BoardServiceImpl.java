@@ -2,13 +2,17 @@ package by.itacademy.karpuk.chess.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.itacademy.karpuk.chess.dao.api.IBoardDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
-import by.itacademy.karpuk.chess.dao.jdbc.BoardDaoImpl;
 import by.itacademy.karpuk.chess.service.IBoardService;
 
+@Service
 public class BoardServiceImpl implements IBoardService {
-	private IBoardDao dao = new BoardDaoImpl();
+	@Autowired
+	private IBoardDao dao;
 
 	@Override
 	public IBoard get(Integer id) {
