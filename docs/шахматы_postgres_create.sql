@@ -7,7 +7,7 @@ CREATE TABLE "player" (
 	"registrated" TIMESTAMP NOT NULL,
 	"club_id" integer,
 	"games_played" integer,
-	"birth_date" DATE NOT NULL,
+	"birth_date" TIMESTAMP NOT NULL,
 	"email" varchar NOT NULL UNIQUE,
 	"password" varchar(64) NOT NULL,
 	"elo_points" integer NOT NULL,
@@ -64,8 +64,8 @@ CREATE TABLE "piece" (
 CREATE TABLE "tournament" (
 	"id" serial NOT NULL,
 	"name" varchar NOT NULL UNIQUE,
-	"started" DATE NOT NULL,
-	"ended" DATE,
+	"started" TIMESTAMP NOT NULL,
+	"ended" TIMESTAMP,
 	"country_id" integer,
 	"winner_id" integer,
 	CONSTRAINT "tournament_pk" PRIMARY KEY ("id")

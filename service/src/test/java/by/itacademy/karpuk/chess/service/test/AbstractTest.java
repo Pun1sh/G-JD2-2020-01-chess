@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -152,7 +151,7 @@ public abstract class AbstractTest {
 	protected IClub saveNewClub() {
 		final IClub entity = clubService.createEntity();
 		entity.setName("club-" + getRandomPrefix());
-		entity.setCreatedDate(new Date(System.currentTimeMillis()));
+		entity.setCreatedDate(new Date());
 		entity.setNumberOfMembers(getRandomObjectsCount());
 		entity.setCountry(saveNewCountry());
 		clubService.save(entity);
@@ -166,10 +165,10 @@ public abstract class AbstractTest {
 		entity.setSurname("player-" + getRandomPrefix());
 		entity.setNickname(getRandomPrefix());
 		entity.setCountry(saveNewCountry());
-		entity.setRegistratedDate(new Date(System.currentTimeMillis()));
+		entity.setRegistratedDate(new Date());
 		entity.setClub(saveNewClub());
 		entity.setGamesPlayed(getRandomObjectsCount());
-		entity.setBirthDate(new Date(System.currentTimeMillis()));
+		entity.setBirthDate(new Date());
 		entity.setEmail(getRandomPrefix());
 		entity.setPassword(getRandomPrefix());
 		entity.setEloPoints(getRandomObjectsCount());
@@ -182,14 +181,7 @@ public abstract class AbstractTest {
 	protected ITournament saveNewTournament() {
 		final ITournament entity = tournamentService.createEntity();
 		entity.setName("tournament-" + getRandomPrefix());
-		
-		Calendar instance = Calendar.getInstance();
-		instance.set(Calendar.HOUR_OF_DAY, 0);
-		instance.set(Calendar.MINUTE, 0);
-		instance.set(Calendar.SECOND, 0);
-		instance.set(Calendar.MILLISECOND, 0);
-		
-		entity.setStarted(instance.getTime());
+		entity.setStarted(new Date());
 		entity.setEnded(new Date());
 		entity.setCountry(saveNewCountry());
 		entity.setWinner(saveNewPlayer());
@@ -205,8 +197,8 @@ public abstract class AbstractTest {
 		entity.setWinner(saveNewPlayer());
 		entity.setLoser(saveNewPlayer());
 		entity.setTournament(saveNewTournament());
-		entity.setStarted(new Date(System.currentTimeMillis()));
-		entity.setEnded(new Date(System.currentTimeMillis()));
+		entity.setStarted(new Date());
+		entity.setEnded(new Date());
 		entity.setMode(saveNewMode());
 		gameService.save(entity);
 		return entity;
@@ -238,7 +230,7 @@ public abstract class AbstractTest {
 		final IMessage entity = messageService.createEntity();
 		entity.setWriter(saveNewPlayer());
 		entity.setContent(getRandomPrefix());
-		entity.setCreated(new Date(System.currentTimeMillis()));
+		entity.setCreated(new Date());
 		entity.setGame(saveNewGame());
 		messageService.save(entity);
 		return entity;

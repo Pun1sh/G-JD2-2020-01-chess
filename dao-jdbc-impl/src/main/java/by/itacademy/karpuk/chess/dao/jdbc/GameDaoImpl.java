@@ -83,17 +83,15 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		IPlayer whitePlayer = new Player();
 		whitePlayer.setId((Integer) resultSet.getObject("white_player_id"));
 		entity.setWhitePlayer(whitePlayer);
-		
-		
+
 		IPlayer blackPlayer = new Player();
 		blackPlayer.setId((Integer) resultSet.getObject("black_player_id"));
 		entity.setBlackPlayer(blackPlayer);
-		
-		
+
 		IPlayer winner = new Player();
 		winner.setId((Integer) resultSet.getObject("winner_id"));
 		entity.setWinner(winner);
-		
+
 		IPlayer loser = new Player();
 		loser.setId((Integer) resultSet.getObject("loser_id"));
 		entity.setLoser(loser);
@@ -101,6 +99,7 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		final ITournament tournament = new Tournament();
 		tournament.setId((Integer) resultSet.getObject("tournament_id"));
 		entity.setTournament(tournament);
+
 		IMode mode = new Mode();
 		mode.setId((Integer) resultSet.getObject("mode_id"));
 		entity.setMode(mode);

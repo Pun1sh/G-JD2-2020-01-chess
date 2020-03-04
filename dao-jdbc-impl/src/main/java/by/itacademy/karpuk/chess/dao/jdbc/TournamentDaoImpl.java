@@ -35,11 +35,11 @@ public class TournamentDaoImpl extends AbstractDaoImpl<ITournament, Integer> imp
 			@Override
 			public ITournament doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
-				pStmt.setObject(2, entity.getStarted(), Types.DATE);
+				pStmt.setObject(2, entity.getStarted(), Types.TIMESTAMP);
 				if (entity.getEnded() == null) {
-					pStmt.setNull(3, java.sql.Types.DATE);
+					pStmt.setNull(3, java.sql.Types.TIMESTAMP);
 				} else {
-					pStmt.setObject(3, entity.getEnded(), java.sql.Types.DATE);
+					pStmt.setObject(3, entity.getEnded(), java.sql.Types.TIMESTAMP);
 				}
 				if (entity.getCountry() == null) {
 					pStmt.setNull(4, java.sql.Types.INTEGER);
@@ -70,8 +70,8 @@ public class TournamentDaoImpl extends AbstractDaoImpl<ITournament, Integer> imp
 		final ITournament entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setName(resultSet.getString("name"));
-		entity.setStarted(resultSet.getDate("started"));
-		entity.setEnded(resultSet.getDate("ended"));
+		entity.setStarted(resultSet.getTimestamp("started"));
+		entity.setEnded(resultSet.getTimestamp("ended"));
 
 		final ICountry country = new Country();
 		country.setId((Integer) resultSet.getObject("country_id"));
