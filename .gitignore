@@ -43,3 +43,4 @@ service/logs/2020-02/app-02-25-2020-1.log.gz
 service/logs/app.log
 service/logs/2020-02/app-02-29-2020-1.log.gz
 service/logs/2020-03/app-03-04-2020-1.log.gz
+web/logs/
