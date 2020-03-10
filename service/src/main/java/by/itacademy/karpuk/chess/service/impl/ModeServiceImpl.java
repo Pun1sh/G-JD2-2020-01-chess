@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IModeDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
+import by.itacademy.karpuk.chess.dao.api.filter.ModeFilter;
 import by.itacademy.karpuk.chess.service.IModeService;
 
 @Service
@@ -48,5 +49,10 @@ public class ModeServiceImpl implements IModeService {
 	public List<IMode> getAll() {
 		final List<IMode> all = dao.selectAll();
 		return all;
+	}
+
+	@Override
+	public List<IMode> find(ModeFilter filter) {
+		return dao.find(filter);
 	}
 }

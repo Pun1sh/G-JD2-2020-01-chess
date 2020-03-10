@@ -3,6 +3,7 @@ package by.itacademy.karpuk.chess.service;
 import java.util.List;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
+import by.itacademy.karpuk.chess.dao.api.filter.ModeFilter;
 
 public interface IModeService {
 
@@ -17,4 +18,6 @@ public interface IModeService {
 	void deleteAll();
 
 	IMode createEntity();
+
+	List<IMode> find(ModeFilter filter);
 }

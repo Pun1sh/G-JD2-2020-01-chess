@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.ICountryDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
+import by.itacademy.karpuk.chess.dao.api.filter.CountryFilter;
 import by.itacademy.karpuk.chess.service.ICountryService;
 
 @Service
@@ -49,5 +50,10 @@ public class CountryServiceImpl implements ICountryService {
 	public List<ICountry> getAll() {
 		final List<ICountry> all = dao.selectAll();
 		return all;
+	}
+
+	@Override
+	public List<ICountry> find(CountryFilter filter) {
+		return dao.find(filter);
 	}
 }

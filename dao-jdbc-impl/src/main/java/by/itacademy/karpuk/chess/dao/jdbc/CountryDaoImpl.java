@@ -46,7 +46,7 @@ public class CountryDaoImpl extends AbstractDaoImpl<ICountry, Integer> implement
 
 	@Override
 	public List<ICountry> find(CountryFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+		return selectAll();
 	}
 
 	@Override

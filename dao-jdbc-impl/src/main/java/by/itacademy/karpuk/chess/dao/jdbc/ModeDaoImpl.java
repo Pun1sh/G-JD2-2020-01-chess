@@ -47,7 +47,7 @@ public class ModeDaoImpl extends AbstractDaoImpl<IMode, Integer> implements IMod
 
 	@Override
 	public List<IMode> find(ModeFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+		return selectAll();
 	}
 
 	@Override
