@@ -5,7 +5,7 @@
 	scope="request" />
 <c:set var="pagesMode" value="${contextPath}/mode" scope="request" />
 <c:set var="pagesCountry" value="${contextPath}/country" scope="request" />
-<c:set var="pagesEngine" value="${contextPath}/engine" scope="request" />
+<c:set var="pagesPlayer" value="${contextPath}/player" scope="request" />
 <c:set var="pagesCar" value="${contextPath}/car" scope="request" />
 
 

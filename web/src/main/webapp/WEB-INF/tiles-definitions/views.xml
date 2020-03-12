@@ -6,7 +6,7 @@
 
 	<definition name="DefaultTemplate"
 		template="/WEB-INF/views/main-template.jsp">
-		<put-attribute name="title" value="Джылли и Ко" />
+		<put-attribute name="title" value="Chess" />
 		<put-attribute name="header"
 			value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value="" />
@@ -26,6 +26,10 @@
 	<definition name="country.list" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/country/list.jsp" />
+	</definition>
+	<definition name="player.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/player/list.jsp" />
 	</definition>
 
 </tiles-definitions>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IPlayerDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
+import by.itacademy.karpuk.chess.dao.api.filter.PlayerFilter;
 import by.itacademy.karpuk.chess.service.IPlayerService;
 
 @Service
@@ -49,6 +50,11 @@ public class PlayerServiceImpl implements IPlayerService {
 	@Override
 	public IPlayer createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IPlayer> find(PlayerFilter filter) {
+		return dao.find(filter);
 	}
 
 }
