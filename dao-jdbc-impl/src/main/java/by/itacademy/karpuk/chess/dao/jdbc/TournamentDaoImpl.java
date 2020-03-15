@@ -91,8 +91,7 @@ public class TournamentDaoImpl extends AbstractDaoImpl<ITournament, Integer> imp
 
 	@Override
 	public List<ITournament> find(TournamentFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
-
+		return selectAll();
 	}
 
 	@Override

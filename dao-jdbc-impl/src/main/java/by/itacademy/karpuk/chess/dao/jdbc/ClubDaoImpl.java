@@ -64,7 +64,7 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 
 	@Override
 	public List<IClub> find(ClubFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+		return selectAll();
 	}
 
 	@Override

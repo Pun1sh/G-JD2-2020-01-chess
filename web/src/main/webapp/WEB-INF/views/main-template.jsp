@@ -6,7 +6,10 @@
 <c:set var="pagesMode" value="${contextPath}/mode" scope="request" />
 <c:set var="pagesCountry" value="${contextPath}/country" scope="request" />
 <c:set var="pagesPlayer" value="${contextPath}/player" scope="request" />
-<c:set var="pagesCar" value="${contextPath}/car" scope="request" />
+<c:set var="pagesClub" value="${contextPath}/club" scope="request" />
+<c:set var="pagesGame" value="${contextPath}/game" scope="request" />
+<c:set var="pagesTournament" value="${contextPath}/tournament"
+	scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

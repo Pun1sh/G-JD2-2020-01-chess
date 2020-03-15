@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.ITournamentDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
+import by.itacademy.karpuk.chess.dao.api.filter.TournamentFilter;
 import by.itacademy.karpuk.chess.service.ITournamentService;
 
 @Service
@@ -50,6 +51,11 @@ public class TournamentServiceImpl implements ITournamentService {
 	@Override
 	public ITournament createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<ITournament> find(TournamentFilter filter) {
+		return dao.find(filter);
 	}
 
 }

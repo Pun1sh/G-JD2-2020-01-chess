@@ -3,6 +3,7 @@ package by.itacademy.karpuk.chess.service;
 import java.util.List;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
+import by.itacademy.karpuk.chess.dao.api.filter.TournamentFilter;
 
 public interface ITournamentService {
 	ITournament get(Integer id);
@@ -16,4 +17,6 @@ public interface ITournamentService {
 	void deleteAll();
 
 	ITournament createEntity();
+
+	List<ITournament> find(TournamentFilter filter);
 }

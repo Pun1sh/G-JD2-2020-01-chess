@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IGameDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
+import by.itacademy.karpuk.chess.dao.api.filter.GameFilter;
 import by.itacademy.karpuk.chess.service.IGameService;
 
 @Service
@@ -49,6 +50,11 @@ public class GameServiceImpl implements IGameService {
 	@Override
 	public IGame createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IGame> find(GameFilter filter) {
+		return dao.find(filter);
 	}
 
 }

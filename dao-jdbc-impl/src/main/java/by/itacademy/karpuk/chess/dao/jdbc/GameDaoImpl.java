@@ -116,7 +116,7 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 
 	@Override
 	public List<IGame> find(GameFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+		return selectAll();
 	}
 
 	@Override

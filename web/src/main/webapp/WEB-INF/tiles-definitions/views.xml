@@ -31,5 +31,17 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/player/list.jsp" />
 	</definition>
+	<definition name="club.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/club/list.jsp" />
+	</definition>
+	<definition name="game.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/game/list.jsp" />
+	</definition>
+	<definition name="tournament.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/tournament/list.jsp" />
+	</definition>
 
 </tiles-definitions>
