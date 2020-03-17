@@ -55,4 +55,9 @@ public class ModeServiceImpl implements IModeService {
 	public List<IMode> find(ModeFilter filter) {
 		return dao.find(filter);
 	}
+
+	@Override
+	public long getCount(ModeFilter filter) {
+		return dao.getCount(filter);
+	}
 }

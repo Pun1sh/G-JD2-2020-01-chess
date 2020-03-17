@@ -20,4 +20,6 @@ public interface IModeService {
 	IMode createEntity();
 
 	List<IMode> find(ModeFilter filter);
+
+	long getCount(ModeFilter filter);
 }

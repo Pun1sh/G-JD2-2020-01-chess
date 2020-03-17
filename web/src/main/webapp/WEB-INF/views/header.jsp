@@ -2,13 +2,13 @@
 	<nav>
 		<div class="nav-wrapper container">
 			<ul class="left hide-on-med-and-down">
-				<li><a href="${contextPath}">home</a></li>
-				<li><a href="${pagesMode}">modes</a></li>
-				<li><a href="${pagesCountry}">countries</a></li>
-				<li><a href="${pagesPlayer}">players</a></li>
-				<li><a href="${pagesClub}">clubs</a></li>
-				<li><a href="${pagesGame}">games</a></li>
-				<li><a href="${pagesTournament}">tournaments</a></li>
+				<li><a href="${contextPath}">Home</a></li>
+				<li><a href="${pagesMode}">Modes</a></li>
+				<li><a href="${pagesCountry}">Countries</a></li>
+				<li><a href="${pagesPlayer}">Players</a></li>
+				<li><a href="${pagesClub}">Clubs</a></li>
+				<li><a href="${pagesGame}">Games</a></li>
+				<li><a href="${pagesTournament}">Tournaments</a></li>
 			</ul>
 		</div>
 	</nav>

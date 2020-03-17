@@ -1,8 +1,13 @@
 package by.itacademy.karpuk.chess.web.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class ModeDTO {
 
+	@Size(min = 1, max = 50)
 	private String name;
+	@NotNull
 	private Integer timeMinutes;
 	private Integer id;
 

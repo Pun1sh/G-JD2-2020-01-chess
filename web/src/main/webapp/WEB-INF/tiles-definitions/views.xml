@@ -43,5 +43,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/tournament/list.jsp" />
 	</definition>
+	<definition name="mode.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/mode/form.jsp" />
+	</definition>
 
 </tiles-definitions>
