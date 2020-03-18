@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IParticipationDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IParticipation;
+import by.itacademy.karpuk.chess.dao.api.filter.ParticipationFilter;
 import by.itacademy.karpuk.chess.service.IParticipationService;
 
 @Service
@@ -48,6 +49,11 @@ public class ParticipationServiceImpl implements IParticipationService {
 	@Override
 	public IParticipation createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IParticipation> find(ParticipationFilter filter) {
+		return dao.find(filter);
 	}
 
 }

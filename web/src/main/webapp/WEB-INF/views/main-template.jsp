@@ -10,6 +10,8 @@
 <c:set var="pagesGame" value="${contextPath}/game" scope="request" />
 <c:set var="pagesTournament" value="${contextPath}/tournament"
 	scope="request" />
+<c:set var="pagesParticipation" value="${contextPath}/participation"
+	scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

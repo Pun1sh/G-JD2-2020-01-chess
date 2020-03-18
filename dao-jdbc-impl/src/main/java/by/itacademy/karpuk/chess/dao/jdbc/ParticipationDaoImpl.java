@@ -57,7 +57,7 @@ public class ParticipationDaoImpl extends AbstractDaoImpl<IParticipation, Intege
 
 	@Override
 	public List<IParticipation> find(ParticipationFilter filter) {
-		throw new RuntimeException("will be implemented in ORM layer. Too complex for plain jdbc ");
+		return selectAll();
 
 	}
 
