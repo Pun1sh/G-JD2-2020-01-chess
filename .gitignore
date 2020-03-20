@@ -49,3 +49,12 @@ service/logs/2020-03/app-03-06-2020-1.log.gz
 service/logs/2020-03/app-03-12-2020-1.log.gz
 service/logs/2020-03/app-03-10-2020-1.log.gz
 service/logs/
+dao-orm-impl/.settings/org.eclipse.core.resources.prefs
+dao-orm-impl/.gitignore
+dao-orm-impl/.settings/org.eclipse.jdt.core.prefs
+dao-orm-impl/.settings/org.eclipse.m2e.core.prefs
+dao-orm-impl/.settings/org.eclipse.jpt.core.prefs
+dao-orm-impl/.settings/org.eclipse.wst.common.project.facet.core.prefs.xml
+dao-orm-impl/.settings/org.eclipse.wst.common.project.facet.core.xml
+dao-orm-impl/.settings/org.eclipse.wst.common.component
+dao-orm-impl/.settings/org.eclipse.wst.validation.prefs

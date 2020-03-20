@@ -43,7 +43,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/tournament/list.jsp" />
 	</definition>
-	<definition name="participation.list" extends="DefaultTemplate">
+	<definition name="participation.list"
+		extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/participation/list.jsp" />
 	</definition>
@@ -51,5 +52,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/mode/form.jsp" />
 	</definition>
-
+	<definition name="player.edit" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/player/form.jsp" />
+	</definition>
 </tiles-definitions>
