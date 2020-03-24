@@ -12,6 +12,7 @@
 	scope="request" />
 <c:set var="pagesParticipation" value="${contextPath}/participation"
 	scope="request" />
+<c:set var="pagesPlay" value="${contextPath}/play" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

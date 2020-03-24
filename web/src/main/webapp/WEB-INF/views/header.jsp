@@ -1,8 +1,10 @@
 <header>
 	<nav>
+
 		<div class="nav-wrapper container">
 			<ul class="left hide-on-med-and-down">
 				<li><a href="${contextPath}">Home</a></li>
+				<li><a href="${pagesPlay}">Play</a></li>
 				<li><a href="${pagesPlayer}">Players</a></li>
 				<li><a href="${pagesGame}">Games</a></li>
 				<li><a href="${pagesMode}">Modes</a></li>

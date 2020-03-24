@@ -1,16 +1,28 @@
 package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 
+@Entity
 public class Move extends BaseEntity implements IMove {
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Game.class)
 	private IGame game;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer player;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Piece.class)
 	private IPiece piece;
+	@Column
 	private String moveNotationFrom;
+	@Column
 	private String moveNotationTo;
+	@Column
 	private Integer moveTime;
 
 	public IGame getGame() {

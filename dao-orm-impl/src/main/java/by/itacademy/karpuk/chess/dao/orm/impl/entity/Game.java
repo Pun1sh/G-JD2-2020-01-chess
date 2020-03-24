@@ -2,19 +2,33 @@ package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 
+@Entity
 public class Game extends BaseEntity implements IGame {
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer whitePlayer;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer blackPlayer;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer winner;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer loser;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Tournament.class)
 	private ITournament tournament;
+	@Column
 	private Date started;
+	@Column
 	private Date ended;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Mode.class)
 	private IMode mode;
 
 	public IPlayer getWhitePlayer() {

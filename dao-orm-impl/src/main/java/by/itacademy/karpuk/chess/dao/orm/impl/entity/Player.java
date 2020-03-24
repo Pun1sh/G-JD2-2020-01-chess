@@ -2,22 +2,40 @@ package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.karpuk.chess.dao.api.entity.table.IClub;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 
+@Entity
 public class Player extends BaseEntity implements IPlayer {
+	@Column
 	private String name;
+	@Column
 	private String surname;
+	@Column
 	private String nickname;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	private ICountry country;
+	@Column
 	private Date registratedDate;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Club.class)
 	private IClub club;
+	@Column
 	private Integer gamesPlayed;
+	@Column
 	private Date birthDate;
+	@Column
 	private String email;
+	@Column
 	private String password;
+	@Column
 	private Integer eloPoints;
+	@Column
 	private String rank;
 
 	public String getName() {
@@ -75,8 +93,6 @@ public class Player extends BaseEntity implements IPlayer {
 	public void setGamesPlayed(Integer gamesPlayed) {
 		this.gamesPlayed = gamesPlayed;
 	}
-
-	
 
 	public Date getBirthDate() {
 		return birthDate;

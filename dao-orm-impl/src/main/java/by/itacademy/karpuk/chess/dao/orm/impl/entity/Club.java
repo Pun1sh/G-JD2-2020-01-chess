@@ -2,14 +2,25 @@ package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.karpuk.chess.dao.api.entity.table.IClub;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 
+@Entity
 public class Club extends BaseEntity implements IClub {
+	@Column
 	private String name;
+	@Column
 	private Date createdDate;
+	@Column
 	private Date deletedDate;
+	@Column
 	private Integer numberOfMembers;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	private ICountry country;
 
 	public String getName() {

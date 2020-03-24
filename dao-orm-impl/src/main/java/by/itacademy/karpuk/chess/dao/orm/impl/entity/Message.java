@@ -2,14 +2,24 @@ package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 
+@Entity
 public class Message extends BaseEntity implements IMessage {
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer writer;
+	@Column
 	private String content;
+	@Column
 	private Date created;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Game.class)
 	private IGame game;
 
 	public IPlayer getWriter() {

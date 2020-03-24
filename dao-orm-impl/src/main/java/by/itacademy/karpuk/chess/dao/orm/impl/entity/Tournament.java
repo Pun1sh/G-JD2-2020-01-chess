@@ -2,15 +2,26 @@ package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 
+@Entity
 public class Tournament extends BaseEntity implements ITournament {
+	@Column
 	private String name;
+	@Column
 	private Date started;
+	@Column
 	private Date ended;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	private ICountry country;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer winner;
 
 	public String getName() {
