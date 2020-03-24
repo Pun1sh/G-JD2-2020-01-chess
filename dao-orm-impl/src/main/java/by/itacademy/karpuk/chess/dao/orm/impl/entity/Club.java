@@ -15,9 +15,9 @@ public class Club extends BaseEntity implements IClub {
 	@Column
 	private String name;
 	@Column
-	private Date createdDate;
+	private Date created;
 	@Column
-	private Date deletedDate;
+	private Date deleted;
 	@Column
 	private Integer numberOfMembers;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
@@ -31,20 +31,20 @@ public class Club extends BaseEntity implements IClub {
 		this.name = name;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public Date getCreated() {
+		return created;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
-	public Date getDeletedDate() {
-		return deletedDate;
+	public Date getDeleted() {
+		return deleted;
 	}
 
-	public void setDeletedDate(Date deletedDate) {
-		this.deletedDate = deletedDate;
+	public void setDeleted(Date deleted) {
+		this.deleted = deleted;
 	}
 
 	public Integer getNumberOfMembers() {
@@ -65,8 +65,8 @@ public class Club extends BaseEntity implements IClub {
 
 	@Override
 	public String toString() {
-		return "Club [name=" + name + ", createdDate=" + createdDate + ", deletedDate=" + deletedDate
-				+ ", numberOfMembers=" + numberOfMembers + ", country=" + country + ", getId()=" + getId() + "]";
+		return "Club [name=" + name + ", created=" + created + ", deleted=" + deleted + ", numberOfMembers="
+				+ numberOfMembers + ", country=" + country + "]";
 	}
 
 }

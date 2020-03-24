@@ -7,13 +7,13 @@ public interface IClub extends IBaseEntity {
 
 	void setName(String name);
 
-	Date getCreatedDate();
+	Date getCreated();
 
-	void setCreatedDate(Date createdDate);
+	void setCreated(Date createdDate);
 
-	Date getDeletedDate();
+	Date getDeleted();
 
-	void setDeletedDate(Date deletedDate);
+	void setDeleted(Date deletedDate);
 
 	Integer getNumberOfMembers();
 

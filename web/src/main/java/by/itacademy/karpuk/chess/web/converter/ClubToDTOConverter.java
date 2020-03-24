@@ -15,8 +15,8 @@ public class ClubToDTOConverter implements Function<IClub, ClubDTO> {
 		ClubDTO dto = new ClubDTO();
 		dto.setId(t.getId());
 		dto.setName(t.getName());
-		dto.setCreatedDate(t.getCreatedDate());
-		dto.setDeletedDate(t.getDeletedDate());
+		dto.setCreatedDate(t.getCreated());
+		dto.setDeletedDate(t.getDeleted());
 		dto.setNumberOfMembers(t.getNumberOfMembers());
 		dto.setCountryId(t.getCountry().getId());
 		return dto;

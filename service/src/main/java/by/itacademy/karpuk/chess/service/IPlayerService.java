@@ -24,4 +24,7 @@ public interface IPlayerService {
 	IPlayer createEntity();
 
 	List<IPlayer> find(PlayerFilter filter);
+
+	IPlayer getFullInfo(Integer id);
+
 }

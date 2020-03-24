@@ -2,12 +2,14 @@ package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 
 @Entity
@@ -16,8 +18,8 @@ public class Move extends BaseEntity implements IMove {
 	private IGame game;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Player.class)
 	private IPlayer player;
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Piece.class)
-	private IPiece piece;
+	@Enumerated(EnumType.STRING)
+	private Piece piece;
 	@Column
 	private String moveNotationFrom;
 	@Column
@@ -41,11 +43,11 @@ public class Move extends BaseEntity implements IMove {
 		this.player = player;
 	}
 
-	public IPiece getPiece() {
+	public Piece getPiece() {
 		return piece;
 	}
 
-	public void setPiece(IPiece piece) {
+	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
 

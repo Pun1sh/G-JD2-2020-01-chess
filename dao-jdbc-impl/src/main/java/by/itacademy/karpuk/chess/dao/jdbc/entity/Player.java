@@ -11,7 +11,7 @@ public class Player extends BaseEntity implements IPlayer {
 	private String surname;
 	private String nickname;
 	private ICountry country;
-	private Date registratedDate;
+	private Date registrated;
 	private IClub club;
 	private Integer gamesPlayed;
 	private Date birthDate;
@@ -52,12 +52,12 @@ public class Player extends BaseEntity implements IPlayer {
 		this.country = country;
 	}
 
-	public Date getRegistratedDate() {
-		return registratedDate;
+	public Date getRegistrated() {
+		return registrated;
 	}
 
-	public void setRegistratedDate(Date registratedDate) {
-		this.registratedDate = registratedDate;
+	public void setRegistrated(Date registrated) {
+		this.registrated = registrated;
 	}
 
 	public IClub getClub() {
@@ -75,8 +75,6 @@ public class Player extends BaseEntity implements IPlayer {
 	public void setGamesPlayed(Integer gamesPlayed) {
 		this.gamesPlayed = gamesPlayed;
 	}
-
-	
 
 	public Date getBirthDate() {
 		return birthDate;

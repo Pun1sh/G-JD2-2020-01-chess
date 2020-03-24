@@ -9,9 +9,9 @@ public interface IMove extends IBaseEntity {
 
 	void setPlayer(IPlayer player);
 
-	IPiece getPiece();
+	by.itacademy.karpuk.chess.dao.api.entity.enums.Piece getPiece();
 
-	void setPiece(IPiece piece);
+	void setPiece(by.itacademy.karpuk.chess.dao.api.entity.enums.Piece piece);
 
 	String getMoveNotationFrom();
 

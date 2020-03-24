@@ -18,11 +18,11 @@ public class ClubServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getName());
-		assertNotNull(entityFromDb.getCreatedDate());
+		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getNumberOfMembers());
 		assertEquals(entity.getName(), entityFromDb.getName());
-		assertEquals(entity.getCreatedDate(), entity.getCreatedDate());
-		assertEquals(entity.getDeletedDate(), entity.getDeletedDate());
+		assertEquals(entity.getCreated(), entity.getCreated());
+		assertEquals(entity.getDeleted(), entity.getDeleted());
 		assertEquals(entity.getNumberOfMembers(), entity.getNumberOfMembers());
 		assertEquals(entity.getCountry().getId(), entity.getCountry().getId());
 
@@ -41,7 +41,7 @@ public class ClubServiceTest extends AbstractTest {
 		for (final IClub entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getName());
-			assertNotNull(entityFromDb.getCreatedDate());
+			assertNotNull(entityFromDb.getCreated());
 			assertNotNull(entityFromDb.getNumberOfMembers());
 
 		}

@@ -37,7 +37,7 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 				pStmt.setString(2, entity.getSurname());
 				pStmt.setString(3, entity.getNickname());
 				pStmt.setInt(4, entity.getCountry().getId());
-				pStmt.setObject(5, entity.getRegistratedDate(), Types.TIMESTAMP);
+				pStmt.setObject(5, entity.getRegistrated(), Types.TIMESTAMP);
 				if (entity.getClub() == null) {
 					pStmt.setNull(6, java.sql.Types.INTEGER);
 				} else {
@@ -89,7 +89,7 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 		entity.setName(resultSet.getString("name"));
 		entity.setSurname(resultSet.getString("surname"));
 		entity.setNickname(resultSet.getString("nickname"));
-		entity.setRegistratedDate(resultSet.getTimestamp("registrated"));
+		entity.setRegistrated(resultSet.getTimestamp("registrated"));
 		entity.setGamesPlayed(resultSet.getInt("games_played"));
 		entity.setBirthDate(resultSet.getTimestamp("birth_date"));
 		entity.setEmail(resultSet.getString("email"));
@@ -106,5 +106,11 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 		entity.setClub(club);
 		return entity;
 
+	}
+
+	@Override
+	public IPlayer getFullInfo(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

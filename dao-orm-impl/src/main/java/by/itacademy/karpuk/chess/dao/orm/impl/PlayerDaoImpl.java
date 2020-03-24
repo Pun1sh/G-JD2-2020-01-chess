@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
@@ -32,6 +33,27 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 	}
 
 	@Override
+	public IPlayer getFullInfo(final Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IPlayer> cq = cb.createQuery(IPlayer.class); // define returning result
+		final Root<Player> from = cq.from(Player.class); // define table for select
+
+		cq.select(from); // define what need to be selected
+
+		from.fetch(Player_.country, JoinType.LEFT);
+		from.fetch(Player_.club, JoinType.LEFT);
+
+		// .. where id=...
+		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+
+		final TypedQuery<IPlayer> q = em.createQuery(cq);
+
+		return q.getSingleResult();
+	}
+
+	@Override
 	public List<IPlayer> find(PlayerFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -41,6 +63,8 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 		// result
 		final Root<Player> from = cq.from(Player.class);// select from brand
 		cq.select(from); // select what? select *
+		from.fetch(Player_.country, JoinType.LEFT);
+		from.fetch(Player_.club, JoinType.LEFT);
 
 		if (filter.getSortColumn() != null) {
 			final SingularAttribute<? super Player, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
@@ -91,8 +115,8 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 			return Player_.rank;
 		case "email":
 			return Player_.email;
-		case "registratedDate":
-			return Player_.registratedDate;
+		case "registrated":
+			return Player_.registrated;
 		case "birthDate":
 			return Player_.birthDate;
 		default:

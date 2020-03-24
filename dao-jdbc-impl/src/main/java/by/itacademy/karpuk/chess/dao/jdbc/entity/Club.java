@@ -7,8 +7,8 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 
 public class Club extends BaseEntity implements IClub {
 	private String name;
-	private Date createdDate;
-	private Date deletedDate;
+	private Date created;
+	private Date deleted;
 	private Integer numberOfMembers;
 	private ICountry country;
 
@@ -20,24 +20,24 @@ public class Club extends BaseEntity implements IClub {
 		this.name = name;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public Date getDeletedDate() {
-		return deletedDate;
-	}
-
-	public void setDeletedDate(Date deletedDate) {
-		this.deletedDate = deletedDate;
-	}
-
 	public Integer getNumberOfMembers() {
 		return numberOfMembers;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Date getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Date deleted) {
+		this.deleted = deleted;
 	}
 
 	public void setNumberOfMembers(Integer numberOfMembers) {
@@ -54,8 +54,8 @@ public class Club extends BaseEntity implements IClub {
 
 	@Override
 	public String toString() {
-		return "Club [name=" + name + ", createdDate=" + createdDate + ", deletedDate=" + deletedDate
-				+ ", numberOfMembers=" + numberOfMembers + ", country=" + country + ", getId()=" + getId() + "]";
+		return "Club [name=" + name + ", created=" + created + ", deleted=" + deleted + ", numberOfMembers="
+				+ numberOfMembers + ", country=" + country + "]";
 	}
 
 }

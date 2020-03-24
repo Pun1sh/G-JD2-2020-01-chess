@@ -2,19 +2,21 @@ package by.itacademy.karpuk.chess.dao.orm.impl.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 
 @Entity
 public class Board extends BaseEntity implements IBoard {
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Game.class)
 	private IGame game;
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Piece.class)
-	private IPiece piece;
+	@Enumerated(EnumType.STRING)
+	private Piece piece;
 	@Column
 	private String positionLetter;
 	@Column
@@ -24,16 +26,16 @@ public class Board extends BaseEntity implements IBoard {
 		return game;
 	}
 
-	public void setGame(IGame game) {
-		this.game = game;
-	}
-
-	public IPiece getPiece() {
+	public Piece getPiece() {
 		return piece;
 	}
 
-	public void setPiece(IPiece piece) {
+	public void setPiece(Piece piece) {
 		this.piece = piece;
+	}
+
+	public void setGame(IGame game) {
+		this.game = game;
 	}
 
 	public String getPositionLetter() {

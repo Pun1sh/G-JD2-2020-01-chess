@@ -10,11 +10,9 @@ import org.springframework.stereotype.Repository;
 import by.itacademy.karpuk.chess.dao.api.IBoardDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 import by.itacademy.karpuk.chess.dao.api.filter.BoardFilter;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Board;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Game;
-import by.itacademy.karpuk.chess.dao.jdbc.entity.Piece;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
 
 @Repository
@@ -34,7 +32,7 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 			@Override
 			public IBoard doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getGame().getId());
-				pStmt.setInt(2, entity.getPiece().getId());
+				pStmt.setObject(2, entity.getPiece());
 				pStmt.setString(3, entity.getPositionLetter());
 				pStmt.setInt(4, entity.getPositionNumber());
 				pStmt.executeUpdate();
@@ -82,9 +80,6 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 		game.setId((Integer) resultSet.getObject("game_id"));
 		entity.setGame(game);
 
-		IPiece piece = new Piece();
-		piece.setId((Integer) resultSet.getObject("piece_id"));
-		entity.setPiece(piece);
 		return entity;
 
 	}

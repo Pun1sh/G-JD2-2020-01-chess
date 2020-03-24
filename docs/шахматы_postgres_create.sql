@@ -40,21 +40,11 @@ CREATE TABLE "move" (
 	"id" serial NOT NULL,
 	"game_id" integer NOT NULL,
 	"player_id" integer NOT NULL,
-	"piece_id" integer NOT NULL,
+	"piece" varchar NOT NULL,
 	"move_notation_from" varchar(2) NOT NULL,
 	"move_notation_to" varchar(2) NOT NULL,
 	"move_time" integer NOT NULL,
 	CONSTRAINT "move_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
-CREATE TABLE "piece" (
-	"id" serial NOT NULL,
-	"name" varchar NOT NULL UNIQUE,
-	CONSTRAINT "piece_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -138,7 +128,7 @@ CREATE TABLE "mode" (
 CREATE TABLE "board" (
 	"id" serial NOT NULL,
 	"game_id" integer NOT NULL,
-	"piece_id" integer NOT NULL,
+	"piece" varchar NOT NULL,
 	"position_letter" varchar(1) NOT NULL,
 	"position_number" integer NOT NULL,
 	CONSTRAINT "board_pk" PRIMARY KEY ("id")
@@ -160,8 +150,6 @@ ALTER TABLE "game" ADD CONSTRAINT "game_fk5" FOREIGN KEY ("mode_id") REFERENCES 
 
 ALTER TABLE "move" ADD CONSTRAINT "move_fk0" FOREIGN KEY ("game_id") REFERENCES "game"("id");
 ALTER TABLE "move" ADD CONSTRAINT "move_fk1" FOREIGN KEY ("player_id") REFERENCES "player"("id");
-ALTER TABLE "move" ADD CONSTRAINT "move_fk2" FOREIGN KEY ("piece_id") REFERENCES "piece"("id");
-
 
 ALTER TABLE "tournament" ADD CONSTRAINT "tournament_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
 ALTER TABLE "tournament" ADD CONSTRAINT "tournament_fk1" FOREIGN KEY ("winner_id") REFERENCES "player"("id");
@@ -177,5 +165,3 @@ ALTER TABLE "club" ADD CONSTRAINT "club_fk0" FOREIGN KEY ("country_id") REFERENC
 
 
 ALTER TABLE "board" ADD CONSTRAINT "board_fk0" FOREIGN KEY ("game_id") REFERENCES "game"("id");
-ALTER TABLE "board" ADD CONSTRAINT "board_fk1" FOREIGN KEY ("piece_id") REFERENCES "piece"("id");
-

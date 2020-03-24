@@ -22,7 +22,7 @@ public class Player extends BaseEntity implements IPlayer {
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	private ICountry country;
 	@Column
-	private Date registratedDate;
+	private Date registrated;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Club.class)
 	private IClub club;
 	@Column
@@ -70,12 +70,12 @@ public class Player extends BaseEntity implements IPlayer {
 		this.country = country;
 	}
 
-	public Date getRegistratedDate() {
-		return registratedDate;
+	public Date getRegistrated() {
+		return registrated;
 	}
 
-	public void setRegistratedDate(Date registratedDate) {
-		this.registratedDate = registratedDate;
+	public void setRegistrated(Date registrated) {
+		this.registrated = registrated;
 	}
 
 	public IClub getClub() {
@@ -133,4 +133,6 @@ public class Player extends BaseEntity implements IPlayer {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
+
+
 }

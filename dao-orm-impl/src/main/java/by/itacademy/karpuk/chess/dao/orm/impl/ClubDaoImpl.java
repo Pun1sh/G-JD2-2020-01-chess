@@ -77,10 +77,10 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 			return Club_.id;
 		case "name":
 			return Club_.name;
-		case "createdDate":
-			return Club_.createdDate;
-		case "deletedDate":
-			return Club_.deletedDate;
+		case "created":
+			return Club_.created;
+		case "deleted":
+			return Club_.deleted;
 		case "numberOfMembers":
 			return Club_.numberOfMembers;
 		default:

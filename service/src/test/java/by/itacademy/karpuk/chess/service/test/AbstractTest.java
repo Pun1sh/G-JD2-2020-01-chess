@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IClub;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
@@ -27,7 +28,6 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IParticipation;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 import by.itacademy.karpuk.chess.service.IBoardService;
@@ -38,14 +38,12 @@ import by.itacademy.karpuk.chess.service.IMessageService;
 import by.itacademy.karpuk.chess.service.IModeService;
 import by.itacademy.karpuk.chess.service.IMoveService;
 import by.itacademy.karpuk.chess.service.IParticipationService;
-import by.itacademy.karpuk.chess.service.IPieceService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
 import by.itacademy.karpuk.chess.service.ITournamentService;
 
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
-	@Autowired
-	protected IPieceService pieceService;
+
 	@Autowired
 	protected IModeService modeService;
 	@Autowired
@@ -126,13 +124,6 @@ public abstract class AbstractTest {
 		return RANDOM;
 	}
 
-	protected IPiece saveNewPiece() {
-		final IPiece entity = pieceService.createEntity();
-		entity.setName("piece-" + getRandomPrefix());
-		pieceService.save(entity);
-		return entity;
-	}
-
 	protected IMode saveNewMode() {
 		final IMode entity = modeService.createEntity();
 		entity.setName("mode-" + getRandomPrefix());
@@ -151,7 +142,7 @@ public abstract class AbstractTest {
 	protected IClub saveNewClub() {
 		final IClub entity = clubService.createEntity();
 		entity.setName("club-" + getRandomPrefix());
-		entity.setCreatedDate(new Date());
+		entity.setCreated(new Date());
 		entity.setNumberOfMembers(getRandomObjectsCount());
 		entity.setCountry(saveNewCountry());
 		clubService.save(entity);
@@ -165,7 +156,7 @@ public abstract class AbstractTest {
 		entity.setSurname("player-" + getRandomPrefix());
 		entity.setNickname(getRandomPrefix());
 		entity.setCountry(saveNewCountry());
-		entity.setRegistratedDate(new Date());
+		entity.setRegistrated(new Date());
 		entity.setClub(saveNewClub());
 		entity.setGamesPlayed(getRandomObjectsCount());
 		entity.setBirthDate(new Date());
@@ -208,7 +199,7 @@ public abstract class AbstractTest {
 		final IMove entity = moveService.createEntity();
 		entity.setGame(saveNewGame());
 		entity.setPlayer(saveNewPlayer());
-		entity.setPiece(saveNewPiece());
+		entity.setPiece(Piece.b_bishop);
 		entity.setMoveNotationFrom("2");
 		entity.setMoveNotationTo("2");
 		entity.setMoveTime(getRandomObjectsCount());
@@ -219,7 +210,7 @@ public abstract class AbstractTest {
 	protected IBoard saveNewBoard() {
 		final IBoard entity = boardService.createEntity();
 		entity.setGame(saveNewGame());
-		entity.setPiece(saveNewPiece());
+		entity.setPiece(Piece.b_bishop);
 		entity.setPositionLetter("A");
 		entity.setPositionNumber(getRandomObjectsCount());
 		boardService.save(entity);

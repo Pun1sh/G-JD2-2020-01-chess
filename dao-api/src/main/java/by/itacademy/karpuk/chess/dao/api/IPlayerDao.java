@@ -9,4 +9,6 @@ public interface IPlayerDao extends IDao<IPlayer, Integer> {
 	List<IPlayer> find(PlayerFilter filter);
 
 	long getCount(PlayerFilter filter);
+
+	IPlayer getFullInfo(Integer id);
 }

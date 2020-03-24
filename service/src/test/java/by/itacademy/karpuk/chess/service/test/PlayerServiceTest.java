@@ -9,18 +9,19 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
+import by.itacademy.karpuk.chess.dao.api.filter.PlayerFilter;
 
 public class PlayerServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
 		final IPlayer entity = saveNewPlayer();
-		final IPlayer entityFromDb = playerService.get(entity.getId());
+		final IPlayer entityFromDb = playerService.getFullInfo(entity.getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getName());
 		assertNotNull(entityFromDb.getSurname());
 		assertNotNull(entityFromDb.getNickname());
 		assertNotNull(entityFromDb.getCountry().getId());
-		assertNotNull(entityFromDb.getRegistratedDate());
+		assertNotNull(entityFromDb.getRegistrated());
 		assertNotNull(entityFromDb.getGamesPlayed());
 		assertNotNull(entityFromDb.getBirthDate());
 		assertNotNull(entityFromDb.getEmail());
@@ -31,7 +32,7 @@ public class PlayerServiceTest extends AbstractTest {
 		assertEquals(entity.getSurname(), entityFromDb.getSurname());
 		assertEquals(entity.getNickname(), entityFromDb.getNickname());
 		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
-		assertEquals(entity.getRegistratedDate(), entityFromDb.getRegistratedDate());
+		assertEquals(entity.getRegistrated(), entityFromDb.getRegistrated());
 		assertEquals(entity.getClub().getId(), entityFromDb.getClub().getId());
 		assertEquals(entity.getGamesPlayed(), entityFromDb.getGamesPlayed());
 		assertEquals(entity.getBirthDate(), entityFromDb.getBirthDate());
@@ -49,7 +50,7 @@ public class PlayerServiceTest extends AbstractTest {
 			saveNewPlayer();
 		}
 
-		final List<IPlayer> allEntities = playerService.getAll();
+		final List<IPlayer> allEntities = playerService.find(new PlayerFilter());
 
 		for (final IPlayer entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
@@ -57,7 +58,8 @@ public class PlayerServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getSurname());
 			assertNotNull(entityFromDb.getNickname());
 			assertNotNull(entityFromDb.getCountry().getId());
-			assertNotNull(entityFromDb.getRegistratedDate());
+			assertNotNull(entityFromDb.getRegistrated());
+			assertNotNull(entityFromDb.getClub().getId());
 			assertNotNull(entityFromDb.getGamesPlayed());
 			assertNotNull(entityFromDb.getBirthDate());
 			assertNotNull(entityFromDb.getEmail());

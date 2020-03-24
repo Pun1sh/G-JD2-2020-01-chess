@@ -1,14 +1,22 @@
 package by.itacademy.karpuk.chess.dao.jdbc.entity;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IPiece;
 
 public class Board extends BaseEntity implements IBoard {
 	private IGame game;
-	private IPiece piece;
+	private Piece piece;
 	private String positionLetter;
 	private Integer positionNumber;
+
+	public Piece getPiece() {
+		return piece;
+	}
+
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
 
 	public IGame getGame() {
 		return game;
@@ -16,14 +24,6 @@ public class Board extends BaseEntity implements IBoard {
 
 	public void setGame(IGame game) {
 		this.game = game;
-	}
-
-	public IPiece getPiece() {
-		return piece;
-	}
-
-	public void setPiece(IPiece piece) {
-		this.piece = piece;
 	}
 
 	public String getPositionLetter() {

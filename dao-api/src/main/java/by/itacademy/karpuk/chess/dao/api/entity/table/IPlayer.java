@@ -23,9 +23,9 @@ public interface IPlayer extends IBaseEntity {
 
 	void setClub(IClub club);
 
-	Date getRegistratedDate();
+	Date getRegistrated();
 
-	void setRegistratedDate(Date registratedDate);
+	void setRegistrated(Date registratedDate);
 
 	Integer getGamesPlayed();
 

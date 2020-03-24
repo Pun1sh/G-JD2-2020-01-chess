@@ -18,12 +18,12 @@ public class MoveServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getGame().getId());
 		assertNotNull(entityFromDb.getPlayer().getId());
-		assertNotNull(entityFromDb.getPiece().getId());
+		assertNotNull(entityFromDb.getPiece());
 		assertNotNull(entityFromDb.getMoveNotationFrom());
 		assertNotNull(entityFromDb.getMoveNotationTo());
 		assertNotNull(entityFromDb.getMoveTime());
 		assertEquals(entity.getGame().getId(), entityFromDb.getGame().getId());
-		assertEquals(entity.getPiece().getId(), entityFromDb.getPiece().getId());
+		assertEquals(entity.getPiece(), entityFromDb.getPiece());
 		assertEquals(entity.getPlayer().getId(), entityFromDb.getPlayer().getId());
 		assertEquals(entity.getMoveNotationFrom(), entityFromDb.getMoveNotationFrom());
 		assertEquals(entity.getMoveNotationTo(), entityFromDb.getMoveNotationTo());
@@ -44,7 +44,7 @@ public class MoveServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getGame().getId());
 			assertNotNull(entityFromDb.getPlayer().getId());
-			assertNotNull(entityFromDb.getPiece().getId());
+			assertNotNull(entityFromDb.getPiece());
 			assertNotNull(entityFromDb.getMoveNotationFrom());
 			assertNotNull(entityFromDb.getMoveNotationTo());
 			assertNotNull(entityFromDb.getMoveTime());

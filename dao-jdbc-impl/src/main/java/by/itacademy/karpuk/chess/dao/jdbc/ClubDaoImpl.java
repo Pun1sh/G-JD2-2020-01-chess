@@ -33,11 +33,11 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 			@Override
 			public IClub doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
-				pStmt.setObject(2, entity.getCreatedDate(), Types.TIMESTAMP);
-				if (entity.getDeletedDate() == null) {
+				pStmt.setObject(2, entity.getCreated(), Types.TIMESTAMP);
+				if (entity.getDeleted() == null) {
 					pStmt.setNull(3, java.sql.Types.TIMESTAMP);
 				} else {
-					pStmt.setObject(3, entity.getDeletedDate(), java.sql.Types.TIMESTAMP);
+					pStmt.setObject(3, entity.getDeleted(), java.sql.Types.TIMESTAMP);
 				}
 				pStmt.setInt(4, entity.getNumberOfMembers());
 				if (entity.getCountry() == null) {
@@ -76,8 +76,8 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 		final IClub entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setName(resultSet.getString("name"));
-		entity.setCreatedDate(resultSet.getTimestamp("created"));
-		entity.setDeletedDate(resultSet.getTimestamp("deleted"));
+		entity.setCreated(resultSet.getTimestamp("created"));
+		entity.setDeleted(resultSet.getTimestamp("deleted"));
 		entity.setNumberOfMembers(resultSet.getInt("number_of_members"));
 
 		final ICountry country = new Country();
