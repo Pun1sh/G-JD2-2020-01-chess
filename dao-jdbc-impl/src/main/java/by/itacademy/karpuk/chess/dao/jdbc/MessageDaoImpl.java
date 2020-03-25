@@ -89,4 +89,10 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 
 	}
 
+	@Override
+	public IMessage getFullInfo(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

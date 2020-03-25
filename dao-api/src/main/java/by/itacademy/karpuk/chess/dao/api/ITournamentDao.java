@@ -9,4 +9,6 @@ public interface ITournamentDao extends IDao<ITournament, Integer> {
 	List<ITournament> find(TournamentFilter filter);
 
 	long getCount(TournamentFilter filter);
+
+	ITournament getFullInfo(Integer id);
 }

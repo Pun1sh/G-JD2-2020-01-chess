@@ -1,4 +1,4 @@
-package by.itacademy.karpuk.chess.logic.pieces;
+package by.itacademy.karpuk.chess.service.logic.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,10 +6,10 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-import by.itacademy.karpuk.chess.logic.Alliance;
-import by.itacademy.karpuk.chess.logic.board.Board;
-import by.itacademy.karpuk.chess.logic.board.BoardUtils;
-import by.itacademy.karpuk.chess.logic.board.Move;
+import by.itacademy.karpuk.chess.service.logic.Alliance;
+import by.itacademy.karpuk.chess.service.logic.board.Board;
+import by.itacademy.karpuk.chess.service.logic.board.BoardUtils;
+import by.itacademy.karpuk.chess.service.logic.board.Move;
 
 public class Pawn extends Piece {
 	private final static int[] CANDIDATE_MOVE_COORDINATE = { 8, 16, 7, 9 };

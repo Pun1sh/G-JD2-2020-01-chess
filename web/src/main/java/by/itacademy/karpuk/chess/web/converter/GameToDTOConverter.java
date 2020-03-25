@@ -21,7 +21,7 @@ public class GameToDTOConverter implements Function<IGame, GameDTO> {
 		dto.setLoserId(t.getLoser().getId());
 		dto.setStarted(t.getStarted());
 		dto.setEnded(t.getEnded());
-		dto.setModeId(t.getMode().getId());
+		dto.setMode(t.getMode());
 		return dto;
 	}
 

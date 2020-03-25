@@ -1,6 +1,6 @@
-package by.itacademy.karpuk.chess.logic.board;
+package by.itacademy.karpuk.chess.service.logic.board;
 
-import by.itacademy.karpuk.chess.logic.pieces.Piece;
+import by.itacademy.karpuk.chess.service.logic.pieces.Piece;
 
 public abstract class Move {
 	final Board board;

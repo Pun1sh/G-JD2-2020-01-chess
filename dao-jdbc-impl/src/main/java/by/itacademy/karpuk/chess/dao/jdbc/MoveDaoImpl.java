@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import by.itacademy.karpuk.chess.dao.api.IMoveDao;
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
@@ -76,6 +77,7 @@ public class MoveDaoImpl extends AbstractDaoImpl<IMove, Integer> implements IMov
 	protected IMove parseRow(final ResultSet resultSet) throws SQLException {
 		final IMove entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
+		entity.setPiece((Piece) resultSet.getObject("piece"));
 		entity.setMoveNotationFrom(resultSet.getString("move_notation_from"));
 		entity.setMoveNotationTo(resultSet.getString("move_notation_to"));
 		entity.setMoveTime(resultSet.getInt("move_time"));
@@ -90,6 +92,12 @@ public class MoveDaoImpl extends AbstractDaoImpl<IMove, Integer> implements IMov
 
 		return entity;
 
+	}
+
+	@Override
+	public IMove getFullInfo(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

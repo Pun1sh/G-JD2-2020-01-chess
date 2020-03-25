@@ -2,8 +2,8 @@ package by.itacademy.karpuk.chess.dao.jdbc.entity;
 
 import java.util.Date;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 
@@ -15,7 +15,7 @@ public class Game extends BaseEntity implements IGame {
 	private ITournament tournament;
 	private Date started;
 	private Date ended;
-	private IMode mode;
+	private Mode mode;
 
 	public IPlayer getWhitePlayer() {
 		return whitePlayer;
@@ -73,11 +73,11 @@ public class Game extends BaseEntity implements IGame {
 		this.ended = ended;
 	}
 
-	public IMode getMode() {
+	public Mode getMode() {
 		return mode;
 	}
 
-	public void setMode(IMode mode) {
+	public void setMode(Mode mode) {
 		this.mode = mode;
 	}
 

@@ -9,4 +9,6 @@ public interface IBoardDao extends IDao<IBoard, Integer> {
 	List<IBoard> find(BoardFilter filter);
 
 	long getCount(BoardFilter filter);
+
+	IBoard getFullInfo(Integer id);
 }

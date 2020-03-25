@@ -9,4 +9,6 @@ public interface IMoveDao extends IDao<IMove, Integer> {
 	List<IMove> find(MoveFilter filter);
 
 	long getCount(MoveFilter filter);
+
+	IMove getFullInfo(Integer id);
 }

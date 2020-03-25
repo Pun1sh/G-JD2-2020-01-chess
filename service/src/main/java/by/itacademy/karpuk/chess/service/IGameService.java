@@ -24,4 +24,6 @@ public interface IGameService {
 	IGame createEntity();
 
 	List<IGame> find(GameFilter filter);
+
+	IGame getFullInfo(Integer id);
 }

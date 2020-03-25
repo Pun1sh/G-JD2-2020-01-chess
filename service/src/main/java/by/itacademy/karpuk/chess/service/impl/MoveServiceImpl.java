@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IMoveDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
+import by.itacademy.karpuk.chess.dao.api.filter.MoveFilter;
 import by.itacademy.karpuk.chess.service.IMoveService;
 
 @Service
@@ -51,6 +52,16 @@ public class MoveServiceImpl implements IMoveService {
 	@Override
 	public IMove createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IMove> find(MoveFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public IMove getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
 	}
 
 }

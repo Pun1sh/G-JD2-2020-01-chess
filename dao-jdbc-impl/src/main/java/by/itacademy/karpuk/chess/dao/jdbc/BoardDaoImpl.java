@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import by.itacademy.karpuk.chess.dao.api.IBoardDao;
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.filter.BoardFilter;
@@ -73,6 +74,7 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 	protected IBoard parseRow(final ResultSet resultSet) throws SQLException {
 		final IBoard entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
+		entity.setPiece((Piece) resultSet.getObject("piece"));
 		entity.setPositionLetter(resultSet.getString("position_letter"));
 		entity.setPositionNumber(resultSet.getInt("position_number"));
 
@@ -82,6 +84,12 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 
 		return entity;
 
+	}
+
+	@Override
+	public IBoard getFullInfo(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

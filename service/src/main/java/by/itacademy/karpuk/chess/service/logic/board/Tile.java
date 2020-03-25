@@ -1,11 +1,11 @@
-package by.itacademy.karpuk.chess.logic.board;
+package by.itacademy.karpuk.chess.service.logic.board;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-import by.itacademy.karpuk.chess.logic.pieces.Piece;
+import by.itacademy.karpuk.chess.service.logic.pieces.Piece;
 
 public abstract class Tile {
 	protected final int tileCoordinate;

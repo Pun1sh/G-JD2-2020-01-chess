@@ -19,13 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
 import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IClub;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IParticipation;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
@@ -35,7 +35,6 @@ import by.itacademy.karpuk.chess.service.IClubService;
 import by.itacademy.karpuk.chess.service.ICountryService;
 import by.itacademy.karpuk.chess.service.IGameService;
 import by.itacademy.karpuk.chess.service.IMessageService;
-import by.itacademy.karpuk.chess.service.IModeService;
 import by.itacademy.karpuk.chess.service.IMoveService;
 import by.itacademy.karpuk.chess.service.IParticipationService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
@@ -44,8 +43,6 @@ import by.itacademy.karpuk.chess.service.ITournamentService;
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
 
-	@Autowired
-	protected IModeService modeService;
 	@Autowired
 	protected ICountryService countryService;
 	@Autowired
@@ -124,14 +121,6 @@ public abstract class AbstractTest {
 		return RANDOM;
 	}
 
-	protected IMode saveNewMode() {
-		final IMode entity = modeService.createEntity();
-		entity.setName("mode-" + getRandomPrefix());
-		entity.setTimeMinutes(getRandomObjectsCount());
-		modeService.save(entity);
-		return entity;
-	}
-
 	protected ICountry saveNewCountry() {
 		final ICountry entity = countryService.createEntity();
 		entity.setName("country-" + getRandomPrefix());
@@ -190,7 +179,7 @@ public abstract class AbstractTest {
 		entity.setTournament(saveNewTournament());
 		entity.setStarted(new Date());
 		entity.setEnded(new Date());
-		entity.setMode(saveNewMode());
+		entity.setMode(Mode.BLITZ);
 		gameService.save(entity);
 		return entity;
 	}

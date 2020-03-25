@@ -4,11 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 
@@ -28,8 +30,8 @@ public class Game extends BaseEntity implements IGame {
 	private Date started;
 	@Column
 	private Date ended;
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Mode.class)
-	private IMode mode;
+	@Enumerated(EnumType.STRING)
+	private Mode mode;
 
 	public IPlayer getWhitePlayer() {
 		return whitePlayer;
@@ -87,11 +89,11 @@ public class Game extends BaseEntity implements IGame {
 		this.ended = ended;
 	}
 
-	public IMode getMode() {
+	public Mode getMode() {
 		return mode;
 	}
 
-	public void setMode(IMode mode) {
+	public void setMode(Mode mode) {
 		this.mode = mode;
 	}
 

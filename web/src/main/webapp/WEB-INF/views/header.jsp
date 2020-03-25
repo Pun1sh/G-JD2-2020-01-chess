@@ -7,7 +7,6 @@
 				<li><a href="${pagesPlay}">Play</a></li>
 				<li><a href="${pagesPlayer}">Players</a></li>
 				<li><a href="${pagesGame}">Games</a></li>
-				<li><a href="${pagesMode}">Modes</a></li>
 				<li><a href="${pagesCountry}">Countries</a></li>
 				<li><a href="${pagesClub}">Clubs</a></li>
 				<li><a href="${pagesTournament}">Tournaments</a></li>

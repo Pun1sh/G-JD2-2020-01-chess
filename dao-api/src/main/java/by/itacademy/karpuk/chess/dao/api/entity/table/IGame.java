@@ -2,6 +2,8 @@ package by.itacademy.karpuk.chess.dao.api.entity.table;
 
 import java.util.Date;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
+
 public interface IGame extends IBaseEntity {
 	IPlayer getWhitePlayer();
 
@@ -31,8 +33,8 @@ public interface IGame extends IBaseEntity {
 
 	void setEnded(Date ended);
 
-	IMode getMode();
+	Mode getMode();
 
-	void setMode(IMode mode);
+	void setMode(Mode mode);
 
 }

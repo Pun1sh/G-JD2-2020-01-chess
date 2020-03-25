@@ -28,7 +28,7 @@ CREATE TABLE "game" (
 	"loser_id" integer,
 	"started" TIMESTAMP NOT NULL,
 	"ended" TIMESTAMP,
-	"mode_id" integer NOT NULL,
+	"mode" varchar NOT NULL,
 	CONSTRAINT "game_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -114,17 +114,6 @@ CREATE TABLE "club" (
 
 
 
-CREATE TABLE "mode" (
-	"id" serial NOT NULL,
-	"name" varchar NOT NULL UNIQUE,
-	"time_minutes" integer NOT NULL,
-	CONSTRAINT "mode_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "board" (
 	"id" serial NOT NULL,
 	"game_id" integer NOT NULL,
@@ -146,7 +135,6 @@ ALTER TABLE "game" ADD CONSTRAINT "game_fk1" FOREIGN KEY ("black_player_id") REF
 ALTER TABLE "game" ADD CONSTRAINT "game_fk2" FOREIGN KEY ("tournament_id") REFERENCES "tournament"("id");
 ALTER TABLE "game" ADD CONSTRAINT "game_fk3" FOREIGN KEY ("winner_id") REFERENCES "player"("id");
 ALTER TABLE "game" ADD CONSTRAINT "game_fk4" FOREIGN KEY ("loser_id") REFERENCES "player"("id");
-ALTER TABLE "game" ADD CONSTRAINT "game_fk5" FOREIGN KEY ("mode_id") REFERENCES "mode"("id");
 
 ALTER TABLE "move" ADD CONSTRAINT "move_fk0" FOREIGN KEY ("game_id") REFERENCES "game"("id");
 ALTER TABLE "move" ADD CONSTRAINT "move_fk1" FOREIGN KEY ("player_id") REFERENCES "player"("id");
@@ -162,6 +150,5 @@ ALTER TABLE "message" ADD CONSTRAINT "message_fk0" FOREIGN KEY ("writer_id") REF
 ALTER TABLE "message" ADD CONSTRAINT "message_fk1" FOREIGN KEY ("game_id") REFERENCES "game"("id");
 
 ALTER TABLE "club" ADD CONSTRAINT "club_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
-
 
 ALTER TABLE "board" ADD CONSTRAINT "board_fk0" FOREIGN KEY ("game_id") REFERENCES "game"("id");

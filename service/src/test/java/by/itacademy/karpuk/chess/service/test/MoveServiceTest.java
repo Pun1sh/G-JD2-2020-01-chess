@@ -9,12 +9,13 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
+import by.itacademy.karpuk.chess.dao.api.filter.MoveFilter;
 
 public class MoveServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
 		final IMove entity = saveNewMove();
-		final IMove entityFromDb = moveService.get(entity.getId());
+		final IMove entityFromDb = moveService.getFullInfo(entity.getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getGame().getId());
 		assertNotNull(entityFromDb.getPlayer().getId());
@@ -38,7 +39,7 @@ public class MoveServiceTest extends AbstractTest {
 			saveNewMove();
 		}
 
-		final List<IMove> allEntities = moveService.getAll();
+		final List<IMove> allEntities = moveService.find(new MoveFilter());
 
 		for (final IMove entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

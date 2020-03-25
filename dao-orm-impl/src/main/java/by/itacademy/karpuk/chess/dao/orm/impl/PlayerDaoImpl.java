@@ -63,8 +63,12 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 		// result
 		final Root<Player> from = cq.from(Player.class);// select from brand
 		cq.select(from); // select what? select *
-		from.fetch(Player_.country, JoinType.LEFT);
-		from.fetch(Player_.club, JoinType.LEFT);
+		
+			from.fetch(Player_.club, JoinType.LEFT);
+		
+		
+			from.fetch(Player_.country, JoinType.LEFT);
+		
 
 		if (filter.getSortColumn() != null) {
 			final SingularAttribute<? super Player, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());

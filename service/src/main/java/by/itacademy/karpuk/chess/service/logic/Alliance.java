@@ -1,4 +1,4 @@
-package by.itacademy.karpuk.chess.logic;
+package by.itacademy.karpuk.chess.service.logic;
 
 public enum Alliance {
 	WHITE {

@@ -9,4 +9,6 @@ public interface IGameDao extends IDao<IGame, Integer> {
 	List<IGame> find(GameFilter filter);
 
 	long getCount(GameFilter filter);
+
+	IGame getFullInfo(Integer id);
 }

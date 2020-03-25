@@ -9,4 +9,6 @@ public interface IParticipationDao extends IDao<IParticipation, Integer> {
 	List<IParticipation> find(ParticipationFilter filter);
 
 	long getCount(ParticipationFilter filter);
+
+	IParticipation getFullInfo(Integer id);
 }

@@ -9,4 +9,6 @@ public interface IMessageDao extends IDao<IMessage, Integer> {
 	List<IMessage> find(MessageFilter filter);
 
 	long getCount(MessageFilter filter);
+
+	IMessage getFullInfo(Integer id);
 }

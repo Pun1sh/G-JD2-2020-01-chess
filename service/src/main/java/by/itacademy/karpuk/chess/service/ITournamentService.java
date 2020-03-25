@@ -24,4 +24,6 @@ public interface ITournamentService {
 	ITournament createEntity();
 
 	List<ITournament> find(TournamentFilter filter);
+
+	ITournament getFullInfo(Integer id);
 }

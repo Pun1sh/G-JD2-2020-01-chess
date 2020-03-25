@@ -19,10 +19,7 @@
 			value="/WEB-INF/views/home.jsp" />
 	</definition>
 
-	<definition name="mode.list" extends="DefaultTemplate">
-		<put-attribute name="body"
-			value="/WEB-INF/views/mode/list.jsp" />
-	</definition>
+	
 	<definition name="country.list" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/country/list.jsp" />
@@ -48,10 +45,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/participation/list.jsp" />
 	</definition>
-	<definition name="mode.edit" extends="DefaultTemplate">
-		<put-attribute name="body"
-			value="/WEB-INF/views/mode/form.jsp" />
-	</definition>
+	
 	<definition name="player.edit" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/player/form.jsp" />

@@ -56,4 +56,9 @@ public class ParticipationServiceImpl implements IParticipationService {
 		return dao.find(filter);
 	}
 
+	@Override
+	public IParticipation getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IMessageDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
+import by.itacademy.karpuk.chess.dao.api.filter.MessageFilter;
 import by.itacademy.karpuk.chess.service.IMessageService;
 
 @Service
@@ -51,6 +52,16 @@ public class MessageServiceImpl implements IMessageService {
 	@Override
 	public IMessage createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public IMessage getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
+
+	@Override
+	public List<IMessage> find(MessageFilter filter) {
+		return dao.find(filter);
 	}
 
 }

@@ -88,4 +88,10 @@ public class ParticipationDaoImpl extends AbstractDaoImpl<IParticipation, Intege
 
 	}
 
+	@Override
+	public IParticipation getFullInfo(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

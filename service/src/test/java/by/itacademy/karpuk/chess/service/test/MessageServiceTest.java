@@ -9,13 +9,14 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
+import by.itacademy.karpuk.chess.dao.api.filter.MessageFilter;
 
 public class MessageServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
 		final IMessage entity = saveNewMessage();
 
-		final IMessage entityFromDb = messageService.get(entity.getId());
+		final IMessage entityFromDb = messageService.getFullInfo(entity.getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getWriter().getId());
 		assertNotNull(entityFromDb.getGame().getId());
@@ -36,7 +37,7 @@ public class MessageServiceTest extends AbstractTest {
 			saveNewMessage();
 		}
 
-		final List<IMessage> allEntities = messageService.getAll();
+		final List<IMessage> allEntities = messageService.find(new MessageFilter());
 
 		for (final IMessage entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());

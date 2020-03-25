@@ -9,28 +9,27 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
+import by.itacademy.karpuk.chess.dao.api.filter.GameFilter;
 
 public class GameServiceTest extends AbstractTest {
 	@Test
 	public void createTest() {
 		IGame entity = saveNewGame();
 
-		final IGame entityFromDb = gameService.get(entity.getId());
+		final IGame entityFromDb = gameService.getFullInfo(entity.getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getWhitePlayer().getId());
 		assertNotNull(entityFromDb.getBlackPlayer().getId());
 		assertNotNull(entityFromDb.getStarted());
-		assertNotNull(entityFromDb.getMode().getId());
-		
-		
-		
+		assertNotNull(entityFromDb.getMode());
+
 		assertEquals(entity.getWhitePlayer().getId(), entityFromDb.getWhitePlayer().getId());
 		assertEquals(entity.getBlackPlayer().getId(), entityFromDb.getBlackPlayer().getId());
 		assertEquals(entity.getWinner().getId(), entityFromDb.getWinner().getId());
 		assertEquals(entity.getLoser().getId(), entityFromDb.getLoser().getId());
 		assertEquals(entity.getStarted(), entityFromDb.getStarted());
 		assertEquals(entity.getEnded(), entityFromDb.getEnded());
-		assertEquals(entity.getMode().getId(), entityFromDb.getMode().getId());
+		assertEquals(entity.getMode(), entityFromDb.getMode());
 
 	}
 
@@ -42,14 +41,14 @@ public class GameServiceTest extends AbstractTest {
 			saveNewGame();
 		}
 
-		final List<IGame> allEntities = gameService.getAll();
+		final List<IGame> allEntities = gameService.find(new GameFilter());
 
 		for (final IGame entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getWhitePlayer().getId());
 			assertNotNull(entityFromDb.getBlackPlayer().getId());
 			assertNotNull(entityFromDb.getStarted());
-			assertNotNull(entityFromDb.getMode().getId());
+			assertNotNull(entityFromDb.getMode());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

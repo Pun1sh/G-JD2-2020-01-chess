@@ -1,4 +1,4 @@
-package by.itacademy.karpuk.chess.logic.board;
+package by.itacademy.karpuk.chess.service.logic.board;
 
 public class BoardUtils {
 	public static final boolean[] FIRST_COLUMN = initColumn(0);

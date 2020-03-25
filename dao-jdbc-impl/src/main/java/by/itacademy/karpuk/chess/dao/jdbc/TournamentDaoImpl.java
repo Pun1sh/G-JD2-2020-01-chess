@@ -105,4 +105,10 @@ public class TournamentDaoImpl extends AbstractDaoImpl<ITournament, Integer> imp
 		return "tournament";
 	}
 
+	@Override
+	public ITournament getFullInfo(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

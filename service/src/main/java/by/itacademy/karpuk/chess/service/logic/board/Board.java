@@ -1,4 +1,4 @@
-package by.itacademy.karpuk.chess.logic.board;
+package by.itacademy.karpuk.chess.service.logic.board;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,14 +8,14 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableList;
 
-import by.itacademy.karpuk.chess.logic.Alliance;
-import by.itacademy.karpuk.chess.logic.pieces.Bishop;
-import by.itacademy.karpuk.chess.logic.pieces.King;
-import by.itacademy.karpuk.chess.logic.pieces.Knight;
-import by.itacademy.karpuk.chess.logic.pieces.Pawn;
-import by.itacademy.karpuk.chess.logic.pieces.Piece;
-import by.itacademy.karpuk.chess.logic.pieces.Queen;
-import by.itacademy.karpuk.chess.logic.pieces.Rook;
+import by.itacademy.karpuk.chess.service.logic.Alliance;
+import by.itacademy.karpuk.chess.service.logic.pieces.Bishop;
+import by.itacademy.karpuk.chess.service.logic.pieces.King;
+import by.itacademy.karpuk.chess.service.logic.pieces.Knight;
+import by.itacademy.karpuk.chess.service.logic.pieces.Pawn;
+import by.itacademy.karpuk.chess.service.logic.pieces.Piece;
+import by.itacademy.karpuk.chess.service.logic.pieces.Queen;
+import by.itacademy.karpuk.chess.service.logic.pieces.Rook;
 
 public class Board {
 	private final List<Tile> gameBoard;

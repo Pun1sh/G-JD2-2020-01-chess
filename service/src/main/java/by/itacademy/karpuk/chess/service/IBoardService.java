@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
+import by.itacademy.karpuk.chess.dao.api.filter.BoardFilter;
 
 public interface IBoardService {
 	IBoard get(Integer id);
@@ -21,4 +22,8 @@ public interface IBoardService {
 	void deleteAll();
 
 	IBoard createEntity();
+
+	IBoard getFullInfo(Integer id);
+
+	List<IBoard> find(BoardFilter boardFilter);
 }

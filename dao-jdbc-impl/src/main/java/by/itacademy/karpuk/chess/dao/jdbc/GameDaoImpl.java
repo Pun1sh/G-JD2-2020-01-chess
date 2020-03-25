@@ -9,13 +9,12 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import by.itacademy.karpuk.chess.dao.api.IGameDao;
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
-import by.itacademy.karpuk.chess.dao.api.entity.table.IMode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 import by.itacademy.karpuk.chess.dao.api.filter.GameFilter;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Game;
-import by.itacademy.karpuk.chess.dao.jdbc.entity.Mode;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Player;
 import by.itacademy.karpuk.chess.dao.jdbc.entity.Tournament;
 import by.itacademy.karpuk.chess.dao.jdbc.util.PreparedStatementAction;
@@ -58,7 +57,7 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 				} else {
 					pStmt.setObject(7, entity.getEnded(), java.sql.Types.TIMESTAMP);
 				}
-				pStmt.setInt(8, entity.getMode().getId());
+				pStmt.setObject(8, entity.getMode());
 
 				pStmt.executeUpdate();
 
@@ -79,6 +78,7 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setStarted(resultSet.getTimestamp("started"));
 		entity.setEnded(resultSet.getTimestamp("ended"));
+		entity.setMode((Mode) resultSet.getObject("mode"));
 
 		IPlayer whitePlayer = new Player();
 		whitePlayer.setId((Integer) resultSet.getObject("white_player_id"));
@@ -99,10 +99,6 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		final ITournament tournament = new Tournament();
 		tournament.setId((Integer) resultSet.getObject("tournament_id"));
 		entity.setTournament(tournament);
-
-		IMode mode = new Mode();
-		mode.setId((Integer) resultSet.getObject("mode_id"));
-		entity.setMode(mode);
 
 		return entity;
 
@@ -127,6 +123,12 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 	@Override
 	protected String getTableName() {
 		return "game";
+	}
+
+	@Override
+	public IGame getFullInfo(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

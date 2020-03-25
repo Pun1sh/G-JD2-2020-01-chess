@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import by.itacademy.karpuk.chess.dao.api.IBoardDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
+import by.itacademy.karpuk.chess.dao.api.filter.BoardFilter;
 import by.itacademy.karpuk.chess.service.IBoardService;
 
 @Service
@@ -49,6 +50,16 @@ public class BoardServiceImpl implements IBoardService {
 	@Override
 	public IBoard createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public IBoard getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
+
+	@Override
+	public List<IBoard> find(BoardFilter boardFilter) {
+		return dao.find(boardFilter);
 	}
 
 }

@@ -1,10 +1,10 @@
-package by.itacademy.karpuk.chess.logic.pieces;
+package by.itacademy.karpuk.chess.service.logic.pieces;
 
 import java.util.Collection;
 
-import by.itacademy.karpuk.chess.logic.Alliance;
-import by.itacademy.karpuk.chess.logic.board.Board;
-import by.itacademy.karpuk.chess.logic.board.Move;
+import by.itacademy.karpuk.chess.service.logic.Alliance;
+import by.itacademy.karpuk.chess.service.logic.board.Board;
+import by.itacademy.karpuk.chess.service.logic.board.Move;
 
 public abstract class Piece {
 	protected final int piecePosition;

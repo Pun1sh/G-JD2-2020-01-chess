@@ -2,6 +2,8 @@ package by.itacademy.karpuk.chess.web.dto;
 
 import java.util.Date;
 
+import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
+
 public class GameDTO {
 	private Integer id;
 	private Integer whitePlayerId;
@@ -11,7 +13,15 @@ public class GameDTO {
 	private Integer tournamentId;
 	private Date started;
 	private Date ended;
-	private Integer modeId;
+	private Mode mode;
+
+	public Mode getMode() {
+		return mode;
+	}
+
+	public void setMode(Mode mode) {
+		this.mode = mode;
+	}
 
 	public Integer getId() {
 		return id;
@@ -75,14 +85,6 @@ public class GameDTO {
 
 	public void setEnded(Date ended) {
 		this.ended = ended;
-	}
-
-	public Integer getModeId() {
-		return modeId;
-	}
-
-	public void setModeId(Integer modeId) {
-		this.modeId = modeId;
 	}
 
 }

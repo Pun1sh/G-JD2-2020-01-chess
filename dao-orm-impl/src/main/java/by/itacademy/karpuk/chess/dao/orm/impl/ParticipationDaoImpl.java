@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
@@ -18,6 +19,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IParticipation;
 import by.itacademy.karpuk.chess.dao.api.filter.ParticipationFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Participation;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Participation_;
+import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 
 @Repository
 public class ParticipationDaoImpl extends AbstractDaoImpl<IParticipation, Integer> implements IParticipationDao {
@@ -41,6 +43,8 @@ public class ParticipationDaoImpl extends AbstractDaoImpl<IParticipation, Intege
 		// result
 		final Root<Participation> from = cq.from(Participation.class);// select from brand
 		cq.select(from); // select what? select *
+		from.fetch(Participation_.player, JoinType.LEFT);
+		from.fetch(Participation_.tournament, JoinType.LEFT);
 
 		if (filter.getSortColumn() != null) {
 			final SingularAttribute<? super Participation, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
@@ -80,6 +84,27 @@ public class ParticipationDaoImpl extends AbstractDaoImpl<IParticipation, Intege
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
+	}
+
+	@Override
+	public IParticipation getFullInfo(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IParticipation> cq = cb.createQuery(IParticipation.class); // define returning result
+		final Root<Participation> from = cq.from(Participation.class); // define table for select
+
+		cq.select(from); // define what need to be selected
+
+		from.fetch(Participation_.player, JoinType.LEFT);
+		from.fetch(Participation_.tournament, JoinType.LEFT);
+
+		// .. where id=...
+		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+
+		final TypedQuery<IParticipation> q = em.createQuery(cq);
+
+		return q.getSingleResult();
 	}
 
 }

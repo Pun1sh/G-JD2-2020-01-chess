@@ -1,4 +1,4 @@
-package by.itacademy.karpuk.chess.logic.pieces;
+package by.itacademy.karpuk.chess.service.logic.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,11 +6,11 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-import by.itacademy.karpuk.chess.logic.Alliance;
-import by.itacademy.karpuk.chess.logic.board.Board;
-import by.itacademy.karpuk.chess.logic.board.BoardUtils;
-import by.itacademy.karpuk.chess.logic.board.Move;
-import by.itacademy.karpuk.chess.logic.board.Tile;
+import by.itacademy.karpuk.chess.service.logic.Alliance;
+import by.itacademy.karpuk.chess.service.logic.board.Board;
+import by.itacademy.karpuk.chess.service.logic.board.BoardUtils;
+import by.itacademy.karpuk.chess.service.logic.board.Move;
+import by.itacademy.karpuk.chess.service.logic.board.Tile;
 
 public class Knight extends Piece {
 	private static final int[] CANDIDATE_MOVE_COORDINATES = { -17, -15, -10, -6, 6, 10, 15, 17 };

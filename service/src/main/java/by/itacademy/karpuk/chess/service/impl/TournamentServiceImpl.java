@@ -58,4 +58,9 @@ public class TournamentServiceImpl implements ITournamentService {
 		return dao.find(filter);
 	}
 
+	@Override
+	public ITournament getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
+
 }

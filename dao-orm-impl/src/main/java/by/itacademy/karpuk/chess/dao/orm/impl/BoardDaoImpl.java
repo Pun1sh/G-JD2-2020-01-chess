@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
@@ -18,6 +19,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.filter.BoardFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Board;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Board_;
+import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 
 @Repository
 public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IBoardDao {
@@ -41,6 +43,7 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 		// result
 		final Root<Board> from = cq.from(Board.class);// select from brand
 		cq.select(from); // select what? select *
+		from.fetch(Board_.game, JoinType.LEFT);
 
 		if (filter.getSortColumn() != null) {
 			final SingularAttribute<? super Board, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
@@ -78,9 +81,31 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 			return Board_.positionNumber;
 		case "positionLetter":
 			return Board_.positionLetter;
+		case "piece":
+			return Board_.piece;
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
+	}
+
+	@Override
+	public IBoard getFullInfo(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IBoard> cq = cb.createQuery(IBoard.class); // define returning result
+		final Root<Board> from = cq.from(Board.class); // define table for select
+
+		cq.select(from); // define what need to be selected
+
+		from.fetch(Board_.game, JoinType.LEFT);
+
+		// .. where id=...
+		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+
+		final TypedQuery<IBoard> q = em.createQuery(cq);
+
+		return q.getSingleResult();
 	}
 
 }

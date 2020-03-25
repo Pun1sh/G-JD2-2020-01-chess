@@ -3,7 +3,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="request" />
-<c:set var="pagesMode" value="${contextPath}/mode" scope="request" />
+
 <c:set var="pagesCountry" value="${contextPath}/country" scope="request" />
 <c:set var="pagesPlayer" value="${contextPath}/player" scope="request" />
 <c:set var="pagesClub" value="${contextPath}/club" scope="request" />

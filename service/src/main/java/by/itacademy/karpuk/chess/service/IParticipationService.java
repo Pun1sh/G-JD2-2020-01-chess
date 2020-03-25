@@ -24,4 +24,6 @@ public interface IParticipationService {
 	IParticipation createEntity();
 
 	List<IParticipation> find(ParticipationFilter filter);
+
+	IParticipation getFullInfo(Integer id);
 }
