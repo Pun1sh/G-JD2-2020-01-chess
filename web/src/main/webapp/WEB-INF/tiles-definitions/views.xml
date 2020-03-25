@@ -50,4 +50,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/player/form.jsp" />
 	</definition>
+	<definition name="board" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/play/board.jsp" />
+	</definition>
 </tiles-definitions>

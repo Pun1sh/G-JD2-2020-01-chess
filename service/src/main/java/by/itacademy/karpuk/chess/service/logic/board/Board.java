@@ -16,11 +16,16 @@ import by.itacademy.karpuk.chess.service.logic.pieces.Pawn;
 import by.itacademy.karpuk.chess.service.logic.pieces.Piece;
 import by.itacademy.karpuk.chess.service.logic.pieces.Queen;
 import by.itacademy.karpuk.chess.service.logic.pieces.Rook;
+import by.itacademy.karpuk.chess.service.logic.player.BlackPlayer;
+import by.itacademy.karpuk.chess.service.logic.player.Player;
+import by.itacademy.karpuk.chess.service.logic.player.WhitePlayer;
 
 public class Board {
 	private final List<Tile> gameBoard;
 	private final Collection<Piece> whitePieces;
 	private final Collection<Piece> blackPieces;
+	private final WhitePlayer whitePlayer;
+	private final BlackPlayer blackPlayer;
 
 	private Board(Builder builder) {
 		this.gameBoard = createGameBoard(builder);
@@ -28,6 +33,8 @@ public class Board {
 		this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
 		final Collection<Move> whiteStandartLegalMoves = calculateLegalMoves(this.whitePieces);
 		final Collection<Move> blackStandartLegalMoves = calculateLegalMoves(this.blackPieces);
+		this.whitePlayer = new WhitePlayer(this, whiteStandartLegalMoves, blackStandartLegalMoves);
+		this.blackPlayer = new BlackPlayer(this, whiteStandartLegalMoves, blackStandartLegalMoves);
 	}
 
 	@Override
@@ -42,6 +49,22 @@ public class Board {
 
 		}
 		return builder.toString();
+	}
+
+	public Player whitePlayer() {
+		return this.whitePlayer;
+	}
+
+	public Player blackPlayer() {
+		return this.blackPlayer;
+	}
+
+	public Collection<Piece> getBlackPieces() {
+		return this.blackPieces;
+	}
+
+	public Collection<Piece> getWhitePieces() {
+		return this.whitePieces;
 	}
 
 	private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
