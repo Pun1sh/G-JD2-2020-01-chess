@@ -40,5 +40,6 @@
 		</div>
 	</main>
 	<tiles:insertAttribute name="footer" />
+	<tiles:insertAttribute name="sidenav" />
 </body>
 </html>

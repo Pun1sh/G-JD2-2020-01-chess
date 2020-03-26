@@ -12,6 +12,8 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer"
 			value="/WEB-INF/views/footer.jsp" />
+				<put-attribute name="sidenav"
+			value="/WEB-INF/views/sidenav.jsp" />
 	</definition>
 
 	<definition name="home" extends="DefaultTemplate">
