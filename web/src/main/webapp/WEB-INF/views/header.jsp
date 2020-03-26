@@ -1,5 +1,5 @@
 <header>
-	<nav>
+	<nav class=" teal accent-4">
 
 		<div class="nav-wrapper container">
 			<ul class="left hide-on-med-and-down">
