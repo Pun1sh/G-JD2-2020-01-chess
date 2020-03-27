@@ -141,8 +141,6 @@ public abstract class AbstractTest {
 	// problem here
 	protected IPlayer saveNewPlayer() {
 		final IPlayer entity = playerService.createEntity();
-		entity.setName("player-" + getRandomPrefix());
-		entity.setSurname("player-" + getRandomPrefix());
 		entity.setNickname(getRandomPrefix());
 		entity.setCountry(saveNewCountry());
 		entity.setRegistrated(new Date());

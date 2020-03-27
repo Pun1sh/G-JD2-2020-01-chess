@@ -1,7 +1,5 @@
 CREATE TABLE "player" (
 	"id" serial NOT NULL,
-	"name" varchar NOT NULL,
-	"surname" varchar NOT NULL,
 	"nickname" varchar(64) NOT NULL,
 	"country_id" integer NOT NULL,
 	"registrated" TIMESTAMP NOT NULL,

@@ -17,8 +17,6 @@ public class PlayerServiceTest extends AbstractTest {
 		final IPlayer entity = saveNewPlayer();
 		final IPlayer entityFromDb = playerService.getFullInfo(entity.getId());
 		assertNotNull(entityFromDb.getId());
-		assertNotNull(entityFromDb.getName());
-		assertNotNull(entityFromDb.getSurname());
 		assertNotNull(entityFromDb.getNickname());
 		assertNotNull(entityFromDb.getCountry().getId());
 		assertNotNull(entityFromDb.getRegistrated());
@@ -28,8 +26,6 @@ public class PlayerServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getPassword());
 		assertNotNull(entityFromDb.getEloPoints());
 		assertNotNull(entityFromDb.getRank());
-		assertEquals(entity.getName(), entityFromDb.getName());
-		assertEquals(entity.getSurname(), entityFromDb.getSurname());
 		assertEquals(entity.getNickname(), entityFromDb.getNickname());
 		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
 		assertEquals(entity.getRegistrated(), entityFromDb.getRegistrated());
@@ -54,8 +50,6 @@ public class PlayerServiceTest extends AbstractTest {
 
 		for (final IPlayer entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
-			assertNotNull(entityFromDb.getName());
-			assertNotNull(entityFromDb.getSurname());
 			assertNotNull(entityFromDb.getNickname());
 			assertNotNull(entityFromDb.getCountry().getId());
 			assertNotNull(entityFromDb.getRegistrated());

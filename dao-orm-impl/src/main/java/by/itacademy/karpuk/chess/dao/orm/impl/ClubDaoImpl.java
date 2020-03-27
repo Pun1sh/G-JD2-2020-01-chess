@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
@@ -41,6 +42,7 @@ public class ClubDaoImpl extends AbstractDaoImpl<IClub, Integer> implements IClu
 		// result
 		final Root<Club> from = cq.from(Club.class);// select from brand
 		cq.select(from); // select what? select *
+		from.fetch(Club_.country, JoinType.LEFT);
 
 		if (filter.getSortColumn() != null) {
 			final SingularAttribute<? super Club, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());

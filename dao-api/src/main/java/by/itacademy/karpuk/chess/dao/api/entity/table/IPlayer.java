@@ -3,13 +3,6 @@ package by.itacademy.karpuk.chess.dao.api.entity.table;
 import java.util.Date;
 
 public interface IPlayer extends IBaseEntity {
-	String getName();
-
-	void setName(String name);
-
-	String getSurname();
-
-	void setSurname(String surname);
 
 	String getNickname();
 

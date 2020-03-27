@@ -50,8 +50,8 @@ public class PlayerController extends AbstractController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		final IPlayer newEntity = playerService.createEntity();
-		hashMap.put("formModel", toDtoConverter.apply(newEntity));
+		final IPlayer player = playerService.createEntity();
+		hashMap.put("formModel", toDtoConverter.apply(player));
 		return new ModelAndView("player.edit", hashMap);
 	}
 

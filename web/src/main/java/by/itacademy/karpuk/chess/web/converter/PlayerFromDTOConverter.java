@@ -30,8 +30,6 @@ public class PlayerFromDTOConverter implements Function<PlayerDTO, IPlayer> {
 		club.setId(t.getClubId());
 		IPlayer entity = playerService.createEntity();
 		entity.setId(t.getId());
-		entity.setName(t.getName());
-		entity.setSurname(t.getSurname());
 		entity.setNickname(t.getNickname());
 		entity.setCountry(country);
 		entity.setRegistrated(t.getRegistratedDate());

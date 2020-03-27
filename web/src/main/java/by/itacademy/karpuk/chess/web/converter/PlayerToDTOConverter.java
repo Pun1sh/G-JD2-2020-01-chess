@@ -11,21 +11,23 @@ import by.itacademy.karpuk.chess.web.dto.PlayerDTO;
 public class PlayerToDTOConverter implements Function<IPlayer, PlayerDTO> {
 
 	@Override
-	public PlayerDTO apply(IPlayer t) {
+	public PlayerDTO apply(IPlayer player) {
 		PlayerDTO dto = new PlayerDTO();
-		dto.setId(t.getId());
-		dto.setName(t.getName());
-		dto.setSurname(t.getSurname());
-		dto.setNickname(t.getNickname());
-		dto.setCountryId(t.getCountry().getId());
-		dto.setRegistratedDate(t.getRegistrated());
-		dto.setClubId(t.getClub().getId());
-		dto.setGamesPlayed(t.getGamesPlayed());
-		dto.setBirthDate(t.getBirthDate());
-		dto.setEmail(t.getEmail());
-		dto.setPassword(t.getPassword());
-		dto.setEloPoints(t.getEloPoints());
-		dto.setRank(t.getRank());
+		dto.setId(player.getId());
+		dto.setNickname(player.getNickname());
+		if (!(player.getCountry() == null)) {
+			dto.setCountryId(player.getCountry().getId());
+		}
+		if (!(player.getClub() == null)) {
+			dto.setCountryId(player.getClub().getId());
+		}
+		dto.setRegistratedDate(player.getRegistrated());
+		dto.setGamesPlayed(player.getGamesPlayed());
+		dto.setBirthDate(player.getBirthDate());
+		dto.setEmail(player.getEmail());
+		dto.setPassword(player.getPassword());
+		dto.setEloPoints(player.getEloPoints());
+		dto.setRank(player.getRank());
 		return dto;
 	}
 

@@ -3,27 +3,27 @@
 <h4 class="header">Edit player</h4>
 <div class="row">
 
-	<form:form class="col s12" method="POST" action="${pagesMode}"
+	<form:form class="col s12" method="POST" action="${pagesPlayer}"
 		modelAttribute="formModel">
 		<form:input path="id" type="hidden" />
 
 
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="name" type="text" disabled="${readonly}" />
-				<form:errors path="name" cssClass="red-text" />
-				<label for="name">Player name</label>
+				<form:input path="nickname" type="text" disabled="${readonly}" />
+				<form:errors path="nickname" cssClass="red-text" />
+				<label for="nickname">Player nickname</label>
 			</div>
 		</div>
 
 
-		<div class="row">
+		<%-- <div class="row">
 			<div class="input-field col s12">
 				<form:input path="timeMinutes" type="text" disabled="${readonly}" />
 				<form:errors path="timeMinutes" cssClass="red-text" />
 				<label for="timeMinutes">Player time</label>
 			</div>
-		</div>
+		</div> --%>
 
 
 

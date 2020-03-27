@@ -67,8 +67,12 @@ header {
 							class="material-icons left white-text">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
 							class="material-icons left white-text">storage</i>Games</a></li>
-					<li><a class="white-text" href="#photos"><i
+					<li><a class="white-text" href="#modes"><i
 							class="material-icons left white-text">extension</i>Modes</a></li>
+					<li><a class="white-text" href="#sign-up"><i
+							class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
+					<li><a class="white-text" href="#"><i
+							class="material-icons left white-text">forward</i>Log In</a></li>
 				</ul>
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
 					<li><a class="white-text" href="${pagesPlay}"><i
@@ -77,8 +81,12 @@ header {
 							class="material-icons left white-text ">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
 							class="material-icons left white-text ">storage</i>Games</a></li>
-					<li><a class="white-text" href="#photos"><i
+					<li><a class="white-text" href="#modes"><i
 							class="material-icons left white-text">extension</i>Modes</a></li>
+					<li><a class="white-text" href="#sign-up"><i
+							class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
+					<li><a class="white-text" href="#"><i
+							class="material-icons left white-text">forward</i>Log In</a></li>
 				</ul>
 
 
@@ -89,7 +97,7 @@ header {
 
 	</header>
 	<!-- photo / grid -->
-	<section class="container section scrollspy" id="photos">
+	<section class="container section scrollspy" id="modes">
 
 		<div class="row">
 			<div class="col s12 l4">
@@ -138,20 +146,16 @@ header {
 		</div>
 	</div>
 	<!-- sign up form -->
-	<section class="section container" id="sign-up">
+	<section class="section container scrollspy" id="sign-up">
 		<div class="row">
 			<div class="col s12 l5">
 				<h2 class="indigo-text text-darken-4">Sign up!</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
-				<p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec
-					libero. Fusce condimentum gravida urna, vitae scelerisque erat
-					ornare nec.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
-				<p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec
-					libero. Fusce condimentum gravida urna, vitae scelerisque erat
-					ornare nec.</p>
+				<p>Join us and enjoy playing chess. Sign up, it's Free!</p>
+				<p>If you are already signed up, just Log In.</p>
+				<ul>
+					<li><a class="btn" href="#"><i
+							class="material-icons left white-text">forward</i>Log In</a></li>
+				</ul>
 			</div>
 			<div class="col s12 l5 offset-l2">
 				<form>
@@ -186,7 +190,7 @@ header {
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">
-					<h5>About Me</h5>
+					<h5>About Site</h5>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Vestibulum at lacus congue.</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.

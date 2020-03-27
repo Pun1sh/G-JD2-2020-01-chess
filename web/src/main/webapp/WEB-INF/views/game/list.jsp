@@ -13,7 +13,7 @@
 			<th>loser_id</th>
 			<th>started</th>
 			<th>ended</th>
-			<th>mode_id</th>
+			<th>mode</th>
 			<th></th>
 		</tr>
 		<c:forEach var="game" items="${gridItems}" varStatus="loopCounter">
@@ -26,7 +26,7 @@
 				<td><c:out value="${game.loserId}" /></td>
 				<td><c:out value="${game.started}" /></td>
 				<td><c:out value="${game.ended}" /></td>
-				<td><c:out value="${game.modeId}" /></td>
+				<td><c:out value="${game.mode}" /></td>
 				<td class="right"><a class="btn-floating"
 					href="${pagesGame}/${game.id}"><i class="material-icons">info</i></a>
 					<a class="btn-floating" href="${pagesGame}/${game.id}/edit"><i

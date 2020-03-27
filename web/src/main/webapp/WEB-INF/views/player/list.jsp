@@ -6,8 +6,6 @@
 	<tbody>
 		<tr>
 			<th>id</th>
-			<th>name</th>
-			<th>surname</th>
 			<th>nickname</th>
 			<th>countryId</th>
 			<th>registrated</th>
@@ -22,8 +20,6 @@
 		<c:forEach var="player" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${player.id}" /></td>
-				<td><c:out value="${player.name}" /></td>
-				<td><c:out value="${player.surname}" /></td>
 				<td><c:out value="${player.nickname}" /></td>
 				<td><c:out value="${player.countryId}" /></td>
 				<td><c:out value="${player.registratedDate}" /></td>
@@ -43,5 +39,5 @@
 		</c:forEach>
 	</tbody>
 </table>
-<a class="waves-effect waves-light btn right" href="${playerMode}/add"><i
+<a class="waves-effect waves-light btn right" href="${pagesPlayer}/add"><i
 	class="material-icons">add</i></a>

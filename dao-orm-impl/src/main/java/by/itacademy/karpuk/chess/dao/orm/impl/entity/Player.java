@@ -14,10 +14,6 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 @Entity
 public class Player extends BaseEntity implements IPlayer {
 	@Column
-	private String name;
-	@Column
-	private String surname;
-	@Column
 	private String nickname;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	private ICountry country;
@@ -37,22 +33,6 @@ public class Player extends BaseEntity implements IPlayer {
 	private Integer eloPoints;
 	@Column
 	private String rank;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
 
 	public String getNickname() {
 		return nickname;
@@ -133,6 +113,5 @@ public class Player extends BaseEntity implements IPlayer {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
-
 
 }

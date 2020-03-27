@@ -31,6 +31,18 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/custom.css">
 
+
+<link rel="stylesheet"
+      href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+      integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
+      crossorigin="anonymous">
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+        integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+        crossorigin="anonymous"></script>
+
+<script src="${contextPath}/resources/chess.js"></script>
+
+
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
@@ -39,7 +51,7 @@
 			<tiles:insertAttribute name="body" />
 		</div>
 	</main>
-	<tiles:insertAttribute name="footer" />
-	<tiles:insertAttribute name="sidenav" />
+	<%--<tiles:insertAttribute name="footer" />--%>
+	<%-- <tiles:insertAttribute name="sidenav" /> --%>
 </body>
 </html>
