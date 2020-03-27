@@ -1,4 +1,4 @@
-<div id="myBoard" style="width: 800px"></div>
+<div id="myBoard" style="width: 600px"></div>
 
 
 <script>

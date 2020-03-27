@@ -33,8 +33,7 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 				getTableName()), true) {
 			@Override
 			public IPlayer doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getName());
-				pStmt.setString(2, entity.getSurname());
+
 				pStmt.setString(3, entity.getNickname());
 				pStmt.setInt(4, entity.getCountry().getId());
 				pStmt.setObject(5, entity.getRegistrated(), Types.TIMESTAMP);
@@ -86,8 +85,7 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 	protected IPlayer parseRow(final ResultSet resultSet) throws SQLException {
 		final IPlayer entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setName(resultSet.getString("name"));
-		entity.setSurname(resultSet.getString("surname"));
+
 		entity.setNickname(resultSet.getString("nickname"));
 		entity.setRegistrated(resultSet.getTimestamp("registrated"));
 		entity.setGamesPlayed(resultSet.getInt("games_played"));
