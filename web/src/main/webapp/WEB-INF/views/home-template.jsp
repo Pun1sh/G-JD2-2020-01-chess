@@ -67,6 +67,8 @@ header {
 							class="material-icons left white-text">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
 							class="material-icons left white-text">storage</i>Games</a></li>
+					<li><a class="white-text" href="#photos"><i
+							class="material-icons left white-text">extension</i>Modes</a></li>
 				</ul>
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
 					<li><a class="white-text" href="${pagesPlay}"><i
@@ -75,6 +77,8 @@ header {
 							class="material-icons left white-text ">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
 							class="material-icons left white-text ">storage</i>Games</a></li>
+					<li><a class="white-text" href="#photos"><i
+							class="material-icons left white-text">extension</i>Modes</a></li>
 				</ul>
 
 
@@ -85,11 +89,12 @@ header {
 
 	</header>
 	<!-- photo / grid -->
-	<section class="container section" id="photos">
+	<section class="container section scrollspy" id="photos">
+
 		<div class="row">
 			<div class="col s12 l4">
-				<img src="img/portrait.jpg" alt=""
-					class="responsive-img materialboxed">
+				<img src="https://www.newsli.ru/up_img/jpg_1895.jpg" alt=""
+					class="responsive-img">
 			</div>
 			<div class="col s12 l6 offset-l1">
 				<h2 class="indigo-text text-darken-4">Bullet</h2>
@@ -99,7 +104,9 @@ header {
 		</div>
 		<div class="row">
 			<div class="col s12 l4 push-l7 ofsset-l1">
-				<img src="img/city.jpg" alt="" class="responsive-img materialboxed">
+				<img
+					src="https://cdn.pixabay.com/photo/2014/09/01/19/39/chess-433071_1280.jpg"
+					alt="" class="responsive-img">
 			</div>
 			<div class="col s12 l6 offset-l1 pull-l5 right-align">
 				<h2 class="indigo-text text-darken-4">Blitz</h2>
@@ -109,8 +116,9 @@ header {
 		</div>
 		<div class="row">
 			<div class="col s12 l4">
-				<img src="img/portrait.jpg" alt=""
-					class="responsive-img materialboxed">
+				<img
+					src="https://www.azerisport.com/images/articles/2019/04/08/thumb700_20190408200801853.jpg"
+					alt="" class="responsive-img">
 			</div>
 			<div class="col s12 l6 offset-l1">
 				<h2 class="indigo-text text-darken-4">10, 30 and 60 Minutes</h2>
@@ -119,21 +127,87 @@ header {
 			</div>
 		</div>
 
-
-
-
-
 	</section>
 
-	<!-- parallax -->
-
-	<!-- services / tabs -->
 
 	<!-- parallax -->
-
-	<!-- contact form -->
-
+	<div class="parallax-container">
+		<div class="parallax">
+			<img src="https://images5.alphacoders.com/381/thumb-1920-381340.jpg"
+				alt="" class="responsive-img">
+		</div>
+	</div>
+	<!-- sign up form -->
+	<section class="section container" id="sign-up">
+		<div class="row">
+			<div class="col s12 l5">
+				<h2 class="indigo-text text-darken-4">Sign up!</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+				<p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec
+					libero. Fusce condimentum gravida urna, vitae scelerisque erat
+					ornare nec.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+				<p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec
+					libero. Fusce condimentum gravida urna, vitae scelerisque erat
+					ornare nec.</p>
+			</div>
+			<div class="col s12 l5 offset-l2">
+				<form>
+					<div class="input-field">
+						<i class="material-icons prefix">email</i> <input type="email"
+							id="email"> <label for="email">Your Email</label>
+					</div>
+					<div class="input-field">
+						<i class="material-icons prefix">lock</i>
+						<textarea id="password" class="materialize-textarea"></textarea>
+						<label for="password">Your Password</label>
+					</div>
+					<div class="input-field">
+						<i class="material-icons prefix">person_add</i>
+						<textarea id="nickname" class="materialize-textarea"></textarea>
+						<label for="nickname">Your Nickname</label>
+					</div>
+					<div class="input-field">
+						<i class="material-icons prefix">date_range</i> <input type="text"
+							id="date" class="datepicker"> <label for="date">Your
+							BirthDate</label>
+					</div>
+					<div class="input-field center">
+						<button class="btn">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
 	<!-- footer -->
+	<footer class="page-footer grey darken-3">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5>About Me</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Vestibulum at lacus congue.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<h5 class="white-text">Connect</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="#">Facebook</a></li>
+						<li><a class="grey-text text-lighten-3" href="#">Twitter</a></li>
+						<li><a class="grey-text text-lighten-3" href="#">Linked
+								In</a></li>
+						<li><a class="grey-text text-lighten-3" href="#">Instagram</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright grey darken-4">
+			<div class="container center-align">&copy; 2020 Pure Chess</div>
+		</div>
+	</footer>
 
 	<!-- Compiled and minified JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -142,7 +216,10 @@ header {
 	<script>
 		$(document).ready(function() {
 			$('.sidenav').sidenav();
-			$('.materialboxed').materialbox();
+			$('.parallax').parallax();
+			$('.datepicker').datepicker();
+			$('.scrollspy').scrollSpy();
+
 		});
 	</script>
 </body>
