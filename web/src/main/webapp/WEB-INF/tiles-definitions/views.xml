@@ -15,8 +15,13 @@
 				<put-attribute name="sidenav"
 			value="/WEB-INF/views/sidenav.jsp" />
 	</definition>
+	
+	<definition name="HomeTemplate"
+	template="/WEB-INF/views/home-template.jsp">
+	</definition>
+	
 
-	<definition name="home" extends="DefaultTemplate">
+	<definition name="home" extends="HomeTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/home.jsp" />
 	</definition>
