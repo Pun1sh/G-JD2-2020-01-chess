@@ -59,10 +59,10 @@ header {
 					href="#" class="sidenav-trigger" data-target="mobile-menu"> <i
 					class="material-icons">menu</i>
 				</a>
-				<ul class="right hide-on-med-and-down">
 
-					<li><a class="white-text" href="${pagesPlay}"><i
-							class="material-icons left white-text">play_circle_outline</i>Play</a></li>
+				<ul class="right hide-on-med-and-down">
+					<li><a class='dropdown-trigger btn transparent' href='#'
+						data-target='mydropdown'><i class="material-icons left">play_circle_outline</i>Play</a></li>
 					<li><a class="white-text" href="${pagesPlayer}"><i
 							class="material-icons left white-text">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
@@ -76,7 +76,7 @@ header {
 				</ul>
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
 					<li><a class="white-text" href="${pagesPlay}"><i
-							class="material-icons left white-text ">play_circle_outline</i>Play</a></li>
+							class="material-icons left white-text">play_circle_outline</i>Play</a></li>
 					<li><a class="white-text" href="${pagesPlayer}"><i
 							class="material-icons left white-text ">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
@@ -89,9 +89,16 @@ header {
 							class="material-icons left white-text">forward</i>Log In</a></li>
 				</ul>
 
-
 			</div>
-
+			<ul class='dropdown-content brown lighten-2' id='mydropdown'>
+				<li><a class="white-text" href="${pagesPlay}"><i
+						class="fas fa-chess"></i>Live Chess</a></li>
+				<li><a class="white-text" href="#!"><i
+						class="fas fa-chess-board"></i>Board editor</a></li>
+				<li><a class="white-text" href="#!"><i
+						class="material-icons left">computer</i>Play against
+						Random Computer</a></li>
+			</ul>
 		</nav>
 
 
@@ -223,6 +230,7 @@ header {
 			$('.parallax').parallax();
 			$('.datepicker').datepicker();
 			$('.scrollspy').scrollSpy();
+			$('.dropdown-trigger').dropdown();
 
 		});
 	</script>
