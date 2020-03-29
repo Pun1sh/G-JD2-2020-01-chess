@@ -19,7 +19,6 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 import by.itacademy.karpuk.chess.dao.api.filter.MoveFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Move;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Move_;
-import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 
 @Repository
 public class MoveDaoImpl extends AbstractDaoImpl<IMove, Integer> implements IMoveDao {
@@ -105,7 +104,7 @@ public class MoveDaoImpl extends AbstractDaoImpl<IMove, Integer> implements IMov
 		from.fetch(Move_.player, JoinType.LEFT);
 
 		// .. where id=...
-		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+		cq.where(cb.equal(from.get(Move_.id), id)); // where id=?
 
 		final TypedQuery<IMove> q = em.createQuery(cq);
 

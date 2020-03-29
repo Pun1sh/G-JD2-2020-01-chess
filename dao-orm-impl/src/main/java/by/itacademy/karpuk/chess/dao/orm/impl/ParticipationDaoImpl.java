@@ -19,7 +19,6 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IParticipation;
 import by.itacademy.karpuk.chess.dao.api.filter.ParticipationFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Participation;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Participation_;
-import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 
 @Repository
 public class ParticipationDaoImpl extends AbstractDaoImpl<IParticipation, Integer> implements IParticipationDao {
@@ -100,7 +99,7 @@ public class ParticipationDaoImpl extends AbstractDaoImpl<IParticipation, Intege
 		from.fetch(Participation_.tournament, JoinType.LEFT);
 
 		// .. where id=...
-		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+		cq.where(cb.equal(from.get(Participation_.id), id)); // where id=?
 
 		final TypedQuery<IParticipation> q = em.createQuery(cq);
 

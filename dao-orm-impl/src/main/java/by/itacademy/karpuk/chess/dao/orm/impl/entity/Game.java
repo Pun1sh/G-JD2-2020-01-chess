@@ -32,6 +32,16 @@ public class Game extends BaseEntity implements IGame {
 	private Date ended;
 	@Enumerated(EnumType.STRING)
 	private Mode mode;
+	@Column
+	private String historyOfMoves;
+
+	public String getHistoryOfMoves() {
+		return historyOfMoves;
+	}
+
+	public void setHistoryOfMoves(String historyOfMoves) {
+		this.historyOfMoves = historyOfMoves;
+	}
 
 	public IPlayer getWhitePlayer() {
 		return whitePlayer;

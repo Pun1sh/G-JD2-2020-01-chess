@@ -19,7 +19,6 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.filter.GameFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Game;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Game_;
-import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 
 @Repository
 public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGameDao {
@@ -88,6 +87,8 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 			return Game_.started;
 		case "mode":
 			return Game_.mode;
+		case "historyOfMoves":
+			return Game_.historyOfMoves;
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
@@ -110,7 +111,7 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		from.fetch(Game_.tournament, JoinType.LEFT);
 
 		// .. where id=...
-		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+		cq.where(cb.equal(from.get(Game_.id), id)); // where id=?
 
 		final TypedQuery<IGame> q = em.createQuery(cq);
 

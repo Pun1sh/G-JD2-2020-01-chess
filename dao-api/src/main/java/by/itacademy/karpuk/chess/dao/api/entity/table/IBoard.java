@@ -1,21 +1,12 @@
 package by.itacademy.karpuk.chess.dao.api.entity.table;
 
-import by.itacademy.karpuk.chess.dao.api.entity.enums.Piece;
-
 public interface IBoard extends IBaseEntity {
 	IGame getGame();
 
 	void setGame(IGame game);
 
-	Piece getPiece();
+	String getFen();
 
-	void setPiece(Piece piece);
+	void setFen(String Fen);
 
-	String getPositionLetter();
-
-	void setPositionLetter(String positionLetter);
-
-	Integer getPositionNumber();
-
-	void setPositionNumber(Integer positionNumber);
 }

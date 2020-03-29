@@ -27,6 +27,7 @@ CREATE TABLE "game" (
 	"started" TIMESTAMP NOT NULL,
 	"ended" TIMESTAMP,
 	"mode" varchar NOT NULL,
+	"history_of_moves" varchar NOT NULL,
 	CONSTRAINT "game_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -73,12 +74,12 @@ CREATE TABLE "country" (
 
 
 
-CREATE TABLE "player_tournament_participation" (
+CREATE TABLE "participation" (
 	"id" serial NOT NULL,
 	"player_id" integer NOT NULL,
 	"tournament_id" integer NOT NULL,
 	"tournament_points" integer NOT NULL,
-	CONSTRAINT "player_tournament_participation_pk" PRIMARY KEY ("id")
+	CONSTRAINT "participation_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -115,9 +116,7 @@ CREATE TABLE "club" (
 CREATE TABLE "board" (
 	"id" serial NOT NULL,
 	"game_id" integer NOT NULL,
-	"piece" varchar NOT NULL,
-	"position_letter" varchar(1) NOT NULL,
-	"position_number" integer NOT NULL,
+	"fen" varchar NOT NULL,
 	CONSTRAINT "board_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -141,8 +140,8 @@ ALTER TABLE "tournament" ADD CONSTRAINT "tournament_fk0" FOREIGN KEY ("country_i
 ALTER TABLE "tournament" ADD CONSTRAINT "tournament_fk1" FOREIGN KEY ("winner_id") REFERENCES "player"("id");
 
 
-ALTER TABLE "player_tournament_participation" ADD CONSTRAINT "player_tournament_participation_fk0" FOREIGN KEY ("player_id") REFERENCES "player"("id");
-ALTER TABLE "player_tournament_participation" ADD CONSTRAINT "player_tournament_participation_fk1" FOREIGN KEY ("tournament_id") REFERENCES "tournament"("id");
+ALTER TABLE "participation" ADD CONSTRAINT "participation_fk0" FOREIGN KEY ("player_id") REFERENCES "player"("id");
+ALTER TABLE "participation" ADD CONSTRAINT "participation_fk1" FOREIGN KEY ("tournament_id") REFERENCES "tournament"("id");
 
 ALTER TABLE "message" ADD CONSTRAINT "message_fk0" FOREIGN KEY ("writer_id") REFERENCES "player"("id");
 ALTER TABLE "message" ADD CONSTRAINT "message_fk1" FOREIGN KEY ("game_id") REFERENCES "game"("id");
@@ -150,3 +149,4 @@ ALTER TABLE "message" ADD CONSTRAINT "message_fk1" FOREIGN KEY ("game_id") REFER
 ALTER TABLE "club" ADD CONSTRAINT "club_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
 
 ALTER TABLE "board" ADD CONSTRAINT "board_fk0" FOREIGN KEY ("game_id") REFERENCES "game"("id");
+

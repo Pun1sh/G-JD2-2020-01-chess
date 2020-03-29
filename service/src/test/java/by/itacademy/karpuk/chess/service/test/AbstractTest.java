@@ -178,6 +178,7 @@ public abstract class AbstractTest {
 		entity.setStarted(new Date());
 		entity.setEnded(new Date());
 		entity.setMode(Mode.BLITZ);
+		entity.setHistoryOfMoves(getRandomPrefix());
 		gameService.save(entity);
 		return entity;
 	}
@@ -186,7 +187,7 @@ public abstract class AbstractTest {
 		final IMove entity = moveService.createEntity();
 		entity.setGame(saveNewGame());
 		entity.setPlayer(saveNewPlayer());
-		entity.setPiece(Piece.b_bishop);
+		entity.setPiece(Piece.bB);
 		entity.setMoveNotationFrom("2");
 		entity.setMoveNotationTo("2");
 		entity.setMoveTime(getRandomObjectsCount());
@@ -197,9 +198,7 @@ public abstract class AbstractTest {
 	protected IBoard saveNewBoard() {
 		final IBoard entity = boardService.createEntity();
 		entity.setGame(saveNewGame());
-		entity.setPiece(Piece.b_bishop);
-		entity.setPositionLetter("A");
-		entity.setPositionNumber(getRandomObjectsCount());
+		entity.setFen(getRandomPrefix());
 		boardService.save(entity);
 		return entity;
 	}

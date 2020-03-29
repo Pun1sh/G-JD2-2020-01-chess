@@ -19,7 +19,6 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IMessage;
 import by.itacademy.karpuk.chess.dao.api.filter.MessageFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Message;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Message_;
-import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 
 @Repository
 public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implements IMessageDao {
@@ -101,7 +100,7 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 		from.fetch(Message_.game, JoinType.LEFT);
 
 		// .. where id=...
-		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+		cq.where(cb.equal(from.get(Message_.id), id)); // where id=?
 
 		final TypedQuery<IMessage> q = em.createQuery(cq);
 

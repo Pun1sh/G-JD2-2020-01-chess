@@ -20,13 +20,9 @@ public class BoardServiceTest extends AbstractTest {
 
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getGame().getId());
-		assertNotNull(entityFromDb.getPiece());
-		assertNotNull(entityFromDb.getPositionLetter());
-		assertNotNull(entityFromDb.getPositionNumber());
+		assertNotNull(entityFromDb.getFen());
 		assertEquals(entity.getGame().getId(), entityFromDb.getGame().getId());
-		assertEquals(entity.getPiece(), entityFromDb.getPiece());
-		assertEquals(entity.getPositionLetter(), entityFromDb.getPositionLetter());
-		assertEquals(entity.getPositionNumber(), entityFromDb.getPositionNumber());
+		assertEquals(entity.getFen(), entityFromDb.getFen());
 
 	}
 
@@ -43,9 +39,7 @@ public class BoardServiceTest extends AbstractTest {
 		for (final IBoard entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getGame().getId());
-			assertNotNull(entityFromDb.getPiece());
-			assertNotNull(entityFromDb.getPositionLetter());
-			assertNotNull(entityFromDb.getPositionNumber());
+			assertNotNull(entityFromDb.getFen());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

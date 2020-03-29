@@ -19,7 +19,6 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.filter.BoardFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Board;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Board_;
-import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 
 @Repository
 public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IBoardDao {
@@ -77,12 +76,8 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 		switch (sortColumn) {
 		case "id":
 			return Board_.id;
-		case "positionNumber":
-			return Board_.positionNumber;
-		case "positionLetter":
-			return Board_.positionLetter;
-		case "piece":
-			return Board_.piece;
+		case "FEN":
+			return Board_.fen;
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
@@ -101,7 +96,7 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 		from.fetch(Board_.game, JoinType.LEFT);
 
 		// .. where id=...
-		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+		cq.where(cb.equal(from.get(Board_.id), id)); // where id=?
 
 		final TypedQuery<IBoard> q = em.createQuery(cq);
 

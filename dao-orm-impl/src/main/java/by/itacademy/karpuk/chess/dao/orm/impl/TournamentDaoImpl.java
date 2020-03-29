@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import by.itacademy.karpuk.chess.dao.api.ITournamentDao;
 import by.itacademy.karpuk.chess.dao.api.entity.table.ITournament;
 import by.itacademy.karpuk.chess.dao.api.filter.TournamentFilter;
-import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Tournament;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Tournament_;
 
@@ -104,7 +103,7 @@ public class TournamentDaoImpl extends AbstractDaoImpl<ITournament, Integer> imp
 		from.fetch(Tournament_.winner, JoinType.LEFT);
 
 		// .. where id=...
-		cq.where(cb.equal(from.get(Player_.id), id)); // where id=?
+		cq.where(cb.equal(from.get(Tournament_.id), id)); // where id=?
 
 		final TypedQuery<ITournament> q = em.createQuery(cq);
 

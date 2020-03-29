@@ -37,4 +37,8 @@ public interface IGame extends IBaseEntity {
 
 	void setMode(Mode mode);
 
+	String getHistoryOfMoves();
+
+	void setHistoryOfMoves(String historyOfMoves);
+
 }

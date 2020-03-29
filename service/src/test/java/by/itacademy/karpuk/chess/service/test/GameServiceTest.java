@@ -22,6 +22,7 @@ public class GameServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getBlackPlayer().getId());
 		assertNotNull(entityFromDb.getStarted());
 		assertNotNull(entityFromDb.getMode());
+		assertNotNull(entityFromDb.getHistoryOfMoves());
 
 		assertEquals(entity.getWhitePlayer().getId(), entityFromDb.getWhitePlayer().getId());
 		assertEquals(entity.getBlackPlayer().getId(), entityFromDb.getBlackPlayer().getId());
@@ -30,6 +31,7 @@ public class GameServiceTest extends AbstractTest {
 		assertEquals(entity.getStarted(), entityFromDb.getStarted());
 		assertEquals(entity.getEnded(), entityFromDb.getEnded());
 		assertEquals(entity.getMode(), entityFromDb.getMode());
+		assertEquals(entity.getHistoryOfMoves(), entityFromDb.getHistoryOfMoves());
 
 	}
 
@@ -49,6 +51,7 @@ public class GameServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getBlackPlayer().getId());
 			assertNotNull(entityFromDb.getStarted());
 			assertNotNull(entityFromDb.getMode());
+			assertNotNull(entityFromDb.getHistoryOfMoves());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());
