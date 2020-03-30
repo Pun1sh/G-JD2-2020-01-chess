@@ -1,5 +1,6 @@
 <div class="container">
-	<br><br>
+	<br>
+	<br>
 	<div class="row">
 		<div class="col s12 l6 pull-l3 ">
 			<div id="myBoard" style="width: 600px"></div>

@@ -54,8 +54,16 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/player/form.jsp" />
 	</definition>
-	<definition name="board" extends="DefaultTemplate">
+	<definition name="live_chess" extends="DefaultTemplate">
 		<put-attribute name="body"
-			value="/WEB-INF/views/play/board.jsp" />
+			value="/WEB-INF/views/play/live_chess.jsp" />
+	</definition>
+	<definition name="board_editor" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/play/live_chess.jsp" />
+	</definition>
+	<definition name="random_computer" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/play/live_chess.jsp" />
 	</definition>
 </tiles-definitions>

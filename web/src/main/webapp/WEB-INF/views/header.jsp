@@ -20,7 +20,7 @@
 						results</a></li>
 			</ul>
 			<ul class="sidenav grey lighten-2" id="mobile-menu">
-				<li><a class="white-text" href="${pagesPlay}"><i
+				<li><a class="white-text" href="${pagesLiveChess}"><i
 						class="material-icons left white-text">play_circle_outline</i>Play</a></li>
 				<li><a class="white-text" href="${pagesPlayer}"><i
 						class="material-icons left white-text ">people_outline</i>Players</a></li>
@@ -35,11 +35,11 @@
 
 		</div>
 		<ul class='dropdown-content brown lighten-2' id='mydropdown'>
-			<li><a class="white-text" href="${pagesPlay}"><i
+			<li><a class="white-text" href="${pagesLiveChess}"><i
 					class="fas fa-chess"></i>Live Chess</a></li>
-			<li><a class="white-text" href="#!"><i
+			<li><a class="white-text" href="${pagesBoardEditor}"><i
 					class="fas fa-chess-board"></i>Board editor</a></li>
-			<li><a class="white-text" href="#!"><i
+			<li><a class="white-text" href="${pagesRandomComputer}"><i
 					class="material-icons left">computer</i>Play against Random
 					Computer</a></li>
 		</ul>

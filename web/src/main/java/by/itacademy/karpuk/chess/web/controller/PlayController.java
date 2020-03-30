@@ -8,9 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/play")
 public class PlayController extends AbstractController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String createBoard() {
-		return "board";
+	@RequestMapping(value = "/live_chess", method = RequestMethod.GET)
+	public String playLiveChess() {
+		return "live_chess";
+	}
+
+	@RequestMapping(value = "/board_editor", method = RequestMethod.GET)
+	public String playBoardEditor() {
+		return "board_editor";
+	}
+	@RequestMapping(value = "/random_computer", method = RequestMethod.GET)
+	public String playRandomComputer() {
+		return "random_computer";
 	}
 
 }

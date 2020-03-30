@@ -10,7 +10,12 @@
 	scope="request" />
 <c:set var="pagesParticipation" value="${contextPath}/participation"
 	scope="request" />
-<c:set var="pagesPlay" value="${contextPath}/play" scope="request" />
+<c:set var="pagesLiveChess" value="${contextPath}/play/live_chess"
+	scope="request" />
+<c:set var="pagesBoardEditor" value="${contextPath}/play/board_editor"
+	scope="request" />
+<c:set var="pagesRandomComputer"
+	value="${contextPath}/play/random_computer" scope="request" />
 
 <html lang="en">
 <head>
@@ -75,7 +80,7 @@ header {
 							class="material-icons left white-text">forward</i>Log In</a></li>
 				</ul>
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
-					<li><a class="white-text" href="${pagesPlay}"><i
+					<li><a class="white-text" href="${pagesLiveChess}"><i
 							class="material-icons left white-text">play_circle_outline</i>Play</a></li>
 					<li><a class="white-text" href="${pagesPlayer}"><i
 							class="material-icons left white-text ">people_outline</i>Players</a></li>
@@ -91,13 +96,13 @@ header {
 
 			</div>
 			<ul class='dropdown-content brown lighten-2' id='mydropdown'>
-				<li><a class="white-text" href="${pagesPlay}"><i
+				<li><a class="white-text" href="${pagesLiveChess}"><i
 						class="fas fa-chess"></i>Live Chess</a></li>
-				<li><a class="white-text" href="#!"><i
+				<li><a class="white-text" href="${pagesBoardEditor}"><i
 						class="fas fa-chess-board"></i>Board editor</a></li>
-				<li><a class="white-text" href="#!"><i
-						class="material-icons left">computer</i>Play against
-						Random Computer</a></li>
+				<li><a class="white-text" href="${pagesRandomComputer}"><i
+						class="material-icons left">computer</i>Play against Random
+						Computer</a></li>
 			</ul>
 		</nav>
 
