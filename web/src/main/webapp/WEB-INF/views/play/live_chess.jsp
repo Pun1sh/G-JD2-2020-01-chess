@@ -11,6 +11,7 @@
 
 <script>
 	var config = {
+		pieceTheme: '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
 		position : 'start'
 	}
 	var board = Chessboard('myBoard', config)

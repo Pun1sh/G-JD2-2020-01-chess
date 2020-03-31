@@ -22,7 +22,7 @@
 				<td><c:out value="${player.id}" /></td>
 				<td><c:out value="${player.nickname}" /></td>
 				<td><c:out value="${player.countryId}" /></td>
-				<td><c:out value="${player.registratedDate}" /></td>
+				<td><c:out value="${player.registrated}" /></td>
 				<td><c:out value="${player.clubId}" /></td>
 				<td><c:out value="${player.gamesPlayed}" /></td>
 				<td><c:out value="${player.birthDate}" /></td>

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.dao.api.filter.PlayerFilter;
+import by.itacademy.karpuk.chess.service.ICountryService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
 import by.itacademy.karpuk.chess.web.converter.PlayerFromDTOConverter;
 import by.itacademy.karpuk.chess.web.converter.PlayerToDTOConverter;
@@ -29,6 +31,8 @@ import by.itacademy.karpuk.chess.web.dto.PlayerDTO;
 public class PlayerController extends AbstractController {
 	@Autowired
 	private IPlayerService playerService;
+	@Autowired
+	private ICountryService countryService;
 	@Autowired
 	private PlayerToDTOConverter toDtoConverter;
 	@Autowired
@@ -52,6 +56,7 @@ public class PlayerController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		final IPlayer player = playerService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(player));
+		loadCommonFormModels(hashMap);
 		return new ModelAndView("player.edit", hashMap);
 	}
 
@@ -89,5 +94,14 @@ public class PlayerController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		return new ModelAndView("player.edit", hashMap);
+	}
+
+	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+
+		final List<ICountry> countries = countryService.getAll();
+
+		final Map<Integer, String> countriesMap = countries.stream()
+				.collect(Collectors.toMap(ICountry::getId, ICountry::getName));
+		hashMap.put("countriesChoices", countriesMap);
 	}
 }

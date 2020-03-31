@@ -12,9 +12,12 @@
 	scope="request" />
 <c:set var="pagesParticipation" value="${contextPath}/participation"
 	scope="request" />
-<c:set var="pagesLiveChess" value="${contextPath}/play/live_chess" scope="request" />
-<c:set var="pagesBoardEditor" value="${contextPath}/play/board_editor" scope="request" />
-<c:set var="pagesRandomComputer" value="${contextPath}/play/random_computer" scope="request" />
+<c:set var="pagesLiveChess" value="${contextPath}/play/live_chess"
+	scope="request" />
+<c:set var="pagesBoardEditor" value="${contextPath}/play/board_editor"
+	scope="request" />
+<c:set var="pagesRandomComputer"
+	value="${contextPath}/play/random_computer" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,6 +52,7 @@
 	crossorigin="anonymous"></script>
 
 <script src="${contextPath}/resources/chess.js"></script>
+<script src="${contextPath}/resources/js/init-materialize-forms.js"></script>
 
 
 </head>

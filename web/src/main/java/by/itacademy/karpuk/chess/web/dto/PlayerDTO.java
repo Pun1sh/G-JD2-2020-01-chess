@@ -6,7 +6,7 @@ public class PlayerDTO {
 	private Integer id;
 	private String nickname;
 	private Integer countryId;
-	private Date registratedDate;
+	private Date registrated;
 	private Integer clubId;
 	private Integer gamesPlayed;
 	private Date birthDate;
@@ -37,14 +37,6 @@ public class PlayerDTO {
 
 	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
-	}
-
-	public Date getRegistratedDate() {
-		return registratedDate;
-	}
-
-	public void setRegistratedDate(Date registratedDate) {
-		this.registratedDate = registratedDate;
 	}
 
 	public Integer getClubId() {
@@ -101,6 +93,14 @@ public class PlayerDTO {
 
 	public void setRank(String rank) {
 		this.rank = rank;
+	}
+
+	public Date getRegistrated() {
+		return registrated;
+	}
+
+	public void setRegistrated(Date registrated) {
+		this.registrated = registrated;
 	}
 
 }

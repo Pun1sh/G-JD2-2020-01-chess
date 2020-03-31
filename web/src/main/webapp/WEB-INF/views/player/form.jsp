@@ -17,13 +17,24 @@
 		</div>
 
 
-		<%-- <div class="row">
+		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="timeMinutes" type="text" disabled="${readonly}" />
-				<form:errors path="timeMinutes" cssClass="red-text" />
-				<label for="timeMinutes">Player time</label>
+				<form:input path="registrated" type="text" disabled="${readonly}" />
+				<form:errors path="registrated" cssClass="red-text" />
+				<label for="registrated">Registrated date</label>
 			</div>
-		</div> --%>
+		</div>
+
+
+		<div class="row">
+			<div class="input-field col s12">
+				<form:select path="countryId" disabled="${readonly}">
+					<form:options items="${countriesChoices}" />
+				</form:select>
+				<form:errors path="countryId" cssClass="red-text" />
+				<label for="countryId">country</label>
+			</div>
+		</div>
 
 
 

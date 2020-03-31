@@ -21,7 +21,7 @@ public class PlayerToDTOConverter implements Function<IPlayer, PlayerDTO> {
 		if (!(player.getClub() == null)) {
 			dto.setCountryId(player.getClub().getId());
 		}
-		dto.setRegistratedDate(player.getRegistrated());
+		dto.setRegistrated(player.getRegistrated());
 		dto.setGamesPlayed(player.getGamesPlayed());
 		dto.setBirthDate(player.getBirthDate());
 		dto.setEmail(player.getEmail());
