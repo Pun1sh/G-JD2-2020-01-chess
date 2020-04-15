@@ -60,10 +60,10 @@
 	</definition>
 	<definition name="board_editor" extends="DefaultTemplate">
 		<put-attribute name="body"
-			value="/WEB-INF/views/play/live_chess.jsp" />
+			value="/WEB-INF/views/play/board_editor.jsp" />
 	</definition>
 	<definition name="random_computer" extends="DefaultTemplate">
 		<put-attribute name="body"
-			value="/WEB-INF/views/play/live_chess.jsp" />
+			value="/WEB-INF/views/play/random_computer.jsp" />
 	</definition>
 </tiles-definitions>

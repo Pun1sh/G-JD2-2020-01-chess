@@ -1,7 +1,7 @@
 CREATE TABLE "player" (
 	"id" serial NOT NULL,
 	"nickname" varchar(64) NOT NULL,
-	"country_id" integer NOT NULL,
+	"country_id" integer,
 	"registrated" TIMESTAMP NOT NULL,
 	"club_id" integer,
 	"games_played" integer,
@@ -149,4 +149,3 @@ ALTER TABLE "message" ADD CONSTRAINT "message_fk1" FOREIGN KEY ("game_id") REFER
 ALTER TABLE "club" ADD CONSTRAINT "club_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
 
 ALTER TABLE "board" ADD CONSTRAINT "board_fk0" FOREIGN KEY ("game_id") REFERENCES "game"("id");
-
