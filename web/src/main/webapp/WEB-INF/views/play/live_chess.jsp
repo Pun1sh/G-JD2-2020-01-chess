@@ -75,8 +75,17 @@
 		}
 	}
 
-	function onDrop(source, target) {
+	function onDrop(source, target,piece, newPos, oldPos, orientation) {
+		  console.log('Source: ' + source)
+		  console.log('Target: ' + target)
+		  console.log('Piece: ' + piece)
+		  console.log('New position: ' + Chessboard.objToFen(newPos))
+		  console.log('Old position: ' + Chessboard.objToFen(oldPos))
+		  console.log('Orientation: ' + orientation)
+		  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+		  
 		  removeGreySquares()
+		  
 		  
 		// see if the move is legal
 		var move = game.move({
@@ -90,7 +99,6 @@
 			return 'snapback'
 			
 			// highlight moves
-			
 			removeHighlights('white')
 			  $board.find('.square-' + source).addClass('highlight-white')
 			  $board.find('.square-' + target).addClass('highlight-white')
@@ -124,7 +132,19 @@
 
 	// update the board position after the piece snap
 	// for castling, en passant, pawn promotion
-	function onSnapEnd() {
+	function onSnapEnd(source,target,piece) {
+		
+		console.log(piece+"Hello")
+		
+		$.ajax({
+			  url: CONTEXT_PATH + "/play/live_chess/insert",
+			  type: "POST",
+			  data: game.fen(),
+			  success: function(data){
+				    alert(data);
+				  }
+			});
+		
 		board.position(game.fen())
 	}
 	

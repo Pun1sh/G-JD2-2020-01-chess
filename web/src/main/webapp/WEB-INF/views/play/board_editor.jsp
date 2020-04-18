@@ -3,6 +3,7 @@
 
 	<div class="row">
 		<div class="col s12 l6 pull-l2">
+		<br>
 			<div id="board2" style="width: 500px"></div>
 		</div>
 		<div class="col s12 l6 push-l2">
@@ -11,7 +12,8 @@
 				class="btn" id=flip>Flip board</a> <br> <br>
 			<div class="input-field col s12">
 				<select id="list">
-					<option value="" disabled selected>Here you can choose popular openings</option>
+					<option value="" disabled selected>Here you can choose
+						popular openings</option>
 					<option value="1">B02 Alekhine's Defence</option>
 					<option value="2">B04 Alekhine's Defence: Modern Variation</option>
 					<option value="3">B10 Caro-Kann Defence</option>
@@ -42,15 +44,19 @@
 					<option value="28">C31 King's Gambit: Falkbeer CounterGambit</option>
 				</select> <label>Openings</label>
 			</div>
+			
 			<div class="input-field col s12">
 				<textarea id="FEN" class="materialize-textarea"></textarea>
 				<label for="FEN">Paste your FEN here</label>
 			</div>
-			<a class="btn" id=pasteFEN>Change Position</a> <br>
-
-
+			<a class="btn" id=pasteFEN>Change Position using your FEN</a> <br><br>
+			<a class="btn" id=getFEN>Get current FEN</a>
+			
+			<div class="col s12"> <br>
+			<div id="fen"></div>
+			</div>
+			
 		</div>
-
 	</div>
 
 
@@ -59,6 +65,7 @@
 
 
 <script>
+	var $fen = $('#fen')
 	var game = new Chess()
 	var board2 = Chessboard(
 			'board2',
@@ -66,8 +73,11 @@
 				pieceTheme : '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
 				draggable : true,
 				dropOffBoard : 'trash',
-				sparePieces : true,
+				sparePieces : true
 			})
+	
+			
+	
 
 	$('select').formSelect();
 	$('#startPosition').on('click', board2.start)
@@ -76,6 +86,10 @@
 
 	$('#pasteFEN').on('click', function() {
 		board2.position(document.getElementById("FEN").value)
+
+	})
+	$('#getFEN').on('click', function() {
+		$fen.html(board2.fen())
 
 	})
 	$('#list')
@@ -193,7 +207,6 @@
 							board2
 									.position('rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq d6 1 3')
 						}
-						
 
 					});
 </script>

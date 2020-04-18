@@ -54,6 +54,9 @@
 <script src="${contextPath}/resources/chess.js"></script>
 <script src="${contextPath}/resources/js/init-materialize-forms.js"></script>
 
+<script type="text/javascript">
+ CONTEXT_PATH = "${contextPath}";
+</script>
 
 </head>
 <body>
