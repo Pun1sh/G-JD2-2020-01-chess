@@ -115,4 +115,9 @@
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<finalName>chess</finalName>
+	</build>
+
 </project>
