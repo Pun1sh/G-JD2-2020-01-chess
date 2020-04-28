@@ -1,13 +1,19 @@
 package by.itacademy.karpuk.chess.web;
 
+import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URL;
 
+import org.eclipse.jetty.plus.webapp.EnvConfiguration;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.Configuration.ClassList;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.webapp.WebInfConfiguration;
+import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
 /**
  * Separate startup class for people that want to run the examples directly. Use
@@ -55,6 +61,14 @@ public final class StartJetty {
 		bb.setWar("src/main/webapp");
 
 		server.setHandler(bb);
+
+		// setup JNDI
+		final EnvConfiguration envConfiguration = new EnvConfiguration();
+		final URL url = new File("src/test/resources/jetty-env.xml").toURI().toURL();
+		envConfiguration.setJettyEnvXml(url);
+		final Configuration[] configurations = new Configuration[] { new WebInfConfiguration(), envConfiguration,
+				new WebXmlConfiguration() };
+		bb.setConfigurations(configurations);
 
 		try {
 			server.start();
