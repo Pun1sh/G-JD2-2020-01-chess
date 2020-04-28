@@ -151,6 +151,7 @@ public abstract class AbstractTest {
 		entity.setPassword(getRandomPrefix());
 		entity.setEloPoints(getRandomObjectsCount());
 		entity.setRank(getRandomPrefix());
+		entity.setSalt(getRandomPrefix());
 		playerService.save(entity);
 		return entity;
 	}

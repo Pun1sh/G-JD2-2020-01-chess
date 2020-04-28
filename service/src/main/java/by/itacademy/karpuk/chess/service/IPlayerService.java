@@ -27,4 +27,6 @@ public interface IPlayerService {
 
 	IPlayer getFullInfo(Integer id);
 
+	IPlayer getPlayerByNickname(String nickname);
+
 }

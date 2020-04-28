@@ -25,5 +25,6 @@
 
 	<context:component-scan
 		base-package="by.itacademy.karpuk.chess.web.converter" />
+		<import resource="security-context.xml"/>
 
 </beans>

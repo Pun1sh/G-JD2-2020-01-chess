@@ -1,21 +1,33 @@
 package by.itacademy.karpuk.chess.web.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
+import by.itacademy.karpuk.chess.service.IPlayerService;
+import by.itacademy.karpuk.chess.web.converter.PlayerToDTOConverter;
 
 @Controller
 @RequestMapping(value = "/")
 public class HomePageController {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageController.class);
+	@Autowired
+	private IPlayerService playerService;
+	@Autowired
+	private PlayerToDTOConverter toDtoConverter;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index() {
-		LOGGER.info("HomePageController method has been called");
-		return "home";
+	public ModelAndView index() {
+		final Map<String, Object> hashMap = new HashMap<>();
+		final IPlayer player = playerService.createEntity();
+		hashMap.put("formModel", toDtoConverter.apply(player));
+		return new ModelAndView("home", hashMap);
+
 	}
 
 }

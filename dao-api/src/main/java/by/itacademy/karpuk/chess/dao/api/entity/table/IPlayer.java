@@ -43,4 +43,8 @@ public interface IPlayer extends IBaseEntity {
 	String getRank();
 
 	void setRank(String rank);
+
+	String getSalt();
+
+	void setSalt(String salt);
 }

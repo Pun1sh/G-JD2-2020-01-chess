@@ -33,6 +33,16 @@ public class Player extends BaseEntity implements IPlayer {
 	private Integer eloPoints;
 	@Column
 	private String rank;
+	@Column
+	private String salt;
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 
 	public String getNickname() {
 		return nickname;

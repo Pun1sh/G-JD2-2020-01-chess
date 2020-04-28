@@ -14,6 +14,7 @@ public class PlayerDTO {
 	private String password;
 	private Integer eloPoints;
 	private String rank;
+	private String salt;
 
 	public Integer getId() {
 		return id;
@@ -37,6 +38,14 @@ public class PlayerDTO {
 
 	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
+	}
+
+	public Date getRegistrated() {
+		return registrated;
+	}
+
+	public void setRegistrated(Date registrated) {
+		this.registrated = registrated;
 	}
 
 	public Integer getClubId() {
@@ -95,12 +104,12 @@ public class PlayerDTO {
 		this.rank = rank;
 	}
 
-	public Date getRegistrated() {
-		return registrated;
+	public String getSalt() {
+		return salt;
 	}
 
-	public void setRegistrated(Date registrated) {
-		this.registrated = registrated;
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 }

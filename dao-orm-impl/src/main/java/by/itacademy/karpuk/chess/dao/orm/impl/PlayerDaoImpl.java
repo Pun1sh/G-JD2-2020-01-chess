@@ -54,6 +54,19 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 	}
 
 	@Override
+	public IPlayer getPlayerByNickname(final String nickname) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+		final CriteriaQuery<IPlayer> cq = cb.createQuery(IPlayer.class); // define returning result
+		final Root<Player> from = cq.from(Player.class); // define table for select
+		cq.select(from); // select what? select *
+		cq.where(cb.equal(from.get(Player_.nickname), nickname)); // where nickname=?
+		final TypedQuery<IPlayer> q = em.createQuery(cq);
+		return q.getSingleResult();
+
+	}
+
+	@Override
 	public List<IPlayer> find(PlayerFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -117,6 +130,8 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 			return Player_.registrated;
 		case "birthDate":
 			return Player_.birthDate;
+		case "salt":
+			return Player_.salt;
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}

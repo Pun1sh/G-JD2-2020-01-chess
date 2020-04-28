@@ -134,12 +134,19 @@
 	// for castling, en passant, pawn promotion
 	function onSnapEnd(source,target,piece) {
 		
+		
 		console.log(piece+"Hello")
+		
+		var boardPosition = {
+				  fen:game.fen()
+				}
 		
 		$.ajax({
 			  url: CONTEXT_PATH + "/play/live_chess/insert",
 			  type: "POST",
-			  data: game.fen(),
+			  data: JSON.stringify(boardPosition),
+			  dataType:"json",
+			  contentType: "application/json; charset=utf-8",
 			  success: function(data){
 				    alert(data);
 				  }

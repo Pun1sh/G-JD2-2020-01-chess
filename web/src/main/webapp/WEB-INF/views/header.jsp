@@ -1,3 +1,6 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <header>
 	<nav class="nav-wrapper brown lighten-2">
 		<div class="container">
@@ -18,7 +21,18 @@
 				<li><a class="white-text" href="${pagesTournament}">Tournaments</a></li>
 				<li><a class="white-text" href="${pagesParticipation}">Tournament
 						results</a></li>
+
+				<sec:authorize access="!isAnonymous()">
+					<a class="right" href="${contextPath}/execute_logout"
+						title="logout"><i class="material-icons">arrow_forward</i></a>
+				</sec:authorize>
+
+				<li><a href="?lang=ru">RU</a></li>
+				<li><a href="?lang=en">EN</a></li>
+
 			</ul>
+
+
 			<ul class="sidenav grey lighten-2" id="mobile-menu">
 				<li><a class="white-text" href="${pagesLiveChess}"><i
 						class="material-icons left white-text">play_circle_outline</i>Play</a></li>

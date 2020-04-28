@@ -40,6 +40,7 @@ public class PlayerFromDTOConverter implements Function<PlayerDTO, IPlayer> {
 		entity.setPassword(t.getPassword());
 		entity.setEloPoints(t.getEloPoints());
 		entity.setRank(t.getRank());
+		entity.setSalt(t.getSalt());
 		return entity;
 	}
 

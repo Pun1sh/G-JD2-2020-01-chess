@@ -10,6 +10,7 @@ CREATE TABLE "player" (
 	"password" varchar(64) NOT NULL,
 	"elo_points" integer NOT NULL,
 	"rank" varchar NOT NULL,
+	"salt" varchar NOT NULL,
 	CONSTRAINT "player_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

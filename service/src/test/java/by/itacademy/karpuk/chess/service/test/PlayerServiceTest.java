@@ -26,6 +26,7 @@ public class PlayerServiceTest extends AbstractTest {
 		assertNotNull(entityFromDb.getPassword());
 		assertNotNull(entityFromDb.getEloPoints());
 		assertNotNull(entityFromDb.getRank());
+		assertNotNull(entityFromDb.getSalt());
 		assertEquals(entity.getNickname(), entityFromDb.getNickname());
 		assertEquals(entity.getCountry().getId(), entityFromDb.getCountry().getId());
 		assertEquals(entity.getRegistrated(), entityFromDb.getRegistrated());
@@ -36,6 +37,7 @@ public class PlayerServiceTest extends AbstractTest {
 		assertEquals(entity.getPassword(), entityFromDb.getPassword());
 		assertEquals(entity.getEloPoints(), entityFromDb.getEloPoints());
 		assertEquals(entity.getRank(), entityFromDb.getRank());
+		assertEquals(entity.getSalt(), entityFromDb.getSalt());
 	}
 
 	@Test
@@ -60,6 +62,7 @@ public class PlayerServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getPassword());
 			assertNotNull(entityFromDb.getEloPoints());
 			assertNotNull(entityFromDb.getRank());
+			assertNotNull(entityFromDb.getSalt());
 		}
 
 		assertEquals(randomObjectsCount + intialCount, allEntities.size());

@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <h4 class="header">Players</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th>id</th>
+			<th><spring:message code="table.column.id" /></th>
 			<th>nickname</th>
 			<th>countryId</th>
 			<th>registrated</th>

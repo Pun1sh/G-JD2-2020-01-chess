@@ -57,8 +57,14 @@ public class PlayerServiceImpl implements IPlayerService {
 		return dao.find(filter);
 	}
 
+	@Override
 	public IPlayer getFullInfo(final Integer id) {
 		return dao.getFullInfo(id);
+	}
+
+	@Override
+	public IPlayer getPlayerByNickname(String nickname) {
+		return dao.getPlayerByNickname(nickname);
 	}
 
 }

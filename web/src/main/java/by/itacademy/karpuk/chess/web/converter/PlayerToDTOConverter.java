@@ -28,6 +28,7 @@ public class PlayerToDTOConverter implements Function<IPlayer, PlayerDTO> {
 		dto.setPassword(player.getPassword());
 		dto.setEloPoints(player.getEloPoints());
 		dto.setRank(player.getRank());
+		dto.setSalt(player.getSalt());
 		return dto;
 	}
 

@@ -1,5 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="request" />
 <c:set var="pagesCountry" value="${contextPath}/country" scope="request" />
@@ -16,6 +18,8 @@
 	scope="request" />
 <c:set var="pagesRandomComputer"
 	value="${contextPath}/play/random_computer" scope="request" />
+<c:set var="pagesLogin" value="${contextPath}/login" scope="request" />
+<c:set var="pagesSignUp" value="${contextPath}/sign_up" scope="request" />
 
 <html lang="en">
 <head>
@@ -76,7 +80,7 @@ header {
 							class="material-icons left white-text">extension</i>Modes</a></li>
 					<li><a class="white-text" href="#sign-up"><i
 							class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
-					<li><a class="white-text" href="#"><i
+					<li><a class="white-text" href="${pagesLogin}"><i
 							class="material-icons left white-text">forward</i>Log In</a></li>
 				</ul>
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
@@ -90,7 +94,7 @@ header {
 							class="material-icons left white-text">extension</i>Modes</a></li>
 					<li><a class="white-text" href="#sign-up"><i
 							class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
-					<li><a class="white-text" href="#"><i
+					<li><a class="white-text" href="${pagesLogin}"><i
 							class="material-icons left white-text">forward</i>Log In</a></li>
 				</ul>
 
@@ -165,36 +169,53 @@ header {
 				<p>Join us and enjoy playing chess. Sign up, it's Free!</p>
 				<p>If you are already signed up, just Log In.</p>
 				<ul>
-					<li><a class="btn" href="#"><i
+					<li><a class="btn" href="${pagesLogin}"><i
 							class="material-icons left white-text">forward</i>Log In</a></li>
 				</ul>
 			</div>
-			<div class="col s12 l5 offset-l2">
-				<form>
-					<div class="input-field">
-						<i class="material-icons prefix">email</i> <input type="email"
-							id="email"> <label for="email">Your Email</label>
-					</div>
-					<div class="input-field">
-						<i class="material-icons prefix">lock</i>
-						<textarea id="password" class="materialize-textarea"></textarea>
-						<label for="password">Your Password</label>
-					</div>
-					<div class="input-field">
-						<i class="material-icons prefix">person_add</i>
-						<textarea id="nickname" class="materialize-textarea"></textarea>
-						<label for="nickname">Your Nickname</label>
-					</div>
-					<div class="input-field">
-						<i class="material-icons prefix">date_range</i> <input type="text"
-							id="date" class="datepicker"> <label for="date">Your
-							BirthDate</label>
-					</div>
-					<div class="input-field center">
-						<button class="btn">Submit</button>
-					</div>
-				</form>
-			</div>
+
+			<form:form class="col s12 l5 offset-l2" method="POST"
+				action="${pagesSignUp}" modelAttribute="formModel">
+
+				<div class="input-field">
+					<i class="material-icons prefix">email</i>
+					<form:input path="email" type="text" />
+					<form:errors path="email" cssClass="red-text" />
+					<label for="email">Your Email</label>
+				</div>
+
+				<div class="input-field">
+					<i class="material-icons prefix">lock</i>
+					<form:input path="password" type="text" />
+					<form:errors path="password" cssClass="red-text" />
+					<label for="password">Your Password</label>
+				</div>
+
+
+				<div class="input-field">
+					<i class="material-icons prefix">person_add</i>
+					<form:input path="nickname" type="text" />
+					<form:errors path="nickname" cssClass="red-text" />
+					<label for="nickname">Your Nickname</label>
+				</div>
+
+				<div class="input-field">
+					<i class="material-icons prefix">date_range</i>
+					<form:input path="birthDate" type="text" class="datepicker" />
+					<form:errors path="birthDate" cssClass="red-text" />
+					<label for="birthDate">Your BirthDate</label>
+				</div>
+
+
+				<div class="col s3 offset-l4">
+					<button class="btn waves-effect waves-light" type="submit">
+						Submit</button>
+				</div>
+
+
+
+			</form:form>
+
 		</div>
 	</section>
 	<!-- footer -->
@@ -236,7 +257,6 @@ header {
 			$('.datepicker').datepicker();
 			$('.scrollspy').scrollSpy();
 			$('.dropdown-trigger').dropdown();
-
 		});
 	</script>
 </body>

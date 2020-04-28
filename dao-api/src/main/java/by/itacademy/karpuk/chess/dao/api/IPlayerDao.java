@@ -11,4 +11,7 @@ public interface IPlayerDao extends IDao<IPlayer, Integer> {
 	long getCount(PlayerFilter filter);
 
 	IPlayer getFullInfo(Integer id);
+
+	IPlayer getPlayerByNickname(String nickname);
+
 }
