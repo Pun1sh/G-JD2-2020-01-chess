@@ -37,7 +37,7 @@
 				<artifactId>dao-api</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>by.itacademy.karpuk.chess</groupId>
 				<artifactId>dao-orm-impl</artifactId>
@@ -306,6 +306,11 @@
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>28.2-jre</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4</version>
 			</dependency>
 
 

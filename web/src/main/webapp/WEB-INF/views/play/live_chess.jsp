@@ -27,6 +27,9 @@
 
 </div>
 
+<script type="text/javascript">
+GAME_ID = "${gameId}"
+</script>
 
 <script>
 	var board = null
@@ -142,7 +145,7 @@
 				}
 		
 		$.ajax({
-			  url: CONTEXT_PATH + "/play/live_chess/insert",
+			  url: CONTEXT_PATH + "/play/live_chess/insert"+"?game_id="+GAME_ID,
 			  type: "POST",
 			  data: JSON.stringify(boardPosition),
 			  dataType:"json",

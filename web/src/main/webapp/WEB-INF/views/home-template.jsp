@@ -207,9 +207,9 @@ header {
 				</div>
 
 
-				<div class="col s3 offset-l4">
+				<div class="col s12 offset-l4">
 					<button class="btn waves-effect waves-light" type="submit">
-						Submit</button>
+						Sign Up</button>
 				</div>
 
 
