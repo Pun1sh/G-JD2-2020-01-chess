@@ -62,4 +62,9 @@ public class BoardServiceImpl implements IBoardService {
 		return dao.find(boardFilter);
 	}
 
+	@Override
+	public IBoard getNewestBoard(Integer gameId) {
+		return dao.getNewestBoard(gameId);
+	}
+
 }

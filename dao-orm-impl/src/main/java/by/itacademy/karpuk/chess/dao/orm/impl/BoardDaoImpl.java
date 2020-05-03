@@ -103,4 +103,20 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 		return q.getSingleResult();
 	}
 
+	@Override
+	public IBoard getNewestBoard(Integer gameId) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<IBoard> cq = cb.createQuery(IBoard.class); // returning result
+		Root<Board> from = cq.from(Board.class); // table for select
+		cq.select(from); // select *
+		from.fetch(Board_.game, JoinType.LEFT);
+		cq.where(cb.equal(from.get(Board_.game), gameId)); // where gameId=...
+		cq.orderBy(new OrderImpl(from.get(Board_.id), false));
+		final TypedQuery<IBoard> q = em.createQuery(cq);
+		q.setMaxResults(1);
+		List<IBoard> resultList = q.getResultList();
+		return resultList.isEmpty() ? null : resultList.get(0);
+	}
+
 }

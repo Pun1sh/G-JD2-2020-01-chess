@@ -11,14 +11,16 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/postgres" />
-    
-    <jee:jndi-lookup id="customProperties" jndi-name="mycustom/customProperties" />
+	<jee:jndi-lookup id="dataSource"
+		jndi-name="jdbc/postgres" />
+
+	<jee:jndi-lookup id="customProperties"
+		jndi-name="mycustom/customProperties" />
 
 	<import resource="service-context.xml" />
 
 	<context:component-scan
 		base-package="by.itacademy.karpuk.chess.web.converter" />
-		<import resource="security-context.xml"/>
+	<import resource="security-context.xml" />
 
 </beans>

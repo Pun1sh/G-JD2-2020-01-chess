@@ -28,7 +28,7 @@ CREATE TABLE "game" (
 	"started" TIMESTAMP NOT NULL,
 	"ended" TIMESTAMP,
 	"mode" varchar NOT NULL,
-	"history_of_moves" varchar NOT NULL,
+	"history_of_moves" varchar,
 	CONSTRAINT "game_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

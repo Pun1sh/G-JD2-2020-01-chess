@@ -25,6 +25,7 @@ import by.itacademy.karpuk.chess.service.IPlayerService;
 import by.itacademy.karpuk.chess.web.converter.PlayerFromDTOConverter;
 import by.itacademy.karpuk.chess.web.converter.PlayerToDTOConverter;
 import by.itacademy.karpuk.chess.web.dto.PlayerDTO;
+import by.itacademy.karpuk.chess.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/player")
@@ -38,16 +39,22 @@ public class PlayerController extends AbstractController {
 	@Autowired
 	private PlayerFromDTOConverter fromDtoConverter;
 
+	@Autowired
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req) {
 
 		final PlayerFilter filter = new PlayerFilter();
-
 		final List<IPlayer> entities = playerService.find(filter);
+		for (int i = 0; i < entities.size(); i++) {
+			if (entities.get(i).getId() == AuthHelper.getLoggedUserId()) {
+				entities.remove(i);
+			}
+		}
 		List<PlayerDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
-
 		final Map<String, Object> players = new HashMap<>();
 		players.put("gridItems", dtos);
+		players.put("loggedUserId", AuthHelper.getLoggedUserId());
 		return new ModelAndView("player.list", players);
 	}
 

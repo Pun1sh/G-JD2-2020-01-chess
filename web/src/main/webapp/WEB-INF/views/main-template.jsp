@@ -18,6 +18,8 @@
 	scope="request" />
 <c:set var="pagesRandomComputer"
 	value="${contextPath}/play/random_computer" scope="request" />
+<c:set var="pagesLogin" value="${contextPath}/login" scope="request" />
+<c:set var="pagesSignUp" value="${contextPath}/sign_up" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,7 +57,7 @@
 <script src="${contextPath}/resources/js/init-materialize-forms.js"></script>
 
 <script type="text/javascript">
- CONTEXT_PATH = "${contextPath}";
+	CONTEXT_PATH = "${contextPath}";
 </script>
 
 </head>

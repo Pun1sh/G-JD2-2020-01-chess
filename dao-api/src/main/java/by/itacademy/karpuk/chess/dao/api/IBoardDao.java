@@ -11,4 +11,6 @@ public interface IBoardDao extends IDao<IBoard, Integer> {
 	long getCount(BoardFilter filter);
 
 	IBoard getFullInfo(Integer id);
+
+	IBoard getNewestBoard(Integer gameId);
 }

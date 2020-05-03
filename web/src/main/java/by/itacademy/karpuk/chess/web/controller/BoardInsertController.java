@@ -17,9 +17,9 @@ import by.itacademy.karpuk.chess.service.IBoardService;
 import by.itacademy.karpuk.chess.service.IGameService;
 
 @Controller
-@RequestMapping(value = "play/live_chess/insert")
+@RequestMapping(value = "play/live_chess/board_insert")
 
-public class InsertController extends AbstractController {
+public class BoardInsertController extends AbstractController {
 
 	@Autowired
 	private IBoardService boardService;

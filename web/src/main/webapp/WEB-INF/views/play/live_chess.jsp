@@ -29,6 +29,8 @@
 
 <script type="text/javascript">
 GAME_ID = "${gameId}"
+WHITE_PLAYER_ID ="${whitePlayerId}" 
+BLACK_PLAYER_ID = "${blackPlayerId}"
 </script>
 
 <script>
@@ -104,9 +106,13 @@ GAME_ID = "${gameId}"
 			// highlight moves
 			removeHighlights('white')
 			  $board.find('.square-' + source).addClass('highlight-white')
-			  $board.find('.square-' + target).addClass('highlight-white')
-		
+			  $board.find('.square-' + target).addClass('highlight-white') 
+			  
 		updateStatus()
+		
+		
+	    
+		
 	}
 	
 	function onMouseoverSquare (square, piece) {
@@ -138,22 +144,56 @@ GAME_ID = "${gameId}"
 	function onSnapEnd(source,target,piece) {
 		
 		
-		console.log(piece+"Hello")
+		console.log(piece+" Hello")
 		
-		var boardPosition = {
-				  fen:game.fen()
-				}
 		
+		  var boardPosition = {
+			  fen:game.fen()
+			}
+
+	
+	$.ajax({
+		  url: CONTEXT_PATH + "/play/live_chess/board_insert"+"?game_id="+GAME_ID,
+		  type: "POST",
+		  data: JSON.stringify(boardPosition),
+		  dataType:"json",
+		  contentType: "application/json; charset=utf-8",
+		  success: function(data){
+			    alert(data);
+			  }
+		});
+	  
+	  var move = {
+				moveNotationFrom:source,
+				moveNotationTo:target,
+				piece:piece
+			}
+	  
+	  if(game.turn()==="b"){
+	
+	$.ajax({
+		  url: CONTEXT_PATH + "/play/live_chess/move_insert"+"?game_id="+GAME_ID+"&player_id="+WHITE_PLAYER_ID,
+		  type: "POST",
+		  data: JSON.stringify(move),
+		  dataType:"json",
+		  contentType: "application/json; charset=utf-8",
+		  success: function(data){
+			    alert(data);
+			  }
+		});
+	} else {
 		$.ajax({
-			  url: CONTEXT_PATH + "/play/live_chess/insert"+"?game_id="+GAME_ID,
+			  url: CONTEXT_PATH + "/play/live_chess/move_insert"+"?game_id="+GAME_ID+"&player_id="+BLACK_PLAYER_ID,
 			  type: "POST",
-			  data: JSON.stringify(boardPosition),
+			  data: JSON.stringify(move),
 			  dataType:"json",
 			  contentType: "application/json; charset=utf-8",
 			  success: function(data){
 				    alert(data);
 				  }
 			});
+	}
+		
 		
 		board.position(game.fen())
 	}
@@ -212,4 +252,26 @@ GAME_ID = "${gameId}"
 	board = Chessboard('myBoard', config)
 
 	updateStatus()
+</script>
+
+<script>
+    var latestId = '${newestBoardId}'; //null
+    var periodicFunction = function() {
+    	
+	    $.get("${pagesLiveChess}/lastId?game_id="+GAME_ID, function(lastIdFromServer) {
+	    	
+	        if (latestId < lastIdFromServer) {
+	        	
+	        	$.get("${pagesLiveChess}/lastFen?game_id="+GAME_ID, function(lastFenFromServer){	      
+	        		board.position(lastFenFromServer); // fen from latest board here
+	        		})
+	            latestId = lastIdFromServer;
+	            
+	        }
+	        
+	    })
+	    
+	    
+    };
+    var timer = setInterval(periodicFunction, 2 * 1000);
 </script>

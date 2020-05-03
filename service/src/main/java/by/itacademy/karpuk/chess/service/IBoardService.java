@@ -26,4 +26,6 @@ public interface IBoardService {
 	IBoard getFullInfo(Integer id);
 
 	List<IBoard> find(BoardFilter boardFilter);
+
+	IBoard getNewestBoard(Integer gameId);
 }

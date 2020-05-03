@@ -34,7 +34,9 @@
 					<a class="btn-floating" href="${pagesPlayer}/${player.id}/edit"><i
 						class="material-icons">edit</i></a> <a class="btn-floating red"
 					href="${pagesPlayer}/${player.id}/delete"><i
-						class="material-icons">delete</i></a></td>
+						class="material-icons">delete</i></a><a class="btn-floating green"
+					href="${contextPath}/play/make_game/?white_player_id=${loggedUserId}&black_player_id=${player.id}"><i
+						class="material-icons">play_circle_filled</i></a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
