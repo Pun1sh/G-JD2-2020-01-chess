@@ -40,7 +40,7 @@ public class PlayerServiceImpl implements IPlayerService {
 	public void save(IPlayer entity) {
 		if (entity.getId() == null) {
 			dao.insert(entity);
-			sendMail(entity.toString(), "new player created");
+			// sendMail(entity.toString(), "new player created");
 		} else {
 			dao.update(entity);
 		}
@@ -109,6 +109,11 @@ public class PlayerServiceImpl implements IPlayerService {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public List<IPlayer> search(String string) {
+		return dao.search(string);
 	}
 
 }

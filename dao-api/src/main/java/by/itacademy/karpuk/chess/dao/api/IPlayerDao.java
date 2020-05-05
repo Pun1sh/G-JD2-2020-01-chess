@@ -14,4 +14,6 @@ public interface IPlayerDao extends IDao<IPlayer, Integer> {
 
 	IPlayer getPlayerByNickname(String nickname);
 
+	List<IPlayer> search(String text);
+
 }

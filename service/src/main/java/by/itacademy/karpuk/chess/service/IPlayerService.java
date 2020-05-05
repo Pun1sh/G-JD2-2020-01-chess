@@ -29,4 +29,7 @@ public interface IPlayerService {
 
 	IPlayer getPlayerByNickname(String nickname);
 
+	@Transactional
+	List<IPlayer> search(String string);
+
 }

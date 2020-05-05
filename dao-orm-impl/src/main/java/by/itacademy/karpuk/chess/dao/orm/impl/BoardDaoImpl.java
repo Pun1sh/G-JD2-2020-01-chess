@@ -110,7 +110,7 @@ public class BoardDaoImpl extends AbstractDaoImpl<IBoard, Integer> implements IB
 		CriteriaQuery<IBoard> cq = cb.createQuery(IBoard.class); // returning result
 		Root<Board> from = cq.from(Board.class); // table for select
 		cq.select(from); // select *
-		from.fetch(Board_.game, JoinType.LEFT);
+		// from.fetch(Board_.game, JoinType.LEFT);
 		cq.where(cb.equal(from.get(Board_.game), gameId)); // where gameId=...
 		cq.orderBy(new OrderImpl(from.get(Board_.id), false));
 		final TypedQuery<IBoard> q = em.createQuery(cq);

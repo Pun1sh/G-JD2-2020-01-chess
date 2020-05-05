@@ -31,6 +31,7 @@
 GAME_ID = "${gameId}"
 WHITE_PLAYER_ID ="${whitePlayerId}" 
 BLACK_PLAYER_ID = "${blackPlayerId}"
+BLOCKED = false 
 </script>
 
 <script>
@@ -68,6 +69,9 @@ BLACK_PLAYER_ID = "${blackPlayerId}"
 	}
 
 	function onDragStart(source, piece, position, orientation) {
+		if(BLOCKED){
+			return false;
+			}
 		
 		// do not pick up pieces if the game is over
 		if (game.game_over())
@@ -159,7 +163,6 @@ BLACK_PLAYER_ID = "${blackPlayerId}"
 		  dataType:"json",
 		  contentType: "application/json; charset=utf-8",
 		  success: function(data){
-			    alert(data);
 			  }
 		});
 	  
@@ -178,7 +181,7 @@ BLACK_PLAYER_ID = "${blackPlayerId}"
 		  dataType:"json",
 		  contentType: "application/json; charset=utf-8",
 		  success: function(data){
-			    alert(data);
+			   
 			  }
 		});
 	} else {
@@ -189,7 +192,7 @@ BLACK_PLAYER_ID = "${blackPlayerId}"
 			  dataType:"json",
 			  contentType: "application/json; charset=utf-8",
 			  success: function(data){
-				    alert(data);
+				    
 				  }
 			});
 	}
@@ -252,6 +255,8 @@ BLACK_PLAYER_ID = "${blackPlayerId}"
 	board = Chessboard('myBoard', config)
 
 	updateStatus()
+	
+
 </script>
 
 <script>

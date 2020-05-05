@@ -12,8 +12,10 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 
 @Entity
+//@Indexed
 public class Player extends BaseEntity implements IPlayer {
 	@Column
+	// @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	private String nickname;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	private ICountry country;
