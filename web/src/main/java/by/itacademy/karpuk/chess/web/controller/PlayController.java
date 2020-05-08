@@ -19,6 +19,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.service.IBoardService;
 import by.itacademy.karpuk.chess.service.IGameService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
+import by.itacademy.karpuk.chess.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/play")
@@ -41,6 +42,7 @@ public class PlayController extends AbstractController {
 		hashMap.put("whitePlayerId", whitePlayerId);
 		hashMap.put("blackPlayerId", blackPlayerId);
 		hashMap.put("newestBoardId", boardService.getNewestBoard(gameId)); // null
+		hashMap.put("userId", AuthHelper.getLoggedUserId());
 		return new ModelAndView("live_chess", hashMap);
 	}
 
