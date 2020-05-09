@@ -16,9 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
+import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
 import by.itacademy.karpuk.chess.service.IBoardService;
 import by.itacademy.karpuk.chess.service.IGameService;
+import by.itacademy.karpuk.chess.service.IMoveService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
+import by.itacademy.karpuk.chess.web.dto.MoveDTO;
 import by.itacademy.karpuk.chess.web.security.AuthHelper;
 
 @Controller
@@ -31,6 +34,8 @@ public class PlayController extends AbstractController {
 	IPlayerService playerService;
 	@Autowired
 	IBoardService boardService;
+	@Autowired
+	IMoveService moveService;
 
 	@RequestMapping(value = "/live_chess", method = RequestMethod.GET)
 	public ModelAndView playLiveChess(
@@ -46,17 +51,23 @@ public class PlayController extends AbstractController {
 		return new ModelAndView("live_chess", hashMap);
 	}
 
-	@RequestMapping(value = "live_chess/lastId", method = RequestMethod.GET)
+	@RequestMapping(value = "live_chess/last_id", method = RequestMethod.GET)
 	public ResponseEntity<Integer> getNewestBoard(
 			@RequestParam(name = "game_id", required = true) final Integer gameId) {
 		final IBoard newestBoard = boardService.getNewestBoard(gameId);
 		return new ResponseEntity<Integer>(newestBoard == null ? null : newestBoard.getId(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "live_chess/lastFen", method = RequestMethod.GET)
-	public ResponseEntity<String> getNewestFen(@RequestParam(name = "game_id", required = true) final Integer gameId) {
-		final IBoard newestBoard = boardService.getNewestBoard(gameId);
-		return new ResponseEntity<String>(newestBoard == null ? null : newestBoard.getFen(), HttpStatus.OK);
+	@RequestMapping(value = "live_chess/last_move", method = RequestMethod.GET)
+	public ResponseEntity<MoveDTO> getNewestMove(
+			@RequestParam(name = "game_id", required = true) final Integer gameId) {
+		final IMove newestMove = moveService.getNewestMove(gameId);
+		MoveDTO dto = new MoveDTO();
+		if (!(newestMove == null)) {
+			dto.setMoveNotationFrom(newestMove.getMoveNotationFrom());
+			dto.setMoveNotationTo(newestMove.getMoveNotationTo());
+		}
+		return new ResponseEntity<MoveDTO>(dto == null ? null : dto, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/make_game", method = RequestMethod.GET)

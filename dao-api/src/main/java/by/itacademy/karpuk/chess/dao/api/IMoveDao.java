@@ -11,4 +11,6 @@ public interface IMoveDao extends IDao<IMove, Integer> {
 	long getCount(MoveFilter filter);
 
 	IMove getFullInfo(Integer id);
+
+	IMove getNewestMove(Integer gameId);
 }

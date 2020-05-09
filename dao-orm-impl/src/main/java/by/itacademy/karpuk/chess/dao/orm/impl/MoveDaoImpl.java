@@ -110,4 +110,19 @@ public class MoveDaoImpl extends AbstractDaoImpl<IMove, Integer> implements IMov
 
 		return q.getSingleResult();
 	}
+
+	@Override
+	public IMove getNewestMove(Integer gameId) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<IMove> cq = cb.createQuery(IMove.class); // returning result
+		Root<Move> from = cq.from(Move.class); // table for select
+		cq.select(from); // select *
+		cq.where(cb.equal(from.get(Move_.game), gameId)); // where gameId=...
+		cq.orderBy(new OrderImpl(from.get(Move_.id), false));
+		final TypedQuery<IMove> q = em.createQuery(cq);
+		q.setMaxResults(1);
+		List<IMove> resultList = q.getResultList();
+		return resultList.isEmpty() ? null : resultList.get(0);
+	}
 }

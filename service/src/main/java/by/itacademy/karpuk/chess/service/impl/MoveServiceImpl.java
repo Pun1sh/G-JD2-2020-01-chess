@@ -64,4 +64,9 @@ public class MoveServiceImpl implements IMoveService {
 		return dao.getFullInfo(id);
 	}
 
+	@Override
+	public IMove getNewestMove(Integer gameId) {
+		return dao.getNewestMove(gameId);
+	}
+
 }

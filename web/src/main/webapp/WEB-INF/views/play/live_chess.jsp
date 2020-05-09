@@ -31,10 +31,7 @@
 	GAME_ID = "${gameId}"
 	WHITE_PLAYER_ID = "${whitePlayerId}"
 	BLACK_PLAYER_ID = "${blackPlayerId}"
-	WAIT = $
-	{
-		userId == blackPlayerId
-	}
+	LOGGED_USER_ID="${userId}"
 </script>
 
 <script>
@@ -69,9 +66,12 @@
 	}
 
 	function onDragStart(source, piece, position, orientation) {
-		if (WAIT) {
-			return false;
-		}
+		
+		if ((game.turn()==="b" && LOGGED_USER_ID === WHITE_PLAYER_ID)
+		|| (game.turn()==="w" && LOGGED_USER_ID === BLACK_PLAYER_ID)){
+			return false
+	
+			}
 
 		// do not pick up pieces if the game is over
 		if (game.game_over())
@@ -169,9 +169,7 @@
 		if (game.turn() === "b") {
 
 			$.ajax({
-				url : CONTEXT_PATH + "/play/live_chess/move_insert"
-						+ "?game_id=" + GAME_ID + "&player_id="
-						+ WHITE_PLAYER_ID,
+				url : CONTEXT_PATH + "/play/live_chess/move_insert" + "?game_id=" + GAME_ID + "&player_id="+ WHITE_PLAYER_ID,
 				type : "POST",
 				data : JSON.stringify(move),
 				dataType : "json",
@@ -183,9 +181,7 @@
 
 		} else {
 			$.ajax({
-				url : CONTEXT_PATH + "/play/live_chess/move_insert"
-						+ "?game_id=" + GAME_ID + "&player_id="
-						+ BLACK_PLAYER_ID,
+				url : CONTEXT_PATH + "/play/live_chess/move_insert" + "?game_id=" + GAME_ID + "&player_id="+ BLACK_PLAYER_ID,
 				type : "POST",
 				data : JSON.stringify(move),
 				dataType : "json",
@@ -258,18 +254,20 @@
 <script>
 	var latestId = '${newestBoardId}'; //null
 	var periodicFunction = function() {
-		$.get("${pagesLiveChess}/lastId?game_id=" + GAME_ID, function(
-				lastIdFromServer) {
+		$.get("${pagesLiveChess}/last_id?game_id=" + GAME_ID, function(lastIdFromServer) {
 
 			if (latestId < lastIdFromServer) {
-				$.get("${pagesLiveChess}/lastFen?game_id=" + GAME_ID, function(
-						lastFenFromServer) {
-					game.load(lastFenFromServer); // fen from latest board here
+				$.get("${pagesLiveChess}/last_move?game_id=" + GAME_ID, function(lastMoveFromServer) {
+					game.move({
+						from : lastMoveFromServer.moveNotationFrom,
+						to : lastMoveFromServer.moveNotationTo,
+						promotion : 'q' // NOTE: always promote to a queen for example simplicity
+					})
 					board.position(game.fen());
-					game.setTurn(game.turn());
 					updateStatus();
 
 				})
+				
 				latestId = lastIdFromServer;
 
 			}

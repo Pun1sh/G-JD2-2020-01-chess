@@ -26,4 +26,6 @@ public interface IMoveService {
 	List<IMove> find(MoveFilter filter);
 
 	IMove getFullInfo(Integer id);
+	
+	IMove getNewestMove(Integer gameId);
 }
