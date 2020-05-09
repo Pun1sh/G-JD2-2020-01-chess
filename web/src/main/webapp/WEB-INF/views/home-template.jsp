@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="request" />
 <c:set var="pagesCountry" value="${contextPath}/country" scope="request" />
@@ -78,10 +81,18 @@ header {
 							class="material-icons left white-text">storage</i>Games</a></li>
 					<li><a class="white-text" href="#modes"><i
 							class="material-icons left white-text">extension</i>Modes</a></li>
-					<li><a class="white-text" href="#sign-up"><i
-							class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
-					<li><a class="white-text" href="${pagesLogin}"><i
-							class="material-icons left white-text">forward</i>Log In</a></li>
+
+					<sec:authorize access="isAnonymous()">
+						<li><a class="white-text" href="#sign-up"><i
+								class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
+						<li><a class="white-text" href="${pagesLogin}"><i
+								class="material-icons left white-text">forward</i>Log In</a></li>
+					</sec:authorize>
+
+					<sec:authorize access="!isAnonymous()">
+						<a class="right" href="${contextPath}/execute_logout"
+							title="logout"><i class="material-icons">arrow_forward</i></a>
+					</sec:authorize>
 				</ul>
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
 					<li><a class="white-text" href="${pagesLiveChess}"><i
@@ -92,10 +103,19 @@ header {
 							class="material-icons left white-text ">storage</i>Games</a></li>
 					<li><a class="white-text" href="#modes"><i
 							class="material-icons left white-text">extension</i>Modes</a></li>
-					<li><a class="white-text" href="#sign-up"><i
-							class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
-					<li><a class="white-text" href="${pagesLogin}"><i
-							class="material-icons left white-text">forward</i>Log In</a></li>
+							
+					<sec:authorize access="isAnonymous()">
+						<li><a class="white-text" href="#sign-up"><i
+								class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
+						<li><a class="white-text" href="${pagesLogin}"><i
+								class="material-icons left white-text">forward</i>Log In</a></li>
+					</sec:authorize>
+
+					<sec:authorize access="!isAnonymous()">
+						<a class="right" href="${contextPath}/execute_logout"
+							title="logout"><i class="material-icons">arrow_forward</i></a>
+					</sec:authorize>
+
 				</ul>
 
 			</div>

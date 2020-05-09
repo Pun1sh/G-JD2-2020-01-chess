@@ -14,6 +14,51 @@ public class GameDTO {
 	private Date started;
 	private Date ended;
 	private Mode mode;
+	private String whitePlayerName;
+	private String blackPlayerName;
+	private String winnerName;
+	private String loserName;
+	private String tournamentName;
+
+	public String getWhitePlayerName() {
+		return whitePlayerName;
+	}
+
+	public void setWhitePlayerName(String whitePlayerName) {
+		this.whitePlayerName = whitePlayerName;
+	}
+
+	public String getBlackPlayerName() {
+		return blackPlayerName;
+	}
+
+	public void setBlackPlayerName(String blackPlayerName) {
+		this.blackPlayerName = blackPlayerName;
+	}
+
+	public String getWinnerName() {
+		return winnerName;
+	}
+
+	public void setWinnerName(String winnerName) {
+		this.winnerName = winnerName;
+	}
+
+	public String getLoserName() {
+		return loserName;
+	}
+
+	public void setLoserName(String loserName) {
+		this.loserName = loserName;
+	}
+
+	public String getTournamentName() {
+		return tournamentName;
+	}
+
+	public void setTournamentName(String tournamentName) {
+		this.tournamentName = tournamentName;
+	}
 
 	public Mode getMode() {
 		return mode;

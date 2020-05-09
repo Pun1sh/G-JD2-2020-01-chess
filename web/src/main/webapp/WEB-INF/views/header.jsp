@@ -16,11 +16,15 @@
 						class="material-icons left white-text">people_outline</i>Players</a></li>
 				<li><a class="white-text" href="${pagesGame}"><i
 						class="material-icons left white-text">storage</i>Games</a></li>
-				<li><a class="white-text" href="${pagesCountry}">Countries</a></li>
+				<%-- <li><a class="white-text" href="${pagesCountry}">Countries</a></li>
 				<li><a class="white-text" href="${pagesClub}">Clubs</a></li>
 				<li><a class="white-text" href="${pagesTournament}">Tournaments</a></li>
 				<li><a class="white-text" href="${pagesParticipation}">Tournament
-						results</a></li>
+						results</a></li> --%>
+				<sec:authorize access="isAnonymous()">
+					<li><a class="white-text" href="${pagesLogin}"><i
+							class="material-icons left white-text">forward</i>Log In</a></li>
+				</sec:authorize>
 
 				<sec:authorize access="!isAnonymous()">
 					<a class="right" href="${contextPath}/execute_logout"
@@ -40,11 +44,11 @@
 						class="material-icons left white-text ">people_outline</i>Players</a></li>
 				<li><a class="white-text" href="${pagesGame}"><i
 						class="material-icons left white-text ">storage</i>Games</a></li>
-				<li><a class="white-text" href="${pagesCountry}">Countries</a></li>
+				<%-- <li><a class="white-text" href="${pagesCountry}">Countries</a></li>
 				<li><a class="white-text" href="${pagesClub}">Clubs</a></li>
 				<li><a class="white-text" href="${pagesTournament}">Tournaments</a></li>
 				<li><a class="white-text" href="${pagesParticipation}">Tournament
-						results</a></li>
+						results</a></li> --%>
 			</ul>
 
 		</div>

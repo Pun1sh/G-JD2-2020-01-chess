@@ -17,6 +17,7 @@ import by.itacademy.karpuk.chess.dao.api.entity.enums.Mode;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IBoard;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.entity.table.IMove;
+import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
 import by.itacademy.karpuk.chess.service.IBoardService;
 import by.itacademy.karpuk.chess.service.IGameService;
 import by.itacademy.karpuk.chess.service.IMoveService;
@@ -91,15 +92,30 @@ public class PlayController extends AbstractController {
 		game.setWinner(playerService.get(winnerId));
 		game.setLoser(playerService.get(loserId));
 		game.setEnded(new Date());
-		gameService.save(game);
+		IPlayer winner = playerService.getFullInfo(winnerId);
+		IPlayer loser = playerService.getFullInfo(loserId);
+		winner.setGamesPlayed(winner.getGamesPlayed() + 1);
+		loser.setGamesPlayed(loser.getGamesPlayed() + 1);
+		winner.setEloPoints(winner.getEloPoints() + 10);
+		loser.setEloPoints(loser.getEloPoints() - 10);
+		playerService.save(loser);
+		playerService.save(winner);
 		return "redirect:/game";
 	}
 
 	@RequestMapping(value = "/game_over_without_result", method = RequestMethod.POST)
-	public String makeGame(@RequestParam(name = "game_id", required = true) final Integer gameId) {
+	public String endGameWithoutResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
+			@RequestParam(name = "white_player_id", required = true) final Integer whitePlayerId,
+			@RequestParam(name = "black_player_id", required = true) final Integer blackPlayerId) {
 		IGame game = gameService.getFullInfo(gameId);
 		game.setEnded(new Date());
+		IPlayer whitePlayer = playerService.getFullInfo(whitePlayerId);
+		IPlayer blackPlayer = playerService.getFullInfo(blackPlayerId);
+		whitePlayer.setGamesPlayed(whitePlayer.getGamesPlayed() + 1);
+		blackPlayer.setGamesPlayed(blackPlayer.getGamesPlayed() + 1);
 		gameService.save(game);
+		playerService.save(whitePlayer);
+		playerService.save(blackPlayer);
 		return "redirect:/game";
 	}
 

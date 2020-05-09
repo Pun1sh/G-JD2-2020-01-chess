@@ -12,8 +12,7 @@
 				class="btn" id=flip>Flip board</a> <br> <br>
 			<div class="input-field col s12">
 				<select id="list">
-					<option value="" disabled selected>Here you can choose
-						popular openings</option>
+					<option value="" disabled selected>Here you can choose popular openings</option>
 					<option value="1">B02 Alekhine's Defence</option>
 					<option value="2">B04 Alekhine's Defence: Modern Variation</option>
 					<option value="3">B10 Caro-Kann Defence</option>

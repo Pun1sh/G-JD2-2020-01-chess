@@ -235,7 +235,8 @@
 		else if (game.in_draw()) {
 			status = 'Game over, drawn position'
 				$.ajax({
-					url : CONTEXT_PATH + "/play/game_over_without_result" + "?game_id=" + GAME_ID,
+					url : CONTEXT_PATH + "/play/game_over_without_result" + "?game_id=" + GAME_ID + "&white_player_id="+ WHITE_PLAYER_ID
+					+"&black_player_id="+BLACK_PLAYER_ID,
 					type : "POST",
 					success : function() {
 						alert("Draw position");
