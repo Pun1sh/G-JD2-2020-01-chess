@@ -31,7 +31,10 @@
 	GAME_ID = "${gameId}"
 	WHITE_PLAYER_ID = "${whitePlayerId}"
 	BLACK_PLAYER_ID = "${blackPlayerId}"
-	WAIT = ${userId == blackPlayerId}
+	WAIT = $
+	{
+		userId == blackPlayerId
+	}
 </script>
 
 <script>
@@ -121,11 +124,8 @@
 
 		// exit if there are no moves available for this square
 		if (moves.length === 0)
-			return
-		
-
-		
-		
+			return
+			
  // highlight the square they moused over
 		greySquare(square)
 
