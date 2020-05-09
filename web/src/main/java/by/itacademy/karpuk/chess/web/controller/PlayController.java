@@ -83,6 +83,26 @@ public class PlayController extends AbstractController {
 				+ "&game_id=" + gameService.getFullInfo(newGame.getId()).getId();
 	}
 
+	@RequestMapping(value = "/game_over_with_result", method = RequestMethod.POST)
+	public String endGameWithResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
+			@RequestParam(name = "winner_id", required = true) final Integer winnerId,
+			@RequestParam(name = "loser_id", required = true) final Integer loserId) {
+		IGame game = gameService.getFullInfo(gameId);
+		game.setWinner(playerService.get(winnerId));
+		game.setLoser(playerService.get(loserId));
+		game.setEnded(new Date());
+		gameService.save(game);
+		return "redirect:/game";
+	}
+
+	@RequestMapping(value = "/game_over_without_result", method = RequestMethod.POST)
+	public String makeGame(@RequestParam(name = "game_id", required = true) final Integer gameId) {
+		IGame game = gameService.getFullInfo(gameId);
+		game.setEnded(new Date());
+		gameService.save(game);
+		return "redirect:/game";
+	}
+
 	@RequestMapping(value = "/board_editor", method = RequestMethod.GET)
 	public String playBoardEditor() {
 		return "board_editor";

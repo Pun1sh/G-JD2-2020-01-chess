@@ -11,4 +11,5 @@ public interface IGameDao extends IDao<IGame, Integer> {
 	long getCount(GameFilter filter);
 
 	IGame getFullInfo(Integer id);
+
 }

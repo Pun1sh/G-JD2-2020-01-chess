@@ -150,8 +150,7 @@
 		}
 
 		$.ajax({
-			url : CONTEXT_PATH + "/play/live_chess/board_insert" + "?game_id="
-					+ GAME_ID,
+			url : CONTEXT_PATH + "/play/live_chess/board_insert" + "?game_id="+ GAME_ID,
 			type : "POST",
 			data : JSON.stringify(boardPosition),
 			dataType : "json",
@@ -211,11 +210,37 @@
 		// checkmate?
 		if (game.in_checkmate()) {
 			status = 'Game over, ' + moveColor + ' is in checkmate.'
+			if(game.turn()==="b"){
+				$.ajax({
+					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
+							+"&loser_id="+BLACK_PLAYER_ID,
+					type : "POST",
+					success : function() {
+						alert ("game over");
+					}
+				});	
+			} else {
+				$.ajax({
+					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
+							+"&loser_id="+WHITE_PLAYER_ID,
+					type : "POST",
+					success : function() {
+					alert ("game over");
+					}
+				});
+			}
 		}
 
 		// draw?
 		else if (game.in_draw()) {
 			status = 'Game over, drawn position'
+				$.ajax({
+					url : CONTEXT_PATH + "/play/game_over_without_result" + "?game_id=" + GAME_ID,
+					type : "POST",
+					success : function() {
+						alert("Draw position");
+					}
+				});
 		}
 
 		// game still on
@@ -226,7 +251,9 @@
 			if (game.in_check()) {
 				status += ', ' + moveColor + ' is in check'
 			}
+			
 		}
+
 
 		$status.html(status)
 		$fen.html(game.fen())
@@ -264,7 +291,7 @@
 						promotion : 'q' // NOTE: always promote to a queen for example simplicity
 					})
 					board.position(game.fen());
-					updateStatus();
+					updateStatus();					
 
 				})
 				

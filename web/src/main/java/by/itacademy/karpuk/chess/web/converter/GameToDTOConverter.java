@@ -16,11 +16,19 @@ public class GameToDTOConverter implements Function<IGame, GameDTO> {
 		dto.setId(t.getId());
 		dto.setWhitePlayerId(t.getWhitePlayer().getId());
 		dto.setBlackPlayerId(t.getBlackPlayer().getId());
-		dto.setTournamentId(t.getTournament().getId());
-		dto.setWinnerId(t.getWinner().getId());
-		dto.setLoserId(t.getLoser().getId());
+		if (!(t.getTournament() == null)) {
+			dto.setTournamentId(t.getTournament().getId());
+		}
+		if (!(t.getWinner() == null)) {
+			dto.setWinnerId(t.getWinner().getId());
+		}
+		if (!(t.getLoser() == null)) {
+			dto.setLoserId(t.getLoser().getId());
+		}
 		dto.setStarted(t.getStarted());
-		dto.setEnded(t.getEnded());
+		if (!(t.getEnded() == null)) {
+			dto.setEnded(t.getEnded());
+		}
 		dto.setMode(t.getMode());
 		return dto;
 	}
