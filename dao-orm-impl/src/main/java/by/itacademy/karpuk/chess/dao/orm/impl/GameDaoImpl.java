@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.SingularAttribute;
 
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
@@ -19,6 +18,8 @@ import by.itacademy.karpuk.chess.dao.api.entity.table.IGame;
 import by.itacademy.karpuk.chess.dao.api.filter.GameFilter;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Game;
 import by.itacademy.karpuk.chess.dao.orm.impl.entity.Game_;
+import by.itacademy.karpuk.chess.dao.orm.impl.entity.Player_;
+import by.itacademy.karpuk.chess.dao.orm.impl.entity.Tournament_;
 
 @Repository
 public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGameDao {
@@ -49,14 +50,8 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		from.fetch(Game_.tournament, JoinType.LEFT);
 
 		if (filter.getSortColumn() != null) {
-			final SingularAttribute<? super Game, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
-			final Path<?> expression = from.get(sortProperty); // build path to
-																// sort
-			// property
-			cq.orderBy(new OrderImpl(expression, filter.getSortOrder())); // order
-																			// by
-			// column_name
-			// order
+			final Path<?> expression = getSortPath(from, filter.getSortColumn());
+			cq.orderBy(new OrderImpl(expression, filter.getSortOrder()));
 		}
 
 		final TypedQuery<IGame> q = em.createQuery(cq);
@@ -77,18 +72,22 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		return q.getSingleResult(); // execute query
 	}
 
-	private SingularAttribute<? super Game, ?> toMetamodelFormat(final String sortColumn) {
+	private Path<?> getSortPath(final Root<Game> from, final String sortColumn) {
 		switch (sortColumn) {
 		case "id":
-			return Game_.id;
-		case "ended":
-			return Game_.ended;
-		case "started":
-			return Game_.started;
+			return from.get(Game_.id);
+		case "whitePlayerName":
+			return from.get(Game_.whitePlayer).get(Player_.nickname);
+		case "blackPlayerName":
+			return from.get(Game_.blackPlayer).get(Player_.nickname);
+		case "winnerName":
+			return from.get(Game_.winner).get(Player_.nickname);
+		case "loserName":
+			return from.get(Game_.loser).get(Player_.nickname);
+		case "tournamentName":
+			return from.get(Game_.tournament).get(Tournament_.name);
 		case "mode":
-			return Game_.mode;
-		case "historyOfMoves":
-			return Game_.historyOfMoves;
+			return from.get(Game_.mode);
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}

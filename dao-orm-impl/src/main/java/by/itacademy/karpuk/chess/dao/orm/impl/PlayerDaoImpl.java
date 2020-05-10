@@ -70,6 +70,7 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 
 	@Override
 	public List<IPlayer> find(PlayerFilter filter) {
+
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 		final CriteriaQuery<IPlayer> cq = cb.createQuery(IPlayer.class); // define
@@ -100,12 +101,43 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 	}
 
 	@Override
+	public List<IPlayer> findWithoutLoggedPlayer(PlayerFilter filter, Integer loggedUserId) {
+
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+		final CriteriaQuery<IPlayer> cq = cb.createQuery(IPlayer.class); // define type of result
+								
+		final Root<Player> from = cq.from(Player.class);// select from player
+		cq.select(from); // select what? select *
+
+		from.fetch(Player_.club, JoinType.LEFT);
+
+		from.fetch(Player_.country, JoinType.LEFT);
+		
+		cq.where(cb.notEqual(from.get(Player_.id), loggedUserId)); // where id=?
+
+		if (filter.getSortColumn() != null) {
+			final SingularAttribute<? super Player, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
+			final Path<?> expression = from.get(sortProperty); // build path to
+																// sort
+			// property
+			cq.orderBy(new OrderImpl(expression, filter.getSortOrder())); // order
+																			// by
+			// column_name
+			// order
+		}
+
+		final TypedQuery<IPlayer> q = em.createQuery(cq);
+		setPaging(filter, q);
+		return q.getResultList();
+	}
+
+	@Override
 	public long getCount(PlayerFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
-		final CriteriaQuery<Long> cq = cb.createQuery(Long.class); // define
-																	// type of
-		// result
+		final CriteriaQuery<Long> cq = cb.createQuery(Long.class); // define type of result
+
 		final Root<Player> from = cq.from(Player.class); // select from mode
 		cq.select(cb.count(from)); // select what? select count(*)
 		final TypedQuery<Long> q = em.createQuery(cq);

@@ -26,4 +26,6 @@ public interface IGameService {
 	List<IGame> find(GameFilter filter);
 
 	IGame getFullInfo(Integer id);
+
+	long getCount(GameFilter filter);
 }

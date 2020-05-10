@@ -1,18 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
+<%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
 
 <h4 class="header">Games</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><spring:message code="table.column.id" /></th>
-			<th>White player</th>
-			<th>Black player</th>
-			<th>Tournament</th>
-			<th>Winner</th>
-			<th>Loser</th>
-			<th>Mode</th>
+			<th><mytaglib:sort-link pageUrl="${pagesGame}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesGame}" column="whitePlayerName">White player</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesGame}" column="blackPlayerName">Black player</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesGame}" column="tournamentName">Tournament</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesGame}" column="winnerName">Winner</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesGame}" column="loserName">Loser</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesGame}" column="mode">Mode</mytaglib:sort-link></th>
 			<th></th>
 		</tr>
 		<c:forEach var="game" items="${gridItems}" varStatus="loopCounter">
@@ -31,3 +33,4 @@
 		</c:forEach>
 	</tbody>
 </table>
+<jspFragments:paging />

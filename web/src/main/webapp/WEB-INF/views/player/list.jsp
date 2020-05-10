@@ -1,15 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
+<%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
 <h4 class="header">Players</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
-			<th><spring:message code="table.column.id" /></th>
-			<th>Nickname</th>
-			<th>Games played</th>
-			<th>Elo Points</th>
-			<th>Rank</th>
+			<th><mytaglib:sort-link pageUrl="${pagesPlayer}" column="id"><spring:message code="table.column.id" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPlayer}" column="nickname">Nickname</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPlayer}" column="gamesPlayed">Games played</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPlayer}" column="eloPoints">Elo Points</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPlayer}" column="rank">Rank</mytaglib:sort-link></th>
 			<th></th>
 		</tr>
 		<c:forEach var="player" items="${gridItems}" varStatus="loopCounter">
@@ -28,3 +30,4 @@
 		</c:forEach>
 	</tbody>
 </table>
+<jspFragments:paging />

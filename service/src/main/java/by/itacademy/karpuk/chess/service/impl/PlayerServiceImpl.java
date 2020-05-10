@@ -116,4 +116,14 @@ public class PlayerServiceImpl implements IPlayerService {
 		return dao.search(string);
 	}
 
+	@Override
+	public long getCount(PlayerFilter filter) {
+		return dao.getCount(filter);
+	}
+
+	@Override
+	public List<IPlayer> findWithoutLoggedPlayer(PlayerFilter filter, Integer loggedPlayerId) {
+		return dao.findWithoutLoggedPlayer(filter, loggedPlayerId);
+	}
+
 }

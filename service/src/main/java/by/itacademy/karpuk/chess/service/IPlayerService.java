@@ -32,4 +32,9 @@ public interface IPlayerService {
 	@Transactional
 	List<IPlayer> search(String string);
 
+	long getCount(PlayerFilter filter);
+	
+	List<IPlayer> findWithoutLoggedPlayer(PlayerFilter filter,Integer loggedPlayerId);
+	
+
 }

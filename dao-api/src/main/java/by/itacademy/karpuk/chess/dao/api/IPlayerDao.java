@@ -15,5 +15,7 @@ public interface IPlayerDao extends IDao<IPlayer, Integer> {
 	IPlayer getPlayerByNickname(String nickname);
 
 	List<IPlayer> search(String text);
+	
+	List<IPlayer> findWithoutLoggedPlayer (PlayerFilter filter, Integer loggedUserId);
 
 }

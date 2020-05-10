@@ -1,5 +1,6 @@
 package by.itacademy.karpuk.chess.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.ICountry;
@@ -25,6 +27,7 @@ import by.itacademy.karpuk.chess.service.IPlayerService;
 import by.itacademy.karpuk.chess.web.converter.PlayerFromDTOConverter;
 import by.itacademy.karpuk.chess.web.converter.PlayerToDTOConverter;
 import by.itacademy.karpuk.chess.web.dto.PlayerDTO;
+import by.itacademy.karpuk.chess.web.dto.grid.GridStateDTO;
 import by.itacademy.karpuk.chess.web.security.AuthHelper;
 
 @Controller
@@ -39,19 +42,27 @@ public class PlayerController extends AbstractController {
 	@Autowired
 	private PlayerFromDTOConverter fromDtoConverter;
 
-	@Autowired
-
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index(final HttpServletRequest req) {
+	public ModelAndView index(final HttpServletRequest req,
+			@RequestParam(name = "page", required = false) final Integer pageNumber,
+			@RequestParam(name = "sort", required = false) final String sortColumn) {
+		final GridStateDTO gridState = getListDTO(req);
+		gridState.setPage(pageNumber);
+		gridState.setSort(sortColumn, "id");
 
 		final PlayerFilter filter = new PlayerFilter();
-		final List<IPlayer> entities = playerService.find(filter);
-		for (int i = 0; i < entities.size(); i++) {
-			if (entities.get(i).getId() == AuthHelper.getLoggedUserId()) {
-				entities.remove(i);
-			}
+		prepareFilter(gridState, filter);
+
+		List<IPlayer> entities = new ArrayList<>();
+		if (AuthHelper.getLoggedUserId() != null) {
+			entities = playerService.findWithoutLoggedPlayer(filter, AuthHelper.getLoggedUserId());
+		} else {
+			entities = playerService.find(filter);
 		}
+
 		List<PlayerDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+		gridState.setTotalCount(playerService.getCount(filter));
+
 		final Map<String, Object> players = new HashMap<>();
 		players.put("gridItems", dtos);
 		players.put("loggedUserId", AuthHelper.getLoggedUserId());
