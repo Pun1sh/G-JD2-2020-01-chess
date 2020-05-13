@@ -199,14 +199,14 @@ header {
 
 				<div class="input-field">
 					<i class="material-icons prefix">email</i>
-					<form:input path="email" type="text" />
+					<form:input path="email" type="email" />
 					<form:errors path="email" cssClass="red-text" />
 					<label for="email">Your Email</label>
 				</div>
 
 				<div class="input-field">
 					<i class="material-icons prefix">lock</i>
-					<form:input path="password" type="text" />
+					<form:input path="password" type="password" />
 					<form:errors path="password" cssClass="red-text" />
 					<label for="password">Your Password</label>
 				</div>

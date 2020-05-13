@@ -16,6 +16,8 @@
 
 	<context:component-scan
 		base-package="by.itacademy.karpuk.chess.web.controller" />
+	<context:component-scan
+		base-package="by.itacademy.karpuk.chess.web.rest" />
 
 	<mvc:default-servlet-handler />
 	<mvc:resources mapping="/resources/**"
@@ -35,14 +37,15 @@
 			</list>
 		</property>
 	</bean>
-<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
 			<ref bean="localeChangeInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
 				<value>/WEB-INF/locales/messages</value>
@@ -51,11 +54,13 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="lang" />
 	</bean>
 
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<property name="defaultLocale" value="ru_RU" />
 	</bean>
 </beans>

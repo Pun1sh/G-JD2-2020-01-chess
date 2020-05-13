@@ -217,6 +217,7 @@
 					type : "POST",
 					success : function() {
 						alert ("game over");
+						window.location=CONTEXT_PATH+"/game";
 					}
 				});	
 			} else {

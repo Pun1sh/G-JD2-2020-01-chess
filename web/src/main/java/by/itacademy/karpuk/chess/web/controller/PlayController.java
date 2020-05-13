@@ -85,7 +85,7 @@ public class PlayController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/game_over_with_result", method = RequestMethod.POST)
-	public String endGameWithResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
+	public void endGameWithResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
 			@RequestParam(name = "winner_id", required = true) final Integer winnerId,
 			@RequestParam(name = "loser_id", required = true) final Integer loserId) {
 		IGame game = gameService.getFullInfo(gameId);
@@ -100,11 +100,11 @@ public class PlayController extends AbstractController {
 		loser.setEloPoints(loser.getEloPoints() - 10);
 		playerService.save(loser);
 		playerService.save(winner);
-		return "redirect:/game";
+		gameService.save(game);
 	}
 
 	@RequestMapping(value = "/game_over_without_result", method = RequestMethod.POST)
-	public String endGameWithoutResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
+	public void endGameWithoutResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
 			@RequestParam(name = "white_player_id", required = true) final Integer whitePlayerId,
 			@RequestParam(name = "black_player_id", required = true) final Integer blackPlayerId) {
 		IGame game = gameService.getFullInfo(gameId);
@@ -116,7 +116,7 @@ public class PlayController extends AbstractController {
 		gameService.save(game);
 		playerService.save(whitePlayer);
 		playerService.save(blackPlayer);
-		return "redirect:/game";
+
 	}
 
 	@RequestMapping(value = "/board_editor", method = RequestMethod.GET)

@@ -21,21 +21,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	private IPlayerService playerService;
 
-// TODO inject UserService
-
 	@Override
 	public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
 		final String nickname = authentication.getPrincipal() + "";
 		final String password = authentication.getCredentials() + "";
 		IPlayer player = playerService.getPlayerByNickname(nickname);
 
-// TODO find use by username (unique)
-
 		if (player == null) {
 			throw new BadCredentialsException("1000");
 		}
 
-// TODO verify password (DB contains hash - not a plain password)
 		if (player.getNickname().equals(nickname)) {
 			if (!PasswordUtils.generateSecurePassword(password, player.getSalt()).equals(player.getPassword())) {
 				throw new BadCredentialsException("1000");
@@ -43,7 +38,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		}
 
-		int playerId = player.getId(); // FIXME: it should be the real user id from DB
+		int playerId = player.getId();
 
 		List<String> userRoles = new ArrayList<>();// TODO get list of user's
 // roles
