@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +25,10 @@ import by.itacademy.karpuk.chess.service.IBoardService;
 import by.itacademy.karpuk.chess.service.IGameService;
 import by.itacademy.karpuk.chess.service.IMoveService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
+import by.itacademy.karpuk.chess.web.dto.GameDTO;
 import by.itacademy.karpuk.chess.web.dto.MoveDTO;
 import by.itacademy.karpuk.chess.web.security.AuthHelper;
+import by.itacademy.karpuk.chess.web.utils.UsersHolderWithExpiration;
 
 @Controller
 @RequestMapping(value = "/play")
@@ -127,6 +132,44 @@ public class PlayController extends AbstractController {
 	@RequestMapping(value = "/random_computer", method = RequestMethod.GET)
 	public String playRandomComputer() {
 		return "random_computer";
+	}
+
+	@RequestMapping(value = "/queue", method = RequestMethod.GET)
+	public ModelAndView getInLine(final HttpServletRequest req) {
+		final Map<String, Object> map = new HashMap<>();
+		map.put("loggedUserId", AuthHelper.getLoggedUserId());
+		map.put("gameId", null);
+		return new ModelAndView("waiting", map);
+	}
+
+	@RequestMapping(value = "/queue/stay_in_queue", method = RequestMethod.GET)
+	public void stayInQueue(final HttpServletRequest req, final HttpServletResponse res,
+			@RequestParam(name = "player_id", required = true) final Integer playerId) {
+		UsersHolderWithExpiration usersHolderWithExpiration = UsersHolderWithExpiration.INSTANCE;
+		usersHolderWithExpiration.put(playerId);
+
+	}
+
+	@RequestMapping(value = "/queue/check_id", method = RequestMethod.GET)
+	public ResponseEntity<Integer> checkId(final HttpServletRequest req,
+			@RequestParam(name = "player_id", required = true) final Integer playerId) {
+		Integer gameId = null;
+		if (gameService.checkForGame(playerId) != null) {
+			gameId = gameService.checkForGame(playerId).getId();
+		}
+		return new ResponseEntity<Integer>(gameId == null ? null : gameId, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/queue/get_game", method = RequestMethod.GET)
+	public ResponseEntity<GameDTO> getGame(final HttpServletRequest req,
+			@RequestParam(name = "game_id", required = true) final Integer gameId) {
+		IGame game = gameService.getFullInfo(gameId);
+		GameDTO dto = new GameDTO();
+		dto.setId(game.getId());
+		dto.setWhitePlayerId(game.getWhitePlayer().getId());
+		dto.setBlackPlayerId(game.getBlackPlayer().getId());
+		return new ResponseEntity<GameDTO>(dto == null ? null : dto, HttpStatus.OK);
+
 	}
 
 }

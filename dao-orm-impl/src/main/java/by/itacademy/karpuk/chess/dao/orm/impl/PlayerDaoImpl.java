@@ -64,7 +64,9 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 		cq.select(from); // select what? select *
 		cq.where(cb.equal(from.get(Player_.nickname), nickname)); // where nickname=?
 		final TypedQuery<IPlayer> q = em.createQuery(cq);
-		return q.getSingleResult();
+		q.setMaxResults(1);
+		List<IPlayer> resultList = q.getResultList();
+		return resultList.isEmpty() ? null : resultList.get(0);
 
 	}
 
@@ -106,14 +108,14 @@ public class PlayerDaoImpl extends AbstractDaoImpl<IPlayer, Integer> implements 
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 		final CriteriaQuery<IPlayer> cq = cb.createQuery(IPlayer.class); // define type of result
-								
+
 		final Root<Player> from = cq.from(Player.class);// select from player
 		cq.select(from); // select what? select *
 
 		from.fetch(Player_.club, JoinType.LEFT);
 
 		from.fetch(Player_.country, JoinType.LEFT);
-		
+
 		cq.where(cb.notEqual(from.get(Player_.id), loggedUserId)); // where id=?
 
 		if (filter.getSortColumn() != null) {

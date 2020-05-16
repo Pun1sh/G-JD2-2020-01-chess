@@ -12,4 +12,6 @@ public interface IGameDao extends IDao<IGame, Integer> {
 
 	IGame getFullInfo(Integer id);
 
+	IGame checkForGame(Integer playerId);
+
 }

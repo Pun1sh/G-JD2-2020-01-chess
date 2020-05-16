@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
-<h4 class="header">Players</h4>
+<h4 class="header">Waiting players</h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
@@ -28,8 +28,21 @@
 				<td><c:out value="${player.rank}" /></td>
 				<td class="right"><a class="btn-floating"
 					href="${pagesPlayer}/${player.id}"><i class="material-icons">info</i></a>
+					<a class="btn-floating green tooltipped" data-position="bottom"
+					data-tooltip="Play against this player!"
+					href="${contextPath}/play/make_game/?white_player_id=${loggedUserId}&black_player_id=${player.id}"><i
+						class="material-icons">play_circle_filled</i></a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 <jspFragments:paging />
+
+<script>
+	$(document).ready(function() {
+		$('.tooltipped').tooltip();
+	});
+</script>
+
+
+

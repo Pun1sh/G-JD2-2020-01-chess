@@ -23,6 +23,10 @@
 	value="${contextPath}/play/random_computer" scope="request" />
 <c:set var="pagesLogin" value="${contextPath}/login" scope="request" />
 <c:set var="pagesSignUp" value="${contextPath}/sign_up" scope="request" />
+<c:set var="pagesQueue" value="${contextPath}/play/queue"
+	scope="request" />
+<c:set var="pagesWaitingPlayer"
+	value="${contextPath}/player/waiting_players" scope="request" />
 
 <html lang="en">
 <head>
@@ -75,6 +79,10 @@ header {
 				<ul class="right hide-on-med-and-down">
 					<li><a class='dropdown-trigger btn transparent' href='#'
 						data-target='mydropdown'><i class="material-icons left">play_circle_outline</i>Play</a></li>
+					<sec:authorize access="!isAnonymous()">
+						<li><a class="white-text" href="${pagesWaitingPlayer}"><i
+								class="material-icons left white-text">group</i>Waiting players</a></li>
+					</sec:authorize>
 					<li><a class="white-text" href="${pagesPlayer}"><i
 							class="material-icons left white-text">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
@@ -95,15 +103,20 @@ header {
 					</sec:authorize>
 				</ul>
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
-					<li><a class="white-text" href="${pagesLiveChess}"><i
-							class="material-icons left white-text">play_circle_outline</i>Play</a></li>
+					<li><a class="white-text" href="${pagesQueue}"><i
+							class="material-icons left white-text">play_circle_outline</i>Get
+							In Line </a></li>
+					<sec:authorize access="!isAnonymous()">
+						<li><a class="white-text" href="${pagesWaitingPlayer}"><i
+								class="material-icons left white-text">group</i>Waiting players</a></li>
+					</sec:authorize>
 					<li><a class="white-text" href="${pagesPlayer}"><i
 							class="material-icons left white-text ">people_outline</i>Players</a></li>
 					<li><a class="white-text" href="${pagesGame}"><i
 							class="material-icons left white-text ">storage</i>Games</a></li>
 					<li><a class="white-text" href="#modes"><i
 							class="material-icons left white-text">extension</i>Modes</a></li>
-							
+
 					<sec:authorize access="isAnonymous()">
 						<li><a class="white-text" href="#sign-up"><i
 								class="material-icons left white-text">assignment_ind</i>Sign Up</a></li>
@@ -120,8 +133,8 @@ header {
 
 			</div>
 			<ul class='dropdown-content brown lighten-2' id='mydropdown'>
-				<li><a class="white-text" href="${pagesLiveChess}"><i
-						class="fas fa-chess"></i>Live Chess</a></li>
+				<li><a class="white-text" href="${pagesQueue}"><i
+						class="fas fa-chess"></i>Get In Line to Play Live Chess</a></li>
 				<li><a class="white-text" href="${pagesBoardEditor}"><i
 						class="fas fa-chess-board"></i>Board editor</a></li>
 				<li><a class="white-text" href="${pagesRandomComputer}"><i

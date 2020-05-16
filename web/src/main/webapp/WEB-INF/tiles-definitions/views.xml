@@ -72,4 +72,11 @@
      <definition name="errors.404" extends="DefaultTemplate">
           <put-attribute name="body" value="/WEB-INF/views/errors/404.jsp" />
      </definition>
+     <definition name="waiting" extends="DefaultTemplate">
+          <put-attribute name="body" value="/WEB-INF/views/queue/waiting.jsp" />
+     </definition>
+     <definition name="waiting.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/player/list_of_waiting.jsp" />
+	</definition>
 </tiles-definitions>

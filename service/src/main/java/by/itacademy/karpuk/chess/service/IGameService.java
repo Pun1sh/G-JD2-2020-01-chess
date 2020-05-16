@@ -28,4 +28,6 @@ public interface IGameService {
 	IGame getFullInfo(Integer id);
 
 	long getCount(GameFilter filter);
+
+	IGame checkForGame(Integer playerId);
 }

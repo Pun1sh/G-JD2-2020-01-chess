@@ -29,6 +29,7 @@ import by.itacademy.karpuk.chess.web.converter.PlayerToDTOConverter;
 import by.itacademy.karpuk.chess.web.dto.PlayerDTO;
 import by.itacademy.karpuk.chess.web.dto.grid.GridStateDTO;
 import by.itacademy.karpuk.chess.web.security.AuthHelper;
+import by.itacademy.karpuk.chess.web.utils.UsersHolderWithExpiration;
 
 @Controller
 @RequestMapping(value = "/player")
@@ -42,6 +43,36 @@ public class PlayerController extends AbstractController {
 	@Autowired
 	private PlayerFromDTOConverter fromDtoConverter;
 
+	@RequestMapping(value = "/waiting_players", method = RequestMethod.GET)
+	public ModelAndView getWaitingPlayers(final HttpServletRequest req,
+			@RequestParam(name = "page", required = false) final Integer pageNumber,
+			@RequestParam(name = "sort", required = false) final String sortColumn) {
+
+		final GridStateDTO gridState = getListDTO(req);
+		gridState.setPage(pageNumber);
+		gridState.setSort(sortColumn, "id");
+
+		final PlayerFilter filter = new PlayerFilter();
+		prepareFilter(gridState, filter);
+
+		UsersHolderWithExpiration usersHolderWithExpiration = UsersHolderWithExpiration.INSTANCE;
+
+		List<IPlayer> entities = new ArrayList<>();
+		for (int i = 0; i < usersHolderWithExpiration.getAll().size(); i++) {
+			entities.add(playerService.getFullInfo(usersHolderWithExpiration.getAll().get(i)));
+		}
+
+		List<PlayerDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+		gridState.setTotalCount(playerService.getCount(filter));
+
+		final Map<String, Object> players = new HashMap<>();
+		players.put("gridItems", dtos);
+		players.put("loggedUserId", AuthHelper.getLoggedUserId());
+		players.put("size", usersHolderWithExpiration.getAll().size());
+		return new ModelAndView("waiting.list", players);
+
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
@@ -53,12 +84,7 @@ public class PlayerController extends AbstractController {
 		final PlayerFilter filter = new PlayerFilter();
 		prepareFilter(gridState, filter);
 
-		List<IPlayer> entities = new ArrayList<>();
-		if (AuthHelper.getLoggedUserId() != null) {
-			entities = playerService.findWithoutLoggedPlayer(filter, AuthHelper.getLoggedUserId());
-		} else {
-			entities = playerService.find(filter);
-		}
+		final List<IPlayer> entities = playerService.find(filter);
 
 		List<PlayerDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 		gridState.setTotalCount(playerService.getCount(filter));

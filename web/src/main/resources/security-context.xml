@@ -17,6 +17,8 @@
 	<http>
 		<intercept-url pattern="/play/live_chess/**"
 			access="!isAnonymous()" />
+		<intercept-url pattern="/play/queue/**"
+			access="!isAnonymous()" />
 		<intercept-url pattern="/rest/api/v1/**"
 			access="!isAnonymous()" />
 

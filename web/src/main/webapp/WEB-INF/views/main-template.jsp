@@ -20,6 +20,10 @@
 	value="${contextPath}/play/random_computer" scope="request" />
 <c:set var="pagesLogin" value="${contextPath}/login" scope="request" />
 <c:set var="pagesSignUp" value="${contextPath}/sign_up" scope="request" />
+<c:set var="pagesWaitingPlayer"
+	value="${contextPath}/player/waiting_players" scope="request" />
+<c:set var="pagesQueue" value="${contextPath}/play/queue"
+	scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

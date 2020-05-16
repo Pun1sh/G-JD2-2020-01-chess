@@ -117,4 +117,25 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		return q.getSingleResult();
 	}
 
+	@Override
+	public IGame checkForGame(Integer playerId) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IGame> cq = cb.createQuery(IGame.class); // define returning result
+		final Root<Game> from = cq.from(Game.class); // define table for select
+
+		cq.select(from); // define what need to be selected
+
+		cq.orderBy(new OrderImpl(from.get(Game_.started), false));
+		cq.where(cb.equal(from.get(Game_.blackPlayer), playerId));
+		cq.where(cb.isNull(from.get(Game_.ended)));
+
+		final TypedQuery<IGame> q = em.createQuery(cq);
+		q.setMaxResults(1);
+		List<IGame> resultList = q.getResultList();
+		return resultList.isEmpty() ? null : resultList.get(0);
+
+	}
+
 }
