@@ -128,8 +128,9 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		cq.select(from); // define what need to be selected
 
 		cq.orderBy(new OrderImpl(from.get(Game_.started), false));
-		cq.where(cb.equal(from.get(Game_.blackPlayer), playerId));
-		cq.where(cb.isNull(from.get(Game_.ended)));
+		cq.where(cb.and(cb.isNull(from.get(Game_.ended)), cb.equal(from.get(Game_.blackPlayer), playerId)));
+//		cq.where(cb.equal(from.get(Game_.blackPlayer), playerId));
+//		cq.where(cb.isNull(from.get(Game_.ended)));
 
 		final TypedQuery<IGame> q = em.createQuery(cq);
 		q.setMaxResults(1);
