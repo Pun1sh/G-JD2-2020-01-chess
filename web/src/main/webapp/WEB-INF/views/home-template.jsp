@@ -257,19 +257,15 @@ header {
 			<div class="row">
 				<div class="col l6 s12">
 					<h5>About Site</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Vestibulum at lacus congue.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+					<p>Here you can play chess.</p>
 				</div>
 				<div class="col l4 offset-l2 s12">
-					<h5 class="white-text">Connect</h5>
+					<h5 class="white-text">Links</h5>
 					<ul>
-						<li><a class="grey-text text-lighten-3" href="#">Facebook</a></li>
-						<li><a class="grey-text text-lighten-3" href="#">Twitter</a></li>
-						<li><a class="grey-text text-lighten-3" href="#">Linked
-								In</a></li>
-						<li><a class="grey-text text-lighten-3" href="#">Instagram</a></li>
+						<li><a class="grey-text text-lighten-3" href="#">Database model</a></li>
+						<li><a class="grey-text text-lighten-3" target="_blank"
+							href="${contextPath}/resources/footer_links/players.txt">All players</a></li>
+						<li><a class="grey-text text-lighten-3" href="#">MindMup</a></li>
 					</ul>
 				</div>
 			</div>

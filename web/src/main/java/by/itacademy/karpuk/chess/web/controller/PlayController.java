@@ -118,6 +118,8 @@ public class PlayController extends AbstractController {
 		IPlayer blackPlayer = playerService.getFullInfo(blackPlayerId);
 		whitePlayer.setGamesPlayed(whitePlayer.getGamesPlayed() + 1);
 		blackPlayer.setGamesPlayed(blackPlayer.getGamesPlayed() + 1);
+		whitePlayer.setEloPoints(whitePlayer.getEloPoints() + 2);
+		blackPlayer.setEloPoints(blackPlayer.getEloPoints() + 2);
 		gameService.save(game);
 		playerService.save(whitePlayer);
 		playerService.save(blackPlayer);
