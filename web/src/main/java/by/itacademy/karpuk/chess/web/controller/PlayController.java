@@ -90,7 +90,8 @@ public class PlayController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/game_over_with_result", method = RequestMethod.POST)
-	public void endGameWithResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
+	public void endGameWithResult(final HttpServletRequest req, final HttpServletResponse res,
+			@RequestParam(name = "game_id", required = true) final Integer gameId,
 			@RequestParam(name = "winner_id", required = true) final Integer winnerId,
 			@RequestParam(name = "loser_id", required = true) final Integer loserId) {
 		IGame game = gameService.getFullInfo(gameId);
@@ -109,7 +110,8 @@ public class PlayController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/game_over_without_result", method = RequestMethod.POST)
-	public void endGameWithoutResult(@RequestParam(name = "game_id", required = true) final Integer gameId,
+	public void endGameWithoutResult(final HttpServletRequest req, final HttpServletResponse res,
+			@RequestParam(name = "game_id", required = true) final Integer gameId,
 			@RequestParam(name = "white_player_id", required = true) final Integer whitePlayerId,
 			@RequestParam(name = "black_player_id", required = true) final Integer blackPlayerId) {
 		IGame game = gameService.getFullInfo(gameId);

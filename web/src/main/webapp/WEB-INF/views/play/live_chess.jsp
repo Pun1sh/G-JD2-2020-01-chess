@@ -143,8 +143,6 @@
 	// for castling, en passant, pawn promotion
 	function onSnapEnd(source, target, piece) {
 
-		console.log(piece + " Hello")
-
 		var boardPosition = {
 			fen : game.fen()
 		}
@@ -216,7 +214,7 @@
 							+"&loser_id="+BLACK_PLAYER_ID,
 					type : "POST",
 					success : function() {
-						alert ("game over");
+						alert ("Game over.");
 						window.location=CONTEXT_PATH+"/game";
 					}
 				});	
@@ -226,7 +224,8 @@
 							+"&loser_id="+WHITE_PLAYER_ID,
 					type : "POST",
 					success : function() {
-					alert ("game over");
+					alert ("Game over.");
+					window.location=CONTEXT_PATH+"/game";
 					}
 				});
 			}
@@ -240,7 +239,7 @@
 					+"&black_player_id="+BLACK_PLAYER_ID,
 					type : "POST",
 					success : function() {
-						alert("Draw position");
+						alert("Draw position.");
 					}
 				});
 		}
@@ -258,7 +257,6 @@
 
 
 		$status.html(status)
-		$fen.html(game.fen())
 		$pgn.html(game.pgn())
 
 	}
