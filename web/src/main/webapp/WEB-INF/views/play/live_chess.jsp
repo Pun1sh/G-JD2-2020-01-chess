@@ -18,8 +18,6 @@
 		<div class="col s12 l6 push-l3 ">
 			<label>Status:</label>
 			<div id="status"></div>
-			<label>FEN:</label>
-			<div id="fen"></div>
 			<label>PGN:</label>
 			<div id="pgn"></div>
 		</div>
@@ -126,13 +124,18 @@
 		if (moves.length === 0)
 			return
 			
- // highlight the square they moused over
-		greySquare(square)
+			if ((game.turn()==="w" && LOGGED_USER_ID === WHITE_PLAYER_ID)
+					|| (game.turn()==="b" && LOGGED_USER_ID === BLACK_PLAYER_ID)){
+				 // highlight the square they moused over
+				greySquare(square)
 
-		// highlight the possible squares for this piece
-		for (var i = 0; i < moves.length; i++) {
-			greySquare(moves[i].to)
-		}
+				// highlight the possible squares for this piece
+				for (var i = 0; i < moves.length; i++) {
+					greySquare(moves[i].to)
+				}		
+				
+						}
+			
 	}
 
 	function onMouseoutSquare(square, piece) {
@@ -190,11 +193,21 @@
 		}
 
 		board.position(game.fen())
+		
 
 	}
 
 	function onMoveEnd() {
 		$board.find('.square-' + squareToHighlight).addClass('highlight-white')
+		if (game.in_checkmate()){
+			alert("Game over. You are checkmated.");
+			window.location = CONTEXT_PATH+"/game";
+		}
+		 if (game.in_draw()){
+			alert("Game over. Draw position.");
+			window.location = CONTEXT_PATH+"/game";
+		 }
+		
 	}
 
 	function updateStatus() {
@@ -208,40 +221,11 @@
 		// checkmate?
 		if (game.in_checkmate()) {
 			status = 'Game over, ' + moveColor + ' is in checkmate.'
-			if(game.turn()==="b"){
-				$.ajax({
-					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
-							+"&loser_id="+BLACK_PLAYER_ID,
-					type : "POST",
-					success : function() {
-						alert ("Game over.");
-						window.location=CONTEXT_PATH+"/game";
-					}
-				});	
-			} else {
-				$.ajax({
-					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
-							+"&loser_id="+WHITE_PLAYER_ID,
-					type : "POST",
-					success : function() {
-					alert ("Game over.");
-					window.location=CONTEXT_PATH+"/game";
-					}
-				});
-			}
 		}
 
 		// draw?
 		else if (game.in_draw()) {
 			status = 'Game over, drawn position'
-				$.ajax({
-					url : CONTEXT_PATH + "/play/game_over_without_result" + "?game_id=" + GAME_ID + "&white_player_id="+ WHITE_PLAYER_ID
-					+"&black_player_id="+BLACK_PLAYER_ID,
-					type : "POST",
-					success : function() {
-						alert("Draw position.");
-					}
-				});
 		}
 
 		// game still on
@@ -260,6 +244,8 @@
 		$pgn.html(game.pgn())
 
 	}
+	
+
 
 	var config = {
 		draggable : true,
@@ -296,6 +282,45 @@
 				})
 				
 				latestId = lastIdFromServer;
+
+				if (game.in_checkmate()) {
+					if(game.turn()==="b"){
+						$.ajax({
+							url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
+									+"&loser_id="+BLACK_PLAYER_ID,
+							type : "POST",
+							success : function() {
+								alert("Game over. You win.");
+								window.location = CONTEXT_PATH+"/game";
+							}
+						});	
+					} else {
+						$.ajax({
+							url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
+									+"&loser_id="+WHITE_PLAYER_ID,
+							type : "POST",
+							success : function() {
+								alert("Game over. You win.");
+								window.location = CONTEXT_PATH+"/game";
+							}
+						});
+					}
+				}
+
+				// draw?
+				 if (game.in_draw()) {
+						$.ajax({
+							url : CONTEXT_PATH + "/play/game_over_without_result" + "?game_id=" + GAME_ID + "&white_player_id="+ WHITE_PLAYER_ID
+							+"&black_player_id="+BLACK_PLAYER_ID,
+							type : "POST",
+							success : function() {
+								alert("Game over. Draw Position.");
+								window.location = CONTEXT_PATH+"/game";
+							}
+						});
+				}
+				
+				
 
 			}
 
