@@ -6,6 +6,17 @@
 	<entry key="page.login.credentialsError">Invalid username and password!</entry>
 	
 	<entry key="table.column.id">ID</entry>
+	<entry key="play">Play</entry>
+	<entry key="get.in.line">Get In Line to Play Live Chess</entry>
+	<entry key="board.editor">Board editor</entry>
+	<entry key="random.computer">Play against Random Computer</entry>
+	<entry key="waiting.players">Waiting Players</entry>
+	<entry key="players">Players</entry>
+	<entry key="games">Games</entry>
+	<entry key="modes">Modes</entry>
+	<entry key="log.in">Log In</entry>
+	<entry key="sign.up">Sign Up</entry>
+	
 	
 	
 </properties>

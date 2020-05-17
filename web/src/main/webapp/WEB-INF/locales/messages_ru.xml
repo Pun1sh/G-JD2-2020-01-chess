@@ -4,6 +4,18 @@
 	<entry key="page.home.title">Домашняя страница</entry>
 	<entry key="page.home.welcomeMessage">Привет, {0}</entry>
 	<entry key="page.login.credentialsError">неверный логин или пароль!</entry>
-		
+
 	<entry key="table.column.id">№</entry>
+	<entry key="play">Играть</entry>
+	<entry key="get.in.line">Встать в очередь, чтобы сыграть онлайн</entry>
+	<entry key="board.editor">Редактор доски</entry>
+	<entry key="random.computer">Сыграть против случайного компьютера</entry>
+	<entry key="waiting.players">Ожидающие игроки</entry>
+	<entry key="players">Игроки</entry>
+	<entry key="games">Игры</entry>
+	<entry key="modes">Режимы</entry>
+	<entry key="log.in">Войти</entry>
+	<entry key="sign.up">Зарегистрироваться</entry>
+
+
 </properties>

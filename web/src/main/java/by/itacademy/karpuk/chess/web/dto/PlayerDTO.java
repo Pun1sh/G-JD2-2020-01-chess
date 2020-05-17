@@ -2,8 +2,11 @@ package by.itacademy.karpuk.chess.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 public class PlayerDTO {
 	private Integer id;
+	@Size(min = 1, max = 25)
 	private String nickname;
 	private Integer countryId;
 	private Date registrated;
@@ -11,6 +14,7 @@ public class PlayerDTO {
 	private Integer gamesPlayed;
 	private Date birthDate;
 	private String email;
+	@Size(min = 8, max = 50)
 	private String password;
 	private Integer eloPoints;
 	private String rank;
