@@ -226,12 +226,19 @@ header {
 	<section class="section container scrollspy" id="sign-up">
 		<div class="row">
 			<div class="col s12 l5">
-				<h2 class="indigo-text text-darken-4">Sign up!</h2>
-				<p>Join us and enjoy playing chess. Sign up, it's Free!</p>
-				<p>If you are already signed up, just Log In.</p>
+				<h2 class="indigo-text text-darken-4">
+					<spring:message code="sign.up" />
+				</h2>
+				<p>
+					<spring:message code="sign.up.description1" />
+				</p>
+				<p>
+					<spring:message code="sign.up.description2" />
+				</p>
 				<ul>
 					<li><a class="btn" href="${pagesLogin}"><i
-							class="material-icons left white-text">forward</i>Log In</a></li>
+							class="material-icons left white-text">forward</i> <spring:message
+								code="log.in" /></a></li>
 				</ul>
 			</div>
 
@@ -242,14 +249,14 @@ header {
 					<i class="material-icons prefix">email</i>
 					<form:input path="email" type="email" />
 					<form:errors path="email" cssClass="red-text" />
-					<label for="email">Your Email</label>
+					<label for="email"><spring:message code="email" /></label>
 				</div>
 
 				<div class="input-field">
 					<i class="material-icons prefix">lock</i>
 					<form:input path="password" type="password" />
 					<form:errors path="password" cssClass="red-text" />
-					<label for="password">Your Password</label>
+					<label for="password"><spring:message code="password" /></label>
 				</div>
 
 
@@ -257,20 +264,21 @@ header {
 					<i class="material-icons prefix">person_add</i>
 					<form:input path="nickname" type="text" />
 					<form:errors path="nickname" cssClass="red-text" />
-					<label for="nickname">Your Nickname</label>
+					<label for="nickname"><spring:message code="nickname" /></label>
 				</div>
 
 				<div class="input-field">
 					<i class="material-icons prefix">date_range</i>
 					<form:input path="birthDate" type="text" class="datepicker" />
 					<form:errors path="birthDate" cssClass="red-text" />
-					<label for="birthDate">Your BirthDate</label>
+					<label for="birthDate"><spring:message code="birthdate" /></label>
 				</div>
 
 
 				<div class="col s12 offset-l4">
 					<button class="btn waves-effect waves-light" type="submit">
-						Sign Up</button>
+						<spring:message code="sign.up" />
+					</button>
 				</div>
 
 
@@ -284,18 +292,25 @@ header {
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">
-					<h5>About Site</h5>
-					<p>Here you can play chess.</p>
+					<h5>
+						<spring:message code="about.site" />
+					</h5>
+					<p>
+						<spring:message code="here.u.can.play" />
+					</p>
 				</div>
 				<div class="col l4 offset-l2 s12">
-					<h5 class="white-text">Links</h5>
+					<h5 class="white-text">
+						<spring:message code="links" />
+					</h5>
 					<ul>
-						<li><a class="grey-text text-lighten-3" href="#">Database
-								model</a></li>
+						<li><a class="grey-text text-lighten-3" href="#"><spring:message
+									code="database" /></a></li>
 						<li><a class="grey-text text-lighten-3" target="_blank"
-							href="${contextPath}/resources/footer_links/players.txt">All
-								players</a></li>
-						<li><a class="grey-text text-lighten-3" href="#">MindMup</a></li>
+							href="${contextPath}/resources/footer_links/players.txt"><spring:message
+									code="all.players" /></a></li>
+						<li><a class="grey-text text-lighten-3" href="#"><spring:message
+									code="mindmup" /></a></li>
 					</ul>
 				</div>
 			</div>

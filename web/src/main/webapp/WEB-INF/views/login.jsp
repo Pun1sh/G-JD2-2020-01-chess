@@ -1,5 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h2>Login with Nickname and Password</h2>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<h2><spring:message code="log.in.description" /></h2>
 <div class="row">
 	<div class="col s3"></div>
 	<div class="col s6">
@@ -7,12 +10,12 @@
 			<div class="row">
 				<div class="input-field col s12 center">
 					<input type='text' name='nickname' value=''> <label
-						for="nickname">User:</label>
+						for="nickname"><spring:message code="nickname.list" /></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 center">
-					<input type='password' name='password' /><label for="password">Password:</label>
+					<input type='password' name='password' /><label for="password"><spring:message code="password" /></label>
 				</div>
 			</div>
 			<c:if test="${not empty error}">
@@ -31,7 +34,7 @@
 			</c:if>
 			<div class="row">
 				<div class="col s12 center">
-					<button class="btn waves-effect waves-light " type="submit">Log In</button>
+					<button class="btn waves-effect waves-light " type="submit"><spring:message code="log.in" /></button>
 				</div>
 			</div>
 		</form>

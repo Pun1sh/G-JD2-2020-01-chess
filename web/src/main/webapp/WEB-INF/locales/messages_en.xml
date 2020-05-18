@@ -4,7 +4,7 @@
 	<entry key="page.home.title">Home Page</entry>
 	<entry key="page.home.welcomeMessage">Hello, {0}</entry>
 	<entry key="page.login.credentialsError">Invalid username and password!</entry>
-	
+
 	<entry key="table.column.id">ID</entry>
 	<entry key="play">Play</entry>
 	<entry key="get.in.line">Get In Line to Play Live Chess</entry>
@@ -16,7 +16,33 @@
 	<entry key="modes">Modes</entry>
 	<entry key="log.in">Log In</entry>
 	<entry key="sign.up">Sign Up</entry>
+	<entry key="links">Links</entry>
+	<entry key="about.site">About Site</entry>
+	<entry key="here.u.can.play">Here you can play chess.</entry>
+	<entry key="email">Your Email</entry>
+	<entry key="password">Your Password</entry>
+	<entry key="nickname">Your Nickname</entry>
+	<entry key="birthdate">Your BirthDate</entry>
+	<entry key="database">Database model</entry>
+	<entry key="all.players">All players</entry>
+	<entry key="mindmup">MindMup</entry>
+	<entry key="sign.up.description1">Join us and enjoy playing chess. Sign up, it's Free!</entry>
+	<entry key="sign.up.description2">If you are already signed up, just Log In.</entry>
+	<entry key="players.list">Players</entry>
+	<entry key="nickname.list">Nickname</entry>
+	<entry key="games.played">Games played</entry>
+	<entry key="elo.points">Elo Points</entry>
+	<entry key="rank">Rank</entry>
+	<entry key="white.player">White player</entry>
+	<entry key="black.player">Black player</entry>
+	<entry key="tournament">Tournament</entry>
+	<entry key="winner">Winner</entry>
+	<entry key="loser">Loser</entry>
+	<entry key="mode">Mode</entry>
+	<entry key="play.against">Play against this player!</entry>
+	<entry key="waiting.players">Waiting players</entry>
+	<entry key="log.in.description">Log In with Nickname and Password</entry>
 	
-	
-	
+
+
 </properties>

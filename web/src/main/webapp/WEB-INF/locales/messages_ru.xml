@@ -16,6 +16,32 @@
 	<entry key="modes">Режимы</entry>
 	<entry key="log.in">Войти</entry>
 	<entry key="sign.up">Зарегистрироваться</entry>
+	<entry key="links">Ссылки</entry>
+	<entry key="about.site">О сайте</entry>
+	<entry key="here.u.can.play">Здесь вы можете сыграть в шахматы.</entry>
+	<entry key="email">Ваш email</entry>
+	<entry key="password">Ваш пароль</entry>
+	<entry key="nickname">Ваш nickname</entry>
+	<entry key="birthdate">Ваша дата рождения</entry>
+	<entry key="database">Модель базы данных</entry>
+	<entry key="all.players">Все игроки</entry>
+	<entry key="mindmup">MindMup</entry>
+	<entry key="sign.up.description1">Присоединяйся к нам и наслаждайся игрой в шахматы.Регистрируйся, это бесплатно! </entry>
+	<entry key="sign.up.description2">Если вы уже зарегистрированы, то просто войдите.</entry>
+	<entry key="players.list">Игроки</entry>
+	<entry key="nickname.list">Nickname</entry>
+	<entry key="games.played">Игр сыграно</entry>
+	<entry key="elo.points">Очки Эло</entry>
+	<entry key="rank">Ранг</entry>
+	<entry key="white.player">Белый игрок</entry>
+	<entry key="black.player">Черный игрок</entry>
+	<entry key="tournament">Турнир</entry>
+	<entry key="winner">Победитель</entry>
+	<entry key="loser">Проигравший</entry>
+	<entry key="mode">Режим</entry>
+	<entry key="play.against">Сыграть против этого игрока!</entry>
+	<entry key="waiting.players">Ожидающие игроки</entry>
+	<entry key="log.in.description">Войдите по nicknam'у и паролю</entry>
 
 
 </properties>

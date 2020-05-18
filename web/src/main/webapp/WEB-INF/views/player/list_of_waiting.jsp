@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
-<h4 class="header">Waiting players</h4>
+<h4 class="header"><spring:message code="waiting.players" /></h4>
 <table class="bordered highlight">
 	<tbody>
 		<tr>
@@ -11,12 +11,12 @@
 					<spring:message code="table.column.id" />
 				</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesPlayer}"
-					column="nickname">Nickname</mytaglib:sort-link></th>
+					column="nickname"><spring:message code="nickname.list" /></mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesPlayer}"
-					column="gamesPlayed">Games played</mytaglib:sort-link></th>
+					column="gamesPlayed"><spring:message code="games.played" /></mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesPlayer}"
-					column="eloPoints">Elo Points</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesPlayer}" column="rank">Rank</mytaglib:sort-link></th>
+					column="eloPoints"><spring:message code="elo.points" /></mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesPlayer}" column="rank"><spring:message code="rank" /></mytaglib:sort-link></th>
 			<th></th>
 		</tr>
 		<c:forEach var="player" items="${gridItems}" varStatus="loopCounter">
@@ -29,7 +29,7 @@
 				<td class="right"><a class="btn-floating"
 					href="${pagesPlayer}/${player.id}"><i class="material-icons">info</i></a>
 					<a class="btn-floating green tooltipped" data-position="bottom"
-					data-tooltip="Play against this player!"
+					data-tooltip="<spring:message code="play.against" />"
 					href="${contextPath}/play/make_game/?white_player_id=${loggedUserId}&black_player_id=${player.id}"><i
 						class="material-icons">play_circle_filled</i></a></td>
 			</tr>
