@@ -47,13 +47,15 @@ public class PlayController extends AbstractController {
 	public ModelAndView playLiveChess(
 			@RequestParam(name = "white_player_id", required = true) final Integer whitePlayerId,
 			@RequestParam(name = "black_player_id", required = true) final Integer blackPlayerId,
-			@RequestParam(name = "game_id", required = true) final Integer gameId) {
+			@RequestParam(name = "game_id", required = true) final Integer gameId,
+			@RequestParam(name = "mode", required = true) final String mode) {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("gameId", gameId);
 		hashMap.put("whitePlayerId", whitePlayerId);
 		hashMap.put("blackPlayerId", blackPlayerId);
 		hashMap.put("newestBoardId", boardService.getNewestBoard(gameId)); // null
 		hashMap.put("userId", AuthHelper.getLoggedUserId());
+		hashMap.put("mode",gameService.getFullInfo(gameId).getMode().getTime());
 		return new ModelAndView("live_chess", hashMap);
 	}
 
@@ -78,15 +80,28 @@ public class PlayController extends AbstractController {
 
 	@RequestMapping(value = "/make_game", method = RequestMethod.GET)
 	public String makeGame(@RequestParam(name = "white_player_id", required = true) final Integer whitePlayerId,
-			@RequestParam(name = "black_player_id", required = true) final Integer blackPlayerId) {
+			@RequestParam(name = "black_player_id", required = true) final Integer blackPlayerId,
+			@RequestParam(name = "mode", required = true) final Integer mode) {
 		IGame newGame = gameService.createEntity();
 		newGame.setWhitePlayer(playerService.getFullInfo(whitePlayerId));
 		newGame.setBlackPlayer(playerService.getFullInfo(blackPlayerId));
-		newGame.setMode(Mode.BLITZ);
+		if (mode == 1) {
+			newGame.setMode(Mode.BLITZ);
+		} else if (mode == 2) {
+			newGame.setMode(Mode.TEN);
+
+		} else if (mode == 3) {
+			newGame.setMode(Mode.THIRTY);
+		} else if (mode == 4) {
+			newGame.setMode(Mode.SIXTY);
+		} else {
+			throw new RuntimeException("No mode in request");
+		}
 		newGame.setStarted(new Date());
 		gameService.save(newGame);
 		return "redirect:/play/live_chess?white_player_id=" + whitePlayerId + "&black_player_id=" + blackPlayerId
-				+ "&game_id=" + gameService.getFullInfo(newGame.getId()).getId();
+				+ "&game_id=" + gameService.getFullInfo(newGame.getId()).getId() + "&mode="
+				+ gameService.getFullInfo(newGame.getId()).getMode();
 	}
 
 	@RequestMapping(value = "/game_over_with_result", method = RequestMethod.POST)
@@ -172,6 +187,7 @@ public class PlayController extends AbstractController {
 		dto.setId(game.getId());
 		dto.setWhitePlayerId(game.getWhitePlayer().getId());
 		dto.setBlackPlayerId(game.getBlackPlayer().getId());
+		dto.setMode(game.getMode());
 		return new ResponseEntity<GameDTO>(dto == null ? null : dto, HttpStatus.OK);
 
 	}

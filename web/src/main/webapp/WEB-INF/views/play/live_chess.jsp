@@ -10,17 +10,32 @@
 
 
 <div class="container">
-	<br> <br>
+	<br><br>
 	<div class="row">
-		<div class="col s12 l6 pull-l3 ">
+		<div class="col s12 l6 pull-l4 ">
 			<div id="myBoard" style="width: 600px"></div>
 		</div>
-		<div class="col s12 l6 push-l3 ">
+			<div class="col s12 l3">
+		  		<div class="card">
+   			 	<div class="card-content">
+          			<div id="clock-black"></div>
+       		</div>
+          	</div>
+          	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          	<div class="card">
+   			 	<div class="card-content">
+         			 <div id="clock-white"></div>
+       		</div>
+          	</div>
+          	</div>
+        
+		<div class="col s12 l3 push-l1 ">
 			<label>Status:</label>
 			<div id="status"></div>
 			<label>PGN:</label>
 			<div id="pgn"></div>
 		</div>
+
 	</div>
 
 </div>
@@ -30,6 +45,7 @@
 	WHITE_PLAYER_ID = "${whitePlayerId}"
 	BLACK_PLAYER_ID = "${blackPlayerId}"
 	LOGGED_USER_ID="${userId}"
+	MODE = "${mode}"
 </script>
 
 <script>
@@ -43,6 +59,7 @@
 	var blackSquareGrey = '#696969'
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
+
 
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
@@ -83,13 +100,6 @@
 	}
 
 	function onDrop(source, target, piece, newPos, oldPos, orientation) {
-		console.log('Source: ' + source)
-		console.log('Target: ' + target)
-		console.log('Piece: ' + piece)
-		console.log('New position: ' + Chessboard.objToFen(newPos))
-		console.log('Old position: ' + Chessboard.objToFen(oldPos))
-		console.log('Orientation: ' + orientation)
-		console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
 		removeGreySquares()
 
@@ -110,6 +120,7 @@
 		$board.find('.square-' + target).addClass('highlight-white') */
 
 		updateStatus()
+		
 
 	}
 
@@ -199,6 +210,7 @@
 
 	function onMoveEnd() {
 		$board.find('.square-' + squareToHighlight).addClass('highlight-white')
+		
 		if (game.in_checkmate()){
 			alert("Game over. You are checkmated.");
 			window.location = CONTEXT_PATH+"/game";
@@ -238,6 +250,15 @@
 			}
 			
 		}
+		
+		if(game.turn()==="b") {
+			$('#clock-black').countdown('resume');
+			$('#clock-white').countdown('pause');
+		}
+		if (game.turn()==="w") {
+			$('#clock-white').countdown('resume');
+			$('#clock-black').countdown('pause');
+		}
 
 
 		$status.html(status)
@@ -245,7 +266,6 @@
 
 	}
 	
-
 
 	var config = {
 		draggable : true,
@@ -261,7 +281,46 @@
 
 	board = Chessboard('myBoard', config)
 
+var time = new Date().getTime() + MODE*1000*60;
+	
+$('#clock-white').countdown(time).on('update.countdown', function(event) {
+	  var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
+			}).on('finish.countdown',function(){
+		$.ajax({
+			url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
+					+"&loser_id="+WHITE_PLAYER_ID,
+			type : "POST",
+			success : function() {
+				if(LOGGED_USER_ID===WHITE_PLAYER_ID){
+					alert("Game over. You lost by time.");
+					window.location = CONTEXT_PATH+"/game";
+				} else {
+					alert("Game over. You win by time.");
+					window.location = CONTEXT_PATH+"/game";
+				}
+			}
+		});
+	});
+
+$('#clock-black').countdown(time).on('update.countdown', function(event) {
+	  	var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
+			}).on('finish.countdown',function(){
+		$.ajax({
+			url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
+					+"&loser_id="+BLACK_PLAYER_ID,
+			type : "POST",
+			success : function() {
+				alert("Game over. You lost by time.");
+				window.location = CONTEXT_PATH+"/game";
+			}
+		});
+	});
+	
+	$('#clock-black').countdown('stop');
+
 	updateStatus()
+	
+	
 </script>
 
 <script>
@@ -327,5 +386,9 @@
 		})
 
 	};
-	var timer = setInterval(periodicFunction, 2 * 1000);
+	var timer = setInterval(periodicFunction, 2 * 1000);	
 </script>
+
+
+
+

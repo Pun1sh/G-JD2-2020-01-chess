@@ -52,7 +52,7 @@
 					window.location = CONTEXT_PATH+"/play/live_chess?white_player_id=" 
 							+ game.whitePlayerId + "&black_player_id=" 
 							+game.blackPlayerId
-					+ "&game_id=" + game.id;
+					+ "&game_id=" + game.id+"&mode="+game.mode;
 
 				})
 			

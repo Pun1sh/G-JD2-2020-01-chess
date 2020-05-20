@@ -44,16 +44,7 @@ public class PlayerController extends AbstractController {
 	private PlayerFromDTOConverter fromDtoConverter;
 
 	@RequestMapping(value = "/waiting_players", method = RequestMethod.GET)
-	public ModelAndView getWaitingPlayers(final HttpServletRequest req,
-			@RequestParam(name = "page", required = false) final Integer pageNumber,
-			@RequestParam(name = "sort", required = false) final String sortColumn) {
-
-		final GridStateDTO gridState = getListDTO(req);
-		gridState.setPage(pageNumber);
-		gridState.setSort(sortColumn, "id");
-
-		final PlayerFilter filter = new PlayerFilter();
-		prepareFilter(gridState, filter);
+	public ModelAndView getWaitingPlayers(final HttpServletRequest req) {
 
 		UsersHolderWithExpiration usersHolderWithExpiration = UsersHolderWithExpiration.INSTANCE;
 
@@ -63,7 +54,6 @@ public class PlayerController extends AbstractController {
 		}
 
 		List<PlayerDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
-		gridState.setTotalCount(playerService.getCount(filter));
 
 		final Map<String, Object> players = new HashMap<>();
 		players.put("gridItems", dtos);
