@@ -248,18 +248,17 @@
 				status += ', ' + moveColor + ' is in check'
 			}
 			
-		}
-		
+		}	
+
 		if(game.turn()==="b") {
 			$('#clock-black').countdown('resume');
 			$('#clock-white').countdown('pause');
 		}
-		else {
+		if (game.turn()==="w") {
 			$('#clock-white').countdown('resume');
 			$('#clock-black').countdown('pause');
-		}  	
+		}
 		
-
 		$status.html(status)
 		$pgn.html(game.pgn())
 
@@ -337,8 +336,9 @@
 						promotion : 'q' // NOTE: always promote to a queen for example simplicity
 					})
 					board.position(game.fen());
-					updateStatus();					
-
+					updateStatus();				
+					
+					
 				})
 				
 				latestId = lastIdFromServer;
