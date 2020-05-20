@@ -35,7 +35,7 @@
 					</div></td>
 				<td class="right"><a class="btn-floating"
 					href="${pagesPlayer}/${player.id}"><i class="material-icons">info</i></a>
-					<a class="btn-floating green tooltipped disabled" id="test"
+					<a class="btn-floating green tooltipped disabled" id="test" data-field="${player.id}"
 					data-position="bottom" data-tooltip="<spring:message code="play.against" />"><i
 						class="material-icons">play_circle_filled</i></a></td>
 			</tr>
@@ -49,13 +49,15 @@
 		$('.tooltipped').tooltip();
 		$('select').formSelect();
 	});
-	$(document).on('change','#mode',function() {
+		$(document).on('change','#mode',function() {
 						var value = $(this).val();
-						$('#test').attr('href',"${contextPath}/play/make_game/?white_player_id=${loggedUserId}&black_player_id=2&mode="+ value);
+						$('#test').attr('href',"${contextPath}/play/make_game/?white_player_id=${loggedUserId}&black_player_id="
+								+$('#test').attr('data-field')+"&mode="+ value);
 					});
-	$("#mode").on('change',function() {
+		$("#mode").on('change',function() {
 				$("#test").addClass("floating green tooltipped").removeClass('disabled');
 			});
+ 
 </script>
 
 
