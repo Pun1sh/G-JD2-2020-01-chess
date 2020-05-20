@@ -55,7 +55,7 @@ public class PlayController extends AbstractController {
 		hashMap.put("blackPlayerId", blackPlayerId);
 		hashMap.put("newestBoardId", boardService.getNewestBoard(gameId)); // null
 		hashMap.put("userId", AuthHelper.getLoggedUserId());
-		hashMap.put("mode",gameService.getFullInfo(gameId).getMode().getTime());
+		hashMap.put("mode", gameService.getFullInfo(gameId).getMode().getTime());
 		return new ModelAndView("live_chess", hashMap);
 	}
 
@@ -76,6 +76,17 @@ public class PlayController extends AbstractController {
 			dto.setMoveNotationTo(newestMove.getMoveNotationTo());
 		}
 		return new ResponseEntity<MoveDTO>(dto == null ? null : dto, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "live_chess/last_board", method = RequestMethod.GET)
+	public ResponseEntity<String> getBoardIfClose(
+			@RequestParam(name = "game_id", required = true) final Integer gameId) {
+		final IBoard newestBoard = boardService.getNewestBoard(gameId);
+		String str = null;
+		if (newestBoard != null) {
+			str = newestBoard.getFen();
+		}
+		return new ResponseEntity<String>(str == null ? null : str, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/make_game", method = RequestMethod.GET)
