@@ -59,12 +59,12 @@
 	var blackSquareGrey = '#696969'
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
-
+	var time = new Date().getTime() + MODE*1000*60;
 
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
 	} */
-
+	
 	function removeGreySquares() {
 		$('#myBoard .square-55d63').css('background', '')
 	}
@@ -118,9 +118,9 @@
 		removeHighlights('white')
 		$board.find('.square-' + source).addClass('highlight-white')
 		$board.find('.square-' + target).addClass('highlight-white') */
-
-		updateStatus()
 		
+		
+		updateStatus()
 
 	}
 
@@ -204,7 +204,6 @@
 		}
 
 		board.position(game.fen())
-		
 
 	}
 
@@ -255,11 +254,11 @@
 			$('#clock-black').countdown('resume');
 			$('#clock-white').countdown('pause');
 		}
-		if (game.turn()==="w") {
+		else {
 			$('#clock-white').countdown('resume');
 			$('#clock-black').countdown('pause');
-		}
-
+		}  	
+		
 
 		$status.html(status)
 		$pgn.html(game.pgn())
@@ -280,52 +279,49 @@
 	}
 
 	board = Chessboard('myBoard', config)
-
-var time = new Date().getTime() + MODE*1000*60;
 	
-$('#clock-white').countdown(time).on('update.countdown', function(event) {
-	  var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
-			}).on('finish.countdown',function(){
-		$.ajax({
-			url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
-					+"&loser_id="+WHITE_PLAYER_ID,
-			type : "POST",
-			success : function() {
-				if(LOGGED_USER_ID===WHITE_PLAYER_ID){
-					alert("Game over. You lost by time.");
-					window.location = CONTEXT_PATH+"/game";
-				} else {
-					alert("Game over. You win by time.");
-					window.location = CONTEXT_PATH+"/game";
-				}
-			}
-		});
-	});
+	$('#clock-white').countdown(time).on('update.countdown', function(event) {
+			  var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
+					}).on('finish.countdown',function(){
+				$.ajax({
+					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
+							+"&loser_id="+WHITE_PLAYER_ID,
+					type : "POST",
+					success : function() {
+						if(LOGGED_USER_ID===WHITE_PLAYER_ID){
+							alert("Game over. You lost by time.");
+							window.location = CONTEXT_PATH+"/game";
+						} else {
+							alert("Game over. You win by time.");
+							window.location = CONTEXT_PATH+"/game";
+						}
+					}
+				});
+			}).countdown('pause');
+			
 
-$('#clock-black').countdown(time).on('update.countdown', function(event) {
-	  	var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
-			}).on('finish.countdown',function(){
-		$.ajax({
-			url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
-					+"&loser_id="+BLACK_PLAYER_ID,
-			type : "POST",
-			success : function() {
-				if(LOGGED_USER_ID === BLACK_PLAYER_ID){
-					alert("Game over. You lost by time.");
-					window.location = CONTEXT_PATH+"/game";	
-				} else {
-					alert("Game over. You win by time.");
-					window.location = CONTEXT_PATH+"/game";
-				}
-			}
-		});
-	});
-	
-	$('#clock-black').countdown('stop');
+		$('#clock-black').countdown(time).on('update.countdown', function(event) {
+			  	var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
+					}).on('finish.countdown',function(){
+				$.ajax({
+					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
+							+"&loser_id="+BLACK_PLAYER_ID,
+					type : "POST",
+					success : function() {
+						if(LOGGED_USER_ID === BLACK_PLAYER_ID){
+							alert("Game over. You lost by time.");
+							window.location = CONTEXT_PATH+"/game";	
+						} else {
+							alert("Game over. You win by time.");
+							window.location = CONTEXT_PATH+"/game";
+						}
+					}
+				});
+			}).countdown('pause').countdown('resume');
 
+		
 	updateStatus()
-	
-	
+
 </script>
 
 <script>
@@ -393,7 +389,5 @@ $('#clock-black').countdown(time).on('update.countdown', function(event) {
 	};
 	var timer = setInterval(periodicFunction, 2 * 1000);	
 </script>
-
-
 
 
