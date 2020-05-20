@@ -89,7 +89,6 @@ public class PlayController extends AbstractController {
 			newGame.setMode(Mode.BLITZ);
 		} else if (mode == 2) {
 			newGame.setMode(Mode.TEN);
-
 		} else if (mode == 3) {
 			newGame.setMode(Mode.THIRTY);
 		} else if (mode == 4) {
