@@ -44,9 +44,9 @@
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
 
-	function removeHighlights(color) {
+	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
-	}
+	} */
 
 	function removeGreySquares() {
 		$('#myBoard .square-55d63').css('background', '')
@@ -104,10 +104,10 @@
 		if (move === null)
 			return 'snapback'
 
-			// highlight moves
+		/* 	// highlight moves
 		removeHighlights('white')
 		$board.find('.square-' + source).addClass('highlight-white')
-		$board.find('.square-' + target).addClass('highlight-white')
+		$board.find('.square-' + target).addClass('highlight-white') */
 
 		updateStatus()
 
