@@ -310,8 +310,13 @@ $('#clock-black').countdown(time).on('update.countdown', function(event) {
 					+"&loser_id="+BLACK_PLAYER_ID,
 			type : "POST",
 			success : function() {
-				alert("Game over. You lost by time.");
-				window.location = CONTEXT_PATH+"/game";
+				if(LOGGED_USER_ID === BLACK_PLAYER_ID){
+					alert("Game over. You lost by time.");
+					window.location = CONTEXT_PATH+"/game";	
+				} else {
+					alert("Game over. You win by time.");
+					window.location = CONTEXT_PATH+"/game";
+				}
 			}
 		});
 	});
