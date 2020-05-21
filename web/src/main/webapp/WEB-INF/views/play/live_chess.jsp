@@ -121,7 +121,7 @@
 		
 		
 		updateStatus()
-
+		
 	}
 
 	function onMouseoverSquare(square, piece) {
@@ -249,14 +249,14 @@
 			}
 			
 		}	
-
+		
 		if(game.turn()==="b") {
-			$('#clock-black').countdown('resume');
-			$('#clock-white').countdown('pause');
+			$('#clock-black').countdown('start');
+			$('#clock-white').countdown('stop');
 		}
 		if (game.turn()==="w") {
-			$('#clock-white').countdown('resume');
-			$('#clock-black').countdown('pause');
+			$('#clock-white').countdown('start');
+			$('#clock-black').countdown('stop');
 		}
 		
 		$status.html(status)
@@ -296,7 +296,7 @@
 						}
 					}
 				});
-			}).countdown('pause');
+			});
 			
 
 		$('#clock-black').countdown(time).on('update.countdown', function(event) {
@@ -316,7 +316,9 @@
 						}
 					}
 				});
-			}).countdown('pause').countdown('resume');
+			});
+		
+		$('#clock-black').countdown('stop').countdown('start').countdown('stop');
 
 /* 		function check (){
 		$.get("${pagesLiveChess}/last_board?game_id=" + GAME_ID,function(currentBoardPos){
@@ -352,7 +354,8 @@
 				})
 				
 				latestId = lastIdFromServer;
-
+				
+				
 				if (game.in_checkmate()) {
 					if(game.turn()==="b"){
 						$.ajax({
