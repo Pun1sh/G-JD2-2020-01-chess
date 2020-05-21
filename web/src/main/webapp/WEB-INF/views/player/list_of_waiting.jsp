@@ -25,7 +25,7 @@
 				<td><c:out value="${player.eloPoints}" /></td>
 				<td><c:out value="${player.rank}" /></td>
 				<td><div class="input-field col s12">
-						<select id="mode">
+						<select class="mode">
 							<option value="" disabled selected>Game mode</option>
 							<option value="1">Blitz</option>
 							<option value="2">10 minutes</option>
@@ -35,7 +35,7 @@
 					</div></td>
 				<td class="right"><a class="btn-floating"
 					href="${pagesPlayer}/${player.id}"><i class="material-icons">info</i></a>
-					<a class="btn-floating green tooltipped disabled" id="test" data-field="${player.id}"
+					<a class="btn-floating green tooltipped disabled test" data-field="${player.id}"
 					data-position="bottom" data-tooltip="<spring:message code="play.against" />"><i
 						class="material-icons">play_circle_filled</i></a></td>
 			</tr>
@@ -49,14 +49,16 @@
 		$('.tooltipped').tooltip();
 		$('select').formSelect();
 	});
-		$(document).on('change','#mode',function() {
+		$(document).on('change','.mode',function() {
 						var value = $(this).val();
-						$('#test').attr('href',"${contextPath}/play/make_game/?white_player_id=${loggedUserId}&black_player_id="
-								+$('#test').attr('data-field')+"&mode="+ value);
+						var $selector = $(this).closest('tr').find('.test');
+						var url = $selector.attr('href', "${contextPath}/play/make_game/?white_player_id=${loggedUserId}&black_player_id=" +
+							    $selector.attr('data-field') + "&mode=" + value);
+						
 					});
-		$("#mode").on('change',function() {
-				$("#test").addClass("floating green tooltipped").removeClass('disabled');
-			});
+		$(".mode").on('change',function() {
+			 $(this).closest('tr').find('.test').addClass("floating green tooltipped").removeClass('disabled');
+			})
  
 </script>
 
