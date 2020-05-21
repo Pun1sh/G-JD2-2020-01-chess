@@ -318,14 +318,7 @@
 				});
 			}).countdown('pause').countdown('resume');
 
-		
-	updateStatus()
-
-</script>
-
-<script>
-	var latestId = '${newestBoardId}'; //null
-/* 	function check (){
+/* 		function check (){
 		$.get("${pagesLiveChess}/last_board?game_id=" + GAME_ID,function(currentBoardPos){
 			if((board.fen())!== currentBoardPos){
 				board.position(currentBoardPos);
@@ -335,7 +328,13 @@
 		})
 	}
 	check(); */
-	
+		
+	updateStatus()
+
+</script>
+
+<script>
+	var latestId = '${newestBoardId}'; //null	
 	var periodicFunction = function() {
 		$.get("${pagesLiveChess}/last_id?game_id=" + GAME_ID, function(lastIdFromServer) {
 
