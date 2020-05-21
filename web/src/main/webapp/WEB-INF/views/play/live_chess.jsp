@@ -325,14 +325,16 @@
 
 <script>
 	var latestId = '${newestBoardId}'; //null
-/* 	var foo = function(){
+/* 	function check (){
 		$.get("${pagesLiveChess}/last_board?game_id=" + GAME_ID,function(currentBoardPos){
-			if(!board.fen().equals(currentBoardPos.fen)){
-				game.load(currentBoardPos.fen);
-				board.position(currentBoardPos.fen);
+			if((board.fen())!== currentBoardPos){
+				board.position(currentBoardPos);
+				game.load(currentBoardPos);
+				
 			}
 		})
-	}	 */
+	}
+	check(); */
 	
 	var periodicFunction = function() {
 		$.get("${pagesLiveChess}/last_id?game_id=" + GAME_ID, function(lastIdFromServer) {
