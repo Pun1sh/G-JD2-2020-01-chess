@@ -59,7 +59,8 @@
 	var blackSquareGrey = '#696969'
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
-	var time = new Date().getTime() + MODE*1000*60;
+	var time1 = new Date().getTime() + MODE*1000*60;
+	var time2 = new Date().getTime() + MODE*1000*60;
 
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
@@ -279,7 +280,7 @@
 
 	board = Chessboard('myBoard', config)
 	
-	$('#clock-white').countdown(time).on('update.countdown', function(event) {
+	$('#clock-white').countdown(time1).on('update.countdown', function(event) {
 			  var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
 					}).on('finish.countdown',function(){
 				$.ajax({
@@ -299,7 +300,7 @@
 			});
 			
 
-		$('#clock-black').countdown(time).on('update.countdown', function(event) {
+		$('#clock-black').countdown(time2).on('update.countdown', function(event) {
 			  	var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
 					}).on('finish.countdown',function(){
 				$.ajax({
@@ -320,15 +321,15 @@
 		
 		$('#clock-black').countdown('stop').countdown('start').countdown('stop');
 
- 		function check (){
-		$.get("${pagesLiveChess}/last_fen?game_id=" + GAME_ID,function(currentBoardPos){
-			if((board.fen())!== currentBoardPos){
-				board.position(currentBoardPos);
-				game.load(currentBoardPos);
-				
+ 	function check (){
+			$.get("${pagesLiveChess}/last_fen?game_id=" + GAME_ID,function(currentBoardPos){
+				if((board.fen())!== currentBoardPos){
+					board.position(currentBoardPos);
+					game.load(currentBoardPos);		
 			}
 		})
 	}
+ 	
 	check(); 
 		
 	updateStatus()

@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -131,7 +132,8 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		from.fetch(Game_.blackPlayer, JoinType.LEFT);
 
 		cq.orderBy(new OrderImpl(from.get(Game_.started), false));
-		cq.where(cb.and(cb.isNull(from.get(Game_.ended)), cb.or(cb.equal(from.get(Game_.blackPlayer), playerId),
+		Predicate isNotEnded = cb.isNull(from.get(Game_.ended));
+		cq.where(cb.and(isNotEnded, cb.or(cb.equal(from.get(Game_.blackPlayer), playerId),
 				cb.equal(from.get(Game_.whitePlayer), playerId))));
 		//cq.where(cb.and(cb.isNull(from.get(Game_.ended)), cb.equal(from.get(Game_.blackPlayer), playerId)));
 
