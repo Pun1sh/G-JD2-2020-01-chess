@@ -320,8 +320,8 @@
 		
 		$('#clock-black').countdown('stop').countdown('start').countdown('stop');
 
-/* 		function check (){
-		$.get("${pagesLiveChess}/last_board?game_id=" + GAME_ID,function(currentBoardPos){
+ 		function check (){
+		$.get("${pagesLiveChess}/last_fen?game_id=" + GAME_ID,function(currentBoardPos){
 			if((board.fen())!== currentBoardPos){
 				board.position(currentBoardPos);
 				game.load(currentBoardPos);
@@ -329,15 +329,23 @@
 			}
 		})
 	}
-	check(); */
+	check(); 
 		
 	updateStatus()
 
 </script>
 
 <script>
-	var latestId = '${newestBoardId}'; //null	
+	var latestId = '${newestBoardId}'; //null at the start	
 	var periodicFunction = function() {
+		
+		$.get("${contextPath}/play/user_here?game_id=" + GAME_ID,function(data){
+			if(!!data){
+				alert("Game over. You win. Another user left the game.");
+				window.location = CONTEXT_PATH+"/game";
+			}
+		})
+		
 		$.get("${pagesLiveChess}/last_id?game_id=" + GAME_ID, function(lastIdFromServer) {
 
 			if (latestId < lastIdFromServer) {

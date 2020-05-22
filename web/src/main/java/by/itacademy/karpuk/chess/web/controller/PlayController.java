@@ -53,7 +53,11 @@ public class PlayController extends AbstractController {
 		hashMap.put("gameId", gameId);
 		hashMap.put("whitePlayerId", whitePlayerId);
 		hashMap.put("blackPlayerId", blackPlayerId);
-		hashMap.put("newestBoardId", boardService.getNewestBoard(gameId)); // null
+		if (boardService.getNewestBoard(gameId)!=null) {
+			hashMap.put("newestBoardId", boardService.getNewestBoard(gameId).getId());
+		} else {
+			hashMap.put("newestBoardId", boardService.getNewestBoard(gameId)); // null
+		}
 		hashMap.put("userId", AuthHelper.getLoggedUserId());
 		hashMap.put("mode", gameService.getFullInfo(gameId).getMode().getTime());
 		return new ModelAndView("live_chess", hashMap);
@@ -78,8 +82,8 @@ public class PlayController extends AbstractController {
 		return new ResponseEntity<MoveDTO>(dto == null ? null : dto, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "live_chess/last_board", method = RequestMethod.GET)
-	public ResponseEntity<String> getBoardIfClose(
+	@RequestMapping(value = "live_chess/last_fen", method = RequestMethod.GET)
+	public ResponseEntity<String> getFenIfClose(
 			@RequestParam(name = "game_id", required = true) final Integer gameId) {
 		final IBoard newestBoard = boardService.getNewestBoard(gameId);
 		String str = null;
@@ -152,6 +156,15 @@ public class PlayController extends AbstractController {
 		playerService.save(blackPlayer);
 
 	}
+	
+	@RequestMapping(value="/user_here",method = RequestMethod.GET)
+	public ResponseEntity<Date> endGameUserLeave(final HttpServletRequest req, final HttpServletResponse res,
+			@RequestParam(name = "game_id", required = true) final Integer gameId){
+		IGame currentGame= gameService.getFullInfo(gameId);
+		Date ended = currentGame.getEnded();
+		return new ResponseEntity<Date>(ended == null ? null : ended, HttpStatus.OK);
+	}
+	
 
 	@RequestMapping(value = "/board_editor", method = RequestMethod.GET)
 	public String playBoardEditor() {
