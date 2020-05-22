@@ -63,10 +63,52 @@ header {
 	padding-top: 4vw;
 	padding-bottom: 4vw;
 }
+.tap-target{
+border-radius: 200px;
+}
 </style>
 </head>
 <body>
 
+<!-- Tap Target -->
+  	<sec:authorize access="!isAnonymous()">
+	  <c:if test="${not empty game.id}">
+	  		<div class = "fixed-action-btn">
+		<a id="warning" class="waves-effect waves-light btn btn-floating red pulse" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">warning</i></a>
+			</div>
+	  </c:if>
+	</sec:authorize>
+	
+  <!-- Tap Target Structure -->
+  	<div class="tap-target" data-target="warning">
+    	<div class="tap-target-content">
+    		<div class="row">
+    		 	<h5>Warning !</h5>
+      			<p>You have unfinished game. Do you want to finish it?</p>
+      			<p>If you click "No", you will lose the game.</p>
+      		</div>
+      		<div class="row">
+      		<ul>
+      		
+      		<div class="col s12 l6">
+      		<li><a class="btn" href="${contextPath}/play/live_chess?white_player_id=${game.whitePlayerId}&black_player_id=${game.blackPlayerId}&game_id=${game.id}&mode=${game.mode}">Yes</a></li>
+			</div>
+			
+			<div class="col s12 l6">
+			<c:choose>
+    			<c:when test="${loggedUserId == game.whitePlayerId}">
+        			<li><a class="btn" id='giveup'>No</a></li> 
+    			</c:when>    
+    			<c:otherwise>
+       		 		<li><a class="btn" id='giveup'>No</a></li>
+    			</c:otherwise>
+			</c:choose>
+			</div>		
+			</ul>
+			</div>
+    	</div>
+  	</div>
+  
 	<!-- navbar -->
 	<header>
 		<nav class="nav-wrapper transparent">
@@ -287,6 +329,7 @@ header {
 
 		</div>
 	</section>
+		
 	<!-- footer -->
 	<footer class="page-footer grey darken-3">
 		<div class="container">
@@ -331,7 +374,29 @@ header {
 			$('.datepicker').datepicker();
 			$('.scrollspy').scrollSpy();
 			$('.dropdown-trigger').dropdown();
+			$('.tap-target').tapTarget();
 		});
-	</script>
+		$('#giveup').on('click', function() {
+			if ("${loggedUserId}" === "${game.whitePlayerId}") {
+				$.ajax({
+					url : "${contextPath}/play/game_over_with_result?game_id=${game.id}&winner_id=${game.blackPlayerId}&loser_id=${loggedUserId}",
+					type : "POST",
+					success : function() {
+						window.location = "${pagesGame}";
+					}
+				});				
+			} else {
+				$.ajax({
+					url : "${contextPath}/play/game_over_with_result?game_id=${game.id}&winner_id=${game.whitePlayerId}&loser_id=${loggedUserId}",
+					type : "POST",
+					success : function() {
+						window.location = "${pagesGame}";
+					}
+				});
+			}
+
+
+		})
+		</script>
 </body>
 </html>

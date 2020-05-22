@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.itacademy.karpuk.chess.dao.api.entity.table.IPlayer;
+import by.itacademy.karpuk.chess.service.IGameService;
 import by.itacademy.karpuk.chess.service.IPlayerService;
+import by.itacademy.karpuk.chess.web.converter.GameToDTOConverter;
 import by.itacademy.karpuk.chess.web.converter.PlayerToDTOConverter;
+import by.itacademy.karpuk.chess.web.dto.GameDTO;
 import by.itacademy.karpuk.chess.web.jndi.SMTPCredentials;
+import by.itacademy.karpuk.chess.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/")
@@ -29,12 +33,22 @@ public class HomePageController {
 	private IPlayerService playerService;
 	@Autowired
 	private PlayerToDTOConverter toDtoConverter;
+	@Autowired
+	private IGameService gameService;
+	@Autowired
+	private GameToDTOConverter gameToDtoConverter;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index() {
 		final Map<String, Object> hashMap = new HashMap<>();
 		final IPlayer player = playerService.createEntity();
+		GameDTO game = new GameDTO();
+		if (gameService.checkForGame(AuthHelper.getLoggedUserId()) != null) {
+			game = gameToDtoConverter.apply(gameService.checkForGame(AuthHelper.getLoggedUserId()));
+		}
 		hashMap.put("formModel", toDtoConverter.apply(player));
+		hashMap.put("game", game);
+		hashMap.put("loggedUserId", AuthHelper.getLoggedUserId());
 		return new ModelAndView("home", hashMap);
 
 	}
