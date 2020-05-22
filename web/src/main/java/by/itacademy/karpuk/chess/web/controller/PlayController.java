@@ -53,7 +53,7 @@ public class PlayController extends AbstractController {
 		hashMap.put("gameId", gameId);
 		hashMap.put("whitePlayerId", whitePlayerId);
 		hashMap.put("blackPlayerId", blackPlayerId);
-		if (boardService.getNewestBoard(gameId)!=null) {
+		if (boardService.getNewestBoard(gameId) != null) {
 			hashMap.put("newestBoardId", boardService.getNewestBoard(gameId).getId());
 		} else {
 			hashMap.put("newestBoardId", boardService.getNewestBoard(gameId)); // null
@@ -83,8 +83,7 @@ public class PlayController extends AbstractController {
 	}
 
 	@RequestMapping(value = "live_chess/last_fen", method = RequestMethod.GET)
-	public ResponseEntity<String> getFenIfClose(
-			@RequestParam(name = "game_id", required = true) final Integer gameId) {
+	public ResponseEntity<String> getFenIfClose(@RequestParam(name = "game_id", required = true) final Integer gameId) {
 		final IBoard newestBoard = boardService.getNewestBoard(gameId);
 		String str = null;
 		if (newestBoard != null) {
@@ -156,15 +155,14 @@ public class PlayController extends AbstractController {
 		playerService.save(blackPlayer);
 
 	}
-	
-	@RequestMapping(value="/user_here",method = RequestMethod.GET)
+
+	@RequestMapping(value = "/user_here", method = RequestMethod.GET)
 	public ResponseEntity<Date> endGameUserLeave(final HttpServletRequest req, final HttpServletResponse res,
-			@RequestParam(name = "game_id", required = true) final Integer gameId){
-		IGame currentGame= gameService.getFullInfo(gameId);
+			@RequestParam(name = "game_id", required = true) final Integer gameId) {
+		IGame currentGame = gameService.getFullInfo(gameId);
 		Date ended = currentGame.getEnded();
 		return new ResponseEntity<Date>(ended == null ? null : ended, HttpStatus.OK);
 	}
-	
 
 	@RequestMapping(value = "/board_editor", method = RequestMethod.GET)
 	public String playBoardEditor() {
@@ -212,7 +210,7 @@ public class PlayController extends AbstractController {
 		dto.setBlackPlayerId(game.getBlackPlayer().getId());
 		dto.setMode(game.getMode());
 		return new ResponseEntity<GameDTO>(dto == null ? null : dto, HttpStatus.OK);
-
+		
 	}
-
+	
 }
