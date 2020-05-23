@@ -31,6 +31,7 @@
 							<option value="2">10 minutes</option>
 							<option value="3">30 minutes</option>
 							<option value="4">60 minutes</option>
+							<option value="5">No time</option>
 						</select> <label>Choose game mode</label>
 					</div></td>
 				<td class="right"><a class="btn-floating"

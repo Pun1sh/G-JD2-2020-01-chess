@@ -60,6 +60,9 @@ public class PlayController extends AbstractController {
 		}
 		hashMap.put("userId", AuthHelper.getLoggedUserId());
 		hashMap.put("mode", gameService.getFullInfo(gameId).getMode().getTime());
+		if (mode.equals("NO_TIME")) {
+			return new ModelAndView("live_chess_no_time", hashMap);
+		}
 		return new ModelAndView("live_chess", hashMap);
 	}
 
@@ -107,7 +110,10 @@ public class PlayController extends AbstractController {
 			newGame.setMode(Mode.THIRTY);
 		} else if (mode == 4) {
 			newGame.setMode(Mode.SIXTY);
-		} else {
+		} else if(mode==5) {
+			newGame.setMode(Mode.NO_TIME);
+		}
+		else {
 			throw new RuntimeException("No mode in request");
 		}
 		newGame.setStarted(new Date());

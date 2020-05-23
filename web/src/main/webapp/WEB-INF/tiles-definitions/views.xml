@@ -10,7 +10,7 @@
 		<put-attribute name="header"
 			value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value="" />
-		
+
 	</definition>
 
 	<definition name="HomeTemplate"
@@ -67,16 +67,23 @@
 			value="/WEB-INF/views/play/random_computer.jsp" />
 	</definition>
 	<definition name="login" extends="DefaultTemplate">
-         <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
-     </definition>
-     <definition name="errors.404" extends="DefaultTemplate">
-          <put-attribute name="body" value="/WEB-INF/views/errors/404.jsp" />
-     </definition>
-     <definition name="waiting" extends="DefaultTemplate">
-          <put-attribute name="body" value="/WEB-INF/views/queue/waiting.jsp" />
-     </definition>
-     <definition name="waiting.list" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/login.jsp" />
+	</definition>
+	<definition name="errors.404" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/errors/404.jsp" />
+	</definition>
+	<definition name="waiting" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/queue/waiting.jsp" />
+	</definition>
+	<definition name="waiting.list" extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/player/list_of_waiting.jsp" />
+	</definition>
+	<definition name="live_chess_no_time" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/play/live_chess_no_time.jsp" />
 	</definition>
 </tiles-definitions>
