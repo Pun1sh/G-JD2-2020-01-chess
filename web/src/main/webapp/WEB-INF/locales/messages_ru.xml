@@ -9,7 +9,6 @@
 	<entry key="play">Играть</entry>
 	<entry key="get.in.line">Встать в очередь, чтобы сыграть онлайн</entry>
 	<entry key="board.editor">Редактор доски</entry>
-	<entry key="random.computer">Сыграть против случайного компьютера</entry>
 	<entry key="waiting.players">Ожидающие игроки</entry>
 	<entry key="players">Игроки</entry>
 	<entry key="games">Игры</entry>
@@ -26,7 +25,7 @@
 	<entry key="database">Модель базы данных</entry>
 	<entry key="all.players">Все игроки</entry>
 	<entry key="mindmup">MindMup</entry>
-	<entry key="sign.up.description1">Присоединяйся к нам и наслаждайся игрой в шахматы.Регистрируйся, это бесплатно! </entry>
+	<entry key="sign.up.description1">Присоединяйся к нам и наслаждайся игрой в шахматы. Регистрируйся, это бесплатно! </entry>
 	<entry key="sign.up.description2">Если вы уже зарегистрированы, то просто войдите.</entry>
 	<entry key="players.list">Игроки</entry>
 	<entry key="nickname.list">Nickname</entry>
@@ -42,6 +41,22 @@
 	<entry key="play.against">Сыграть против этого игрока!</entry>
 	<entry key="waiting.players">Ожидающие игроки</entry>
 	<entry key="log.in.description">Войдите по nicknam'у и паролю</entry>
+	<entry key="blitz">Блиц</entry>
+	<entry key="10min">10 минут</entry>
+	<entry key="30min">30 минут</entry>
+	<entry key="60min">60 минут</entry>
+	<entry key="notime">Без времени</entry>
+	<entry key="blitz.description">Если вы достаточно быстры, сыграйте блиц. Нет времени думать - у вас всего лишь 3 минуты.</entry>
+	<entry key="10min.description">Здесь у вас 10 минут, чтобы обыграть вашего оппонента.</entry>
+	<entry key="30min.60min.description">Почти классические шамхаты.</entry>
+	<entry key="waiting">Пожалуйста, ждите.</entry>
+	<entry key="waiting.description">Вы в очереди. Ждем, пока кто-нибудь выберет вас в качестве противника. Пожалуйста, не покидайте эту страницу.</entry>
+	<entry key="choose.mode">Выберите режим игры</entry>
+	<entry key="yes">Да</entry>
+	<entry key="no">Нет</entry>
+	<entry key="warning">Внимание!</entry>
+	<entry key="warning.description1">У вас есть незаконченная игра. Вы хотите ее закончить?</entry>
+	<entry key="warning.description2">Если вы нажмете "Нет", вам будет засчитано поражение.</entry>
 
 
 </properties>

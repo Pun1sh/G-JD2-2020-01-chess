@@ -9,7 +9,6 @@
 	<entry key="play">Play</entry>
 	<entry key="get.in.line">Get In Line to Play Live Chess</entry>
 	<entry key="board.editor">Board editor</entry>
-	<entry key="random.computer">Play against Random Computer</entry>
 	<entry key="waiting.players">Waiting Players</entry>
 	<entry key="players">Players</entry>
 	<entry key="games">Games</entry>
@@ -42,7 +41,27 @@
 	<entry key="play.against">Play against this player!</entry>
 	<entry key="waiting.players">Waiting players</entry>
 	<entry key="log.in.description">Log In with Nickname and Password</entry>
+	<entry key="blitz">Blitz</entry>
+	<entry key="10min">10 minutes</entry>
+	<entry key="30min">30 minutes</entry>
+	<entry key="60min">60 minutes</entry>
+	<entry key="notime">No time</entry>
+	<entry key="blitz.description">If you fast enough, play blitz. No time for thinking -
+		you have only 3 minutes.</entry>
+	<entry key="10min.description">Here you have 10 minutes to beat your opponent.</entry>
+	<entry key="30min.60min.description">Almost classical chess.</entry>
+	<entry key="waiting">Please, wait.</entry>
+	<entry key="waiting.description">You are in a queue. Waiting till someone choose you to
+		play with. Please don't leave this page.</entry>
+	<entry key="choose.mode">Choose game mode</entry>
+	<entry key="yes">Yes</entry>
+	<entry key="no">No</entry>
+	<entry key="warning">Warning!</entry>
+	<entry key="warning.description1">You have unfinished game. Do you want to finish it?</entry>
+	<entry key="warning.description2">If you click "No", you will lose the game.</entry>
+
 	
+
 
 
 </properties>

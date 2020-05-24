@@ -16,8 +16,6 @@
 	scope="request" />
 <c:set var="pagesBoardEditor" value="${contextPath}/play/board_editor"
 	scope="request" />
-<c:set var="pagesRandomComputer"
-	value="${contextPath}/play/random_computer" scope="request" />
 <c:set var="pagesLogin" value="${contextPath}/login" scope="request" />
 <c:set var="pagesSignUp" value="${contextPath}/sign_up" scope="request" />
 <c:set var="pagesWaitingPlayer"

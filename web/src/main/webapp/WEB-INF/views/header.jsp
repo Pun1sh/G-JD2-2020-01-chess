@@ -84,9 +84,6 @@
 			<li><a class="white-text" href="${pagesBoardEditor}"><i
 					class="fas fa-chess-board"></i>
 				<spring:message code="board.editor" /></a></li>
-			<li><a class="white-text" href="${pagesRandomComputer}"><i
-					class="material-icons left">computer</i>
-				<spring:message code="random.computer" /></a></li>
 		</ul>
 		<ul class='dropdown-content brown lighten-2' id='mydropdownlng'>
 			<li><a class="white-text" href="?lang=ru">Ru</a></li>

@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <br>
 <br>
 <br>
@@ -7,12 +9,11 @@
 			<div class="card-image">
 				<img
 					src="https://images.wallpaperscraft.ru/image/shahmaty_peshka_koroleva_125673_1920x1080.jpg">
-				<span class="card-title">Please wait.</span>
+				<span class="card-title"><spring:message code="waiting" /></span>
 
 			</div>
 			<div class="card-content">
-				<p>You are in a queue. Waiting till someone choose you to play
-					with. Please don't leave this page.</p>
+				<p><spring:message code="waiting.description" /></p>
 				<br>
 				<div class="row center-align">
 					<div class="preloader-wrapper big active">

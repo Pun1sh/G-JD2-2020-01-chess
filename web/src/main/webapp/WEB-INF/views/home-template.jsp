@@ -19,8 +19,6 @@
 	scope="request" />
 <c:set var="pagesBoardEditor" value="${contextPath}/play/board_editor"
 	scope="request" />
-<c:set var="pagesRandomComputer"
-	value="${contextPath}/play/random_computer" scope="request" />
 <c:set var="pagesLogin" value="${contextPath}/login" scope="request" />
 <c:set var="pagesSignUp" value="${contextPath}/sign_up" scope="request" />
 <c:set var="pagesQueue" value="${contextPath}/play/queue"
@@ -83,26 +81,19 @@ border-radius: 200px;
   	<div class="tap-target" data-target="warning">
     	<div class="tap-target-content">
     		<div class="row">
-    		 	<h5>Warning !</h5>
-      			<p>You have unfinished game. Do you want to finish it?</p>
-      			<p>If you click "No", you will lose the game.</p>
+    		 	<h5><spring:message code="warning" /></h5>
+      			<p><spring:message code="warning.description1" /></p>
+      			<p><spring:message code="warning.description2" /></p>
       		</div>
       		<div class="row">
       		<ul>
       		
       		<div class="col s12 l6">
-      		<li><a class="btn" href="${contextPath}/play/live_chess?white_player_id=${game.whitePlayerId}&black_player_id=${game.blackPlayerId}&game_id=${game.id}&mode=${game.mode}">Yes</a></li>
+      		<li><a class="btn" href="${contextPath}/play/live_chess?white_player_id=${game.whitePlayerId}&black_player_id=${game.blackPlayerId}&game_id=${game.id}&mode=${game.mode}"><spring:message code="yes" /></a></li>
 			</div>
 			
 			<div class="col s12 l6">
-			<c:choose>
-    			<c:when test="${loggedUserId == game.whitePlayerId}">
-        			<li><a class="btn" id='giveup'>No</a></li> 
-    			</c:when>    
-    			<c:otherwise>
-       		 		<li><a class="btn" id='giveup'>No</a></li>
-    			</c:otherwise>
-			</c:choose>
+        			<li><a class="btn" id='giveup'><spring:message code="no" /></a></li> 
 			</div>		
 			</ul>
 			</div>
@@ -202,9 +193,6 @@ border-radius: 200px;
 				<li><a class="white-text" href="${pagesBoardEditor}"><i
 						class="fas fa-chess-board"></i> <spring:message
 							code="board.editor" /></a></li>
-				<li><a class="white-text" href="${pagesRandomComputer}"><i
-						class="material-icons left">computer</i> <spring:message
-							code="random.computer" /></a></li>
 			</ul>
 
 			<ul class='dropdown-content brown lighten-2' id='mydropdownlng'>
@@ -224,9 +212,8 @@ border-radius: 200px;
 					class="responsive-img">
 			</div>
 			<div class="col s12 l6 offset-l1">
-				<h2 class="indigo-text text-darken-4">Bullet</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+				<h2 class="indigo-text text-darken-4"><spring:message code="blitz" /></h2>
+				<p><spring:message code="blitz.description" /></p>
 			</div>
 		</div>
 		<div class="row">
@@ -236,9 +223,8 @@ border-radius: 200px;
 					alt="" class="responsive-img">
 			</div>
 			<div class="col s12 l6 offset-l1 pull-l5 right-align">
-				<h2 class="indigo-text text-darken-4">Blitz</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+				<h2 class="indigo-text text-darken-4"><spring:message code="10min" /></h2>
+				<p><spring:message code="10min.description" /></p>
 			</div>
 		</div>
 		<div class="row">
@@ -248,9 +234,8 @@ border-radius: 200px;
 					alt="" class="responsive-img">
 			</div>
 			<div class="col s12 l6 offset-l1">
-				<h2 class="indigo-text text-darken-4">10, 30 and 60 Minutes</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+				<h2 class="indigo-text text-darken-4"><spring:message code="30min" />, <spring:message code="60min" /></h2>
+				<p><spring:message code="30min.60min.description" /></p>
 			</div>
 		</div>
 

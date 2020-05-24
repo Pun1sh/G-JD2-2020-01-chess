@@ -26,13 +26,20 @@
 				<td><c:out value="${player.rank}" /></td>
 				<td><div class="input-field col s12">
 						<select class="mode">
-							<option value="" disabled selected>Game mode</option>
-							<option value="1">Blitz</option>
-							<option value="2">10 minutes</option>
-							<option value="3">30 minutes</option>
-							<option value="4">60 minutes</option>
-							<option value="5">No time</option>
-						</select> <label>Choose game mode</label>
+							<option value="" disabled selected><spring:message
+								code="mode" /></option>
+							<option value="1"><spring:message
+								code="blitz" /></option>
+							<option value="2"><spring:message
+								code="10min" /></option>
+							<option value="3"><spring:message
+								code="30min" /></option>
+							<option value="4"><spring:message
+								code="60min" /></option>
+							<option value="5"><spring:message
+								code="notime" /></option>
+						</select> <label><spring:message
+								code="choose.mode" /></label>
 					</div></td>
 				<td class="right"><a class="btn-floating"
 					href="${pagesPlayer}/${player.id}"><i class="material-icons">info</i></a>
