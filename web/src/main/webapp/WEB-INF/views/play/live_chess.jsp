@@ -57,8 +57,8 @@
 	var blackSquareGrey = '#696969'
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
-	var whiteRemainingTime = new Date().getTime() + MODE*1000*60;
-	var blackRemainingTime = new Date().getTime() + MODE*1000*60;
+	var whiteRemainingTime =MODE*60*1000;
+	var blackRemainingTime =MODE*60*1000;
 
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
@@ -248,55 +248,24 @@
 			}
 			
 		}
-				
 		
-		if(game.turn() === "w"){
-			$('#clock-black').countdown('pause');
-			blackRemainingTime = new Date().getTime() + document.getElementById("clock-black").textContext;
-			console.log(blackRemainingTime);
-			$('#clock-white').countdown(whiteRemainingTime).on('update.countdown', function(event) {
-				  var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
-						}).on('finish.countdown',function(){
-					$.ajax({
-						url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
-								+"&loser_id="+WHITE_PLAYER_ID,
-						type : "POST",
-						success : function() {
-							if(LOGGED_USER_ID===WHITE_PLAYER_ID){
-								alert("Game over. You lost by time.");
-								window.location = CONTEXT_PATH+"/game";
-							} else {
-								alert("Game over. You win by time.");
-								window.location = CONTEXT_PATH+"/game";
-							}
-						}
-					});
-				});
+		
+		
+	 	if(game.turn() === "w"){
+	 		$('#clock-black').countdown('stop').countdown('start').countdown('stop');
+	 		$('#clock-white').countdown(new Date().getTime() + whiteRemainingTime);
+			var stringDate = document.getElementById("clock-black").innerText;
+			blackRemainingTime = Number(stringDate.split(':')[0]) * 60 * 1000 + Number(stringDate.split(':')[1]) * 1000;
+			console.log(blackRemainingTime);	
 		}
 			
 		if(game.turn() === "b"){
-			$('#clock-white').countdown('pause');
-			whiteRemainingTime = new Date().getTime() + document.getElementById("clock-white").textContext+"";
+			$('#clock-white').countdown('stop').countdown('start').countdown('stop');
+			$('#clock-black').countdown(new Date().getTime() + blackRemainingTime);
+			var stringDate = document.getElementById("clock-white").innerText;
+			whiteRemainingTime = Number(stringDate.split(':')[0]) * 60 * 1000 + Number(stringDate.split(':')[1]) * 1000;
 			console.log(whiteRemainingTime);
-			$('#clock-black').countdown(blackRemainingTime).on('update.countdown', function(event) {
-				  	var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
-						}).on('finish.countdown',function(){
-					$.ajax({
-						url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
-								+"&loser_id="+BLACK_PLAYER_ID,
-						type : "POST",
-						success : function() {
-							if(LOGGED_USER_ID === BLACK_PLAYER_ID){
-								alert("Game over. You lost by time.");
-								window.location = CONTEXT_PATH+"/game";	
-							} else {
-								alert("Game over. You win by time.");
-								window.location = CONTEXT_PATH+"/game";
-							}
-						}
-					});
-				});
-		}
+		} 
 		
 		
 		$status.html(status)
@@ -327,30 +296,53 @@
 				}
 			})
 		}); 
-		
-	
-	$('#clock-white').countdown(whiteRemainingTime).on('update.countdown', function(event) {
-		  var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
-				});
-	
-	$('#clock-black').countdown(blackRemainingTime).on('update.countdown', function(event) {
-		  var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
-				}).countdown('pause').countdown('resume').countdown('pause');
-	
-	updateStatus()
 
+	$('#clock-white').countdown(new Date().getTime() + whiteRemainingTime).on('update.countdown', function(event) {
+		  var $this = $(this).html(event.strftime('<span>%M:%S</span>'));
+				}).on('finish.countdown',function(){
+			$.ajax({
+				url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
+						+"&loser_id="+WHITE_PLAYER_ID,
+				type : "POST",
+				success : function() {
+					if(LOGGED_USER_ID===WHITE_PLAYER_ID){
+						alert("Game over. You lost by time.");
+						window.location = CONTEXT_PATH+"/game";
+					} else {
+						alert("Game over. You win by time.");
+						window.location = CONTEXT_PATH+"/game";
+					}
+				}
+			});
+		});	
+	
+	
+	$('#clock-black').countdown(new Date().getTime() + blackRemainingTime).on('update.countdown', function(event) {
+	  	var $this = $(this).html(event.strftime('<span>%M:%S</span>'));
+			}).on('finish.countdown',function(){
+		$.ajax({
+			url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
+					+"&loser_id="+BLACK_PLAYER_ID,
+			type : "POST",
+			success : function() {
+				if(LOGGED_USER_ID === BLACK_PLAYER_ID){
+					alert("Game over. You lost by time.");
+					window.location = CONTEXT_PATH+"/game";	
+				} else {
+					alert("Game over. You win by time.");
+					window.location = CONTEXT_PATH+"/game";
+				}
+			}
+		});
+	});
+	
+	updateStatus();
+	
 </script>
 
 <script>
 	var latestId = '${newestBoardId}'; //null at the start	
 	var periodicFunction = function() {
-		
-		$.get("${contextPath}/play/user_here?game_id=" + GAME_ID,function(data){
-			if(!!data){
-				alert("Game over. You win. Another user left the game.");
-				window.location = CONTEXT_PATH+"/game";
-			}
-		})
 		
 		$.get("${pagesLiveChess}/last_id?game_id=" + GAME_ID, function(lastIdFromServer) {
 
@@ -415,6 +407,17 @@
 
 	};
 	var timer = setInterval(periodicFunction, 2 * 1000);	
+	
+	
+	var periodicFunction2 = function(){
+		$.get("${contextPath}/play/user_here?game_id=" + GAME_ID,function(data){
+			if(!!data){
+				alert("Game over. You win. Another user left the game.");
+				window.location = CONTEXT_PATH+"/game";
+			}
+		})
+	}
+	var timer2 = setInterval(periodicFunction2, 29 * 1000);
 </script>
 
 
