@@ -32,8 +32,6 @@
 		<div class="col s12 l3 push-l1 ">
 			<label>Status:</label>
 			<div id="status"></div>
-			<label>PGN:</label>
-			<div id="pgn"></div>
 		</div>
 
 	</div>
@@ -59,8 +57,8 @@
 	var blackSquareGrey = '#696969'
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
-	var time1 = new Date().getTime() + MODE*1000*60;
-	var time2 = new Date().getTime() + MODE*1000*60;
+	var whiteRemainingTime = new Date().getTime() + MODE*1000*60;
+	var blackRemainingTime = new Date().getTime() + MODE*1000*60;
 
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
@@ -205,7 +203,7 @@
 		}
 
 		board.position(game.fen())
-
+		
 	}
 
 	function onMoveEnd() {
@@ -249,19 +247,59 @@
 				status += ', ' + moveColor + ' is in check'
 			}
 			
-		}	
+		}
+				
 		
-		if(game.turn()==="b") {
-			$('#clock-black').countdown('start');
-			$('#clock-white').countdown('stop');
+		if(game.turn() === "w"){
+			$('#clock-black').countdown('pause');
+			blackRemainingTime = new Date().getTime() + document.getElementById("clock-black").textContext;
+			console.log(blackRemainingTime);
+			$('#clock-white').countdown(whiteRemainingTime).on('update.countdown', function(event) {
+				  var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
+						}).on('finish.countdown',function(){
+					$.ajax({
+						url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
+								+"&loser_id="+WHITE_PLAYER_ID,
+						type : "POST",
+						success : function() {
+							if(LOGGED_USER_ID===WHITE_PLAYER_ID){
+								alert("Game over. You lost by time.");
+								window.location = CONTEXT_PATH+"/game";
+							} else {
+								alert("Game over. You win by time.");
+								window.location = CONTEXT_PATH+"/game";
+							}
+						}
+					});
+				});
 		}
-		if (game.turn()==="w") {
-			$('#clock-white').countdown('start');
-			$('#clock-black').countdown('stop');
+			
+		if(game.turn() === "b"){
+			$('#clock-white').countdown('pause');
+			whiteRemainingTime = new Date().getTime() + document.getElementById("clock-white").textContext+"";
+			console.log(whiteRemainingTime);
+			$('#clock-black').countdown(blackRemainingTime).on('update.countdown', function(event) {
+				  	var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
+						}).on('finish.countdown',function(){
+					$.ajax({
+						url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
+								+"&loser_id="+BLACK_PLAYER_ID,
+						type : "POST",
+						success : function() {
+							if(LOGGED_USER_ID === BLACK_PLAYER_ID){
+								alert("Game over. You lost by time.");
+								window.location = CONTEXT_PATH+"/game";	
+							} else {
+								alert("Game over. You win by time.");
+								window.location = CONTEXT_PATH+"/game";
+							}
+						}
+					});
+				});
 		}
+		
 		
 		$status.html(status)
-		$pgn.html(game.pgn())
 
 	}
 	
@@ -279,59 +317,26 @@
 	}
 
 	board = Chessboard('myBoard', config)
-	
-	$('#clock-white').countdown(time1).on('update.countdown', function(event) {
-			  var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
-					}).on('finish.countdown',function(){
-				$.ajax({
-					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
-							+"&loser_id="+WHITE_PLAYER_ID,
-					type : "POST",
-					success : function() {
-						if(LOGGED_USER_ID===WHITE_PLAYER_ID){
-							alert("Game over. You lost by time.");
-							window.location = CONTEXT_PATH+"/game";
-						} else {
-							alert("Game over. You win by time.");
-							window.location = CONTEXT_PATH+"/game";
-						}
-					}
-				});
-			});
 			
-
-		$('#clock-black').countdown(time2).on('update.countdown', function(event) {
-			  	var $this = $(this).html(event.strftime('To end: <span>%H:%M:%S</span>'));
-					}).on('finish.countdown',function(){
-				$.ajax({
-					url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID
-							+"&loser_id="+BLACK_PLAYER_ID,
-					type : "POST",
-					success : function() {
-						if(LOGGED_USER_ID === BLACK_PLAYER_ID){
-							alert("Game over. You lost by time.");
-							window.location = CONTEXT_PATH+"/game";	
-						} else {
-							alert("Game over. You win by time.");
-							window.location = CONTEXT_PATH+"/game";
-						}
-					}
-				});
-			});
-		
-		$('#clock-black').countdown('stop').countdown('start').countdown('stop');
-
- 	function check (){
+		$(document).ready(function() {
 			$.get("${pagesLiveChess}/last_fen?game_id=" + GAME_ID,function(currentBoardPos){
 				if((board.fen())!== currentBoardPos){
 					board.position(currentBoardPos);
-					game.load(currentBoardPos);		
-			}
-		})
-	}
- 	
-	check(); 
+					game.load(currentBoardPos);
+					updateStatus();
+				}
+			})
+		}); 
 		
+	
+	$('#clock-white').countdown(whiteRemainingTime).on('update.countdown', function(event) {
+		  var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
+				});
+	
+	$('#clock-black').countdown(blackRemainingTime).on('update.countdown', function(event) {
+		  var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
+				}).countdown('pause').countdown('resume').countdown('pause');
+	
 	updateStatus()
 
 </script>

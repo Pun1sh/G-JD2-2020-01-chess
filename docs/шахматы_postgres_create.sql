@@ -43,7 +43,7 @@ CREATE TABLE "move" (
 	"piece" varchar NOT NULL,
 	"move_notation_from" varchar(2) NOT NULL,
 	"move_notation_to" varchar(2) NOT NULL,
-	"move_time" integer NOT NULL,
+	"move_time" integer,
 	CONSTRAINT "move_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

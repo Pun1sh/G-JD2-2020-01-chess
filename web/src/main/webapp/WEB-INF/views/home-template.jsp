@@ -347,12 +347,12 @@ border-radius: 200px;
 						<spring:message code="links" />
 					</h5>
 					<ul>
-						<li><a class="grey-text text-lighten-3" href="#"><spring:message
+						<li><a class="grey-text text-lighten-3" href="${contextPath}/resources/footer_links/db.png"><spring:message
 									code="database" /></a></li>
 						<li><a class="grey-text text-lighten-3" target="_blank"
 							href="${contextPath}/resources/footer_links/players.txt"><spring:message
 									code="all.players" /></a></li>
-						<li><a class="grey-text text-lighten-3" href="#"><spring:message
+						<li><a class="grey-text text-lighten-3" href="${contextPath}/resources/footer_links/mindmup.png"><spring:message
 									code="mindmup" /></a></li>
 					</ul>
 				</div>

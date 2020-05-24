@@ -127,7 +127,7 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		final Root<Game> from = cq.from(Game.class); // define table for select
 
 		cq.select(from); // define what need to be selected
-		
+
 		from.fetch(Game_.whitePlayer, JoinType.LEFT);
 		from.fetch(Game_.blackPlayer, JoinType.LEFT);
 
@@ -135,7 +135,6 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 		Predicate isNotEnded = cb.isNull(from.get(Game_.ended));
 		cq.where(cb.and(isNotEnded, cb.or(cb.equal(from.get(Game_.blackPlayer), playerId),
 				cb.equal(from.get(Game_.whitePlayer), playerId))));
-		//cq.where(cb.and(cb.isNull(from.get(Game_.ended)), cb.equal(from.get(Game_.blackPlayer), playerId)));
 
 		final TypedQuery<IGame> q = em.createQuery(cq);
 		q.setMaxResults(1);
