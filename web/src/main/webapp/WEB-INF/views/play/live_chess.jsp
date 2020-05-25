@@ -17,13 +17,13 @@
 		</div>
 			<div class="col s12 l3">
 		  		<div class="card">
-   			 	<div class="card-content">
+   			 	<div class="card-content center-align">
           			<div id="clock-black"></div>
        		</div>
           	</div>
           	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
           	<div class="card">
-   			 	<div class="card-content">
+   			 	<div class="card-content center-align">
          			 <div id="clock-white"></div>
        		</div>
           	</div>
@@ -57,9 +57,26 @@
 	var blackSquareGrey = '#696969'
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
+	var config;
 	var whiteRemainingTime =MODE*60*1000;
 	var blackRemainingTime =MODE*60*1000;
 
+	
+	function flip() {
+		  var div1 = $("#clock-white");
+		  var div2 = $("#clock-black");
+		  //cloning div
+		  var $clock_white = div1.clone();
+		  var $clock_black = div2.clone();
+		
+		  div1.replaceWith($clock_black);
+		  div2.replaceWith($clock_white);
+		}
+	
+	if(LOGGED_USER_ID===BLACK_PLAYER_ID) {
+		flip();
+	}
+	
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
 	} */
@@ -272,19 +289,33 @@
 
 	}
 	
-
-	var config = {
-		draggable : true,
-		position : 'start',
-		pieceTheme : '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
-		onDragStart : onDragStart,
-		onDrop : onDrop,
-		onMoveEnd : onMoveEnd,
-		onMouseoutSquare : onMouseoutSquare,
-		onMouseoverSquare : onMouseoverSquare,
-		onSnapEnd : onSnapEnd
+	if(LOGGED_USER_ID === BLACK_PLAYER_ID){
+		config = {
+			draggable : true,
+			position : 'start',
+			pieceTheme : '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
+			onDragStart : onDragStart,
+			onDrop : onDrop,
+			onMoveEnd : onMoveEnd,
+			onMouseoutSquare : onMouseoutSquare,
+			onMouseoverSquare : onMouseoverSquare,
+			onSnapEnd : onSnapEnd,
+			orientation: 'black'
+		}
+	} else {
+		config = {
+				draggable : true,
+				position : 'start',
+				pieceTheme : '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
+				onDragStart : onDragStart,
+				onDrop : onDrop,
+				onMoveEnd : onMoveEnd,
+				onMouseoutSquare : onMouseoutSquare,
+				onMouseoverSquare : onMouseoverSquare,
+				onSnapEnd : onSnapEnd
+			}
 	}
-
+	
 	board = Chessboard('myBoard', config)
 			
 		$(document).ready(function() {
@@ -406,7 +437,7 @@
 		})
 
 	};
-	var timer = setInterval(periodicFunction, 2 * 1000);	
+	var timer = setInterval(periodicFunction, 1 * 1000);	
 	
 	
 	var periodicFunction2 = function(){

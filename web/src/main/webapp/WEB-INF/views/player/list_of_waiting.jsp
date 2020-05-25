@@ -41,8 +41,7 @@
 						</select> <label><spring:message
 								code="choose.mode" /></label>
 					</div></td>
-				<td class="right"><a class="btn-floating"
-					href="${pagesPlayer}/${player.id}"><i class="material-icons">info</i></a>
+				<td class="right">
 					<a class="btn-floating green tooltipped disabled test" data-field="${player.id}"
 					data-position="bottom" data-tooltip="<spring:message code="play.against" />"><i
 						class="material-icons">play_circle_filled</i></a></td>

@@ -19,8 +19,6 @@
 		<div class="col s12 l3 push-l1 ">
 			<label>Status:</label>
 			<div id="status"></div>
-			<br><br>
-			<a class="btn" id=flip>Flip board</a>
 		</div>
 
 	</div>
@@ -46,7 +44,7 @@
 	var blackSquareGrey = '#696969'
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
-
+	var config;
 	
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
@@ -241,17 +239,31 @@
 
 	}
 	
-
-	var config = {
-		draggable : true,
-		position : 'start',
-		pieceTheme : '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
-		onDragStart : onDragStart,
-		onDrop : onDrop,
-		onMoveEnd : onMoveEnd,
-		onMouseoutSquare : onMouseoutSquare,
-		onMouseoverSquare : onMouseoverSquare,
-		onSnapEnd : onSnapEnd
+	if(LOGGED_USER_ID === BLACK_PLAYER_ID){
+		config = {
+			draggable : true,
+			position : 'start',
+			pieceTheme : '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
+			onDragStart : onDragStart,
+			onDrop : onDrop,
+			onMoveEnd : onMoveEnd,
+			onMouseoutSquare : onMouseoutSquare,
+			onMouseoverSquare : onMouseoverSquare,
+			onSnapEnd : onSnapEnd,
+			orientation: 'black'
+		}
+	} else {
+		config = {
+			draggable : true,
+			position : 'start',
+			pieceTheme : '${contextPath}/resources/img/chesspieces/wikipedia/{piece}.png',
+			onDragStart : onDragStart,
+			onDrop : onDrop,
+			onMoveEnd : onMoveEnd,
+			onMouseoutSquare : onMouseoutSquare,
+			onMouseoverSquare : onMouseoverSquare,
+			onSnapEnd : onSnapEnd
+		}
 	}
 
 	board = Chessboard('myBoard', config)
@@ -269,7 +281,7 @@
  		
 	updateStatus()
 
-	$('#flip').on('click', board.flip);
+
 </script>
 
 <script>

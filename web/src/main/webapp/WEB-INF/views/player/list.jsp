@@ -26,8 +26,6 @@
 				<td><c:out value="${player.gamesPlayed}" /></td>
 				<td><c:out value="${player.eloPoints}" /></td>
 				<td><c:out value="${player.rank}" /></td>
-				<td class="right"><a class="btn-floating"
-					href="${pagesPlayer}/${player.id}"><i class="material-icons">info</i></a>
 			</tr>
 		</c:forEach>
 	</tbody>

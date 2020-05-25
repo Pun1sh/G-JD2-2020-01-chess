@@ -26,9 +26,6 @@
 				<td><c:out value="${game.winnerName}" /></td>
 				<td><c:out value="${game.loserName}" /></td>
 				<td><c:out value="${game.mode}" /></td>
-				<td class="right"><a class="btn-floating"
-					href="${pagesGame}/${game.id}"><i class="material-icons">info</i></a>
-				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
