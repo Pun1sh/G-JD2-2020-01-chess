@@ -19,8 +19,8 @@
 		<div class="col s12 l3 push-l1 ">
 			<label>Status:</label>
 			<div id="status"></div>
-			<label>PGN:</label>
-			<div id="pgn"></div>
+			<br><br>
+			<a class="btn" id=flip>Flip board</a>
 		</div>
 
 	</div>
@@ -47,7 +47,7 @@
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
 
-
+	
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
 	} */
@@ -238,7 +238,6 @@
 		}	
 		
 		$status.html(status)
-		$pgn.html(game.pgn())
 
 	}
 	
@@ -270,6 +269,7 @@
  		
 	updateStatus()
 
+	$('#flip').on('click', board.flip);
 </script>
 
 <script>
