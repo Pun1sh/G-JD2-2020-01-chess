@@ -60,6 +60,8 @@ public class PlayController extends AbstractController {
 		}
 		hashMap.put("userId", AuthHelper.getLoggedUserId());
 		hashMap.put("mode", gameService.getFullInfo(gameId).getMode().getTime());
+		hashMap.put("whitePlayerName", playerService.getFullInfo(whitePlayerId).getNickname());
+		hashMap.put("blackPlayerName", playerService.getFullInfo(blackPlayerId).getNickname());
 		if (mode.equals("NO_TIME")) {
 			return new ModelAndView("live_chess_no_time", hashMap);
 		}

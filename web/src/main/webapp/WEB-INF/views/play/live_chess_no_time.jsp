@@ -16,6 +16,24 @@
 			<div id="myBoard" style="width: 600px"></div>
 		</div>
         
+        <div class="col s12 l3">
+			          	
+          	<div class="card">
+   			 	<div class="card-content center-align">
+          			<div id="blackPlayerName">${blackPlayerName}</div>
+       			</div>
+          	</div>
+          	
+          	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          	 
+          	 <div class="card">
+   			 	<div class="card-content center-align">
+          			<div id="whitePlayerName">${whitePlayerName}</div>
+       			</div>
+          	</div>
+          	
+          </div>
+        
 		<div class="col s12 l3 push-l1 ">
 			<label>Status:</label>
 			<div id="status"></div>
@@ -45,6 +63,23 @@
 	var squareToHighlight = null
 	var squareClass = 'square-55d63'
 	var config;
+	
+	function flip() {
+		  var div3 = $("#whitePlayerName");
+		  var div4 = $("#blackPlayerName");
+		  //cloning div
+		  var $white_player_name = div3.clone();
+		  var $black_player_name = div4.clone();
+
+		  div3.replaceWith($black_player_name);
+		  div4.replaceWith($white_player_name);
+		}
+	
+	if(LOGGED_USER_ID===BLACK_PLAYER_ID) {
+		flip();
+	}
+	
+	
 	
 	/* function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
