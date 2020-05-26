@@ -78,7 +78,7 @@
 
 		</div>
 		<ul class='dropdown-content brown lighten-2' id='mydropdown'>
-			<li><a class="white-text" href="${pageQueue}"><i
+			<li><a class="white-text" href="${pagesQueue}"><i
 					class="fas fa-chess"></i>
 				<spring:message code="get.in.line" /></a></li>
 			<li><a class="white-text" href="${pagesBoardEditor}"><i
