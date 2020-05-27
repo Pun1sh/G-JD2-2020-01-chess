@@ -4,10 +4,10 @@
 	<entry key="page.home.title">Home Page</entry>
 	<entry key="page.home.welcomeMessage">Hello, {0}</entry>
 	<entry key="page.login.credentialsError">Invalid username and password!</entry>
-
 	<entry key="table.column.id">ID</entry>
 	<entry key="play">Play</entry>
 	<entry key="get.in.line">Get In Line to Play Live Chess</entry>
+	<entry key="get.in.line.short">Get In Line</entry>
 	<entry key="board.editor">Board editor</entry>
 	<entry key="waiting.players">Waiting Players</entry>
 	<entry key="players">Players</entry>
@@ -59,9 +59,5 @@
 	<entry key="warning">Warning!</entry>
 	<entry key="warning.description1">You have unfinished game. Do you want to finish it?</entry>
 	<entry key="warning.description2">If you click "No", you will lose the game.</entry>
-
-	
-
-
-
+	<entry key="hello">Hello</entry>
 </properties>

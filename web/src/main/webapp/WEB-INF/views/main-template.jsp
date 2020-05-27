@@ -22,6 +22,7 @@
 	value="${contextPath}/player/waiting_players" scope="request" />
 <c:set var="pagesQueue" value="${contextPath}/play/queue"
 	scope="request" />
+	
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

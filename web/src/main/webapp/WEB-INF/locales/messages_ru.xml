@@ -4,10 +4,10 @@
 	<entry key="page.home.title">Домашняя страница</entry>
 	<entry key="page.home.welcomeMessage">Привет, {0}</entry>
 	<entry key="page.login.credentialsError">неверный логин или пароль!</entry>
-
 	<entry key="table.column.id">№</entry>
 	<entry key="play">Играть</entry>
 	<entry key="get.in.line">Встать в очередь, чтобы сыграть онлайн</entry>
+	<entry key="get.in.line.short">Встать в очередь</entry>
 	<entry key="board.editor">Редактор доски</entry>
 	<entry key="waiting.players">Ожидающие игроки</entry>
 	<entry key="players">Игроки</entry>
@@ -57,6 +57,5 @@
 	<entry key="warning">Внимание!</entry>
 	<entry key="warning.description1">У вас есть незаконченная игра. Вы хотите ее закончить?</entry>
 	<entry key="warning.description2">Если вы нажмете "Нет", вам будет засчитано поражение.</entry>
-
-
+	<entry key="hello">Привет</entry>
 </properties>

@@ -35,7 +35,7 @@
 				</sec:authorize>
 
 				<sec:authorize access="!isAnonymous()">
-					<a class="right" href="${contextPath}/execute_logout"
+				<a class="right" href="${contextPath}/execute_logout"
 						title="logout"><i class="material-icons">arrow_forward</i></a>
 				</sec:authorize>
 
@@ -50,7 +50,7 @@
 			<ul class="sidenav grey lighten-2" id="mobile-menu">
 				<li><a class="white-text" href="${pagesQueue}"><i
 						class="material-icons left white-text">play_circle_outline</i>
-					<spring:message code="get.in.line" /></a></li>
+					<spring:message code="get.in.line.short" /></a></li>
 				<sec:authorize access="!isAnonymous()">
 					<li><a class="white-text" href="${pagesWaitingPlayer}"><i
 							class="material-icons left white-text">group</i>

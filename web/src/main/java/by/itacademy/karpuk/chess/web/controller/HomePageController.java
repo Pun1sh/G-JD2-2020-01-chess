@@ -48,7 +48,10 @@ public class HomePageController {
 		}
 		hashMap.put("formModel", toDtoConverter.apply(player));
 		hashMap.put("game", game);
-		hashMap.put("loggedUserId", AuthHelper.getLoggedUserId());
+		if (AuthHelper.getLoggedUserId()!=null) {
+			hashMap.put("loggedUserId", AuthHelper.getLoggedUserId());
+			hashMap.put("loggedUserNickname", playerService.get(AuthHelper.getLoggedUserId()).getNickname());
+		}
 		return new ModelAndView("home", hashMap);
 
 	}

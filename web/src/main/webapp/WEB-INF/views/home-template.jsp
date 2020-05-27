@@ -149,7 +149,7 @@ border-radius: 200px;
 				<ul class="sidenav grey lighten-2" id="mobile-menu">
 					<li><a class="white-text" href="${pagesQueue}"><i
 							class="material-icons left white-text">play_circle_outline</i> <spring:message
-								code="get.in.line" /></a></li>
+								code="get.in.line.short" /></a></li>
 					<sec:authorize access="!isAnonymous()">
 						<li><a class="white-text" href="${pagesWaitingPlayer}"><i
 								class="material-icons left white-text">group</i> <spring:message
@@ -200,8 +200,21 @@ border-radius: 200px;
 				<li><a class="white-text" href="?lang=en">En</a></li>
 			</ul>
 		</nav>
-
-
+		
+	<sec:authorize access="!isAnonymous()">
+	<div class="row">
+		<div class="col s2 offset-s8">
+ 			<div class="container">
+					<div class="card transparent">
+   			 			<div class="card-content center-align white-text">
+          					<div id="name"><strong><spring:message code="hello"/>, ${loggedUserNickname}</strong></div>
+       					</div>
+       				</div>
+          	</div>
+         </div>
+     </div>
+     </sec:authorize>
+          	
 	</header>
 	<!-- photo / grid -->
 	<section class="container section scrollspy" id="modes">
