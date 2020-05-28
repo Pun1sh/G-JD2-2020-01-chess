@@ -20,11 +20,11 @@ import by.itacademy.karpuk.chess.service.IPlayerService;
 @RequestMapping(value = "play/live_chess/move_insert")
 public class MoveInsertController extends AbstractController {
 	@Autowired
-	IMoveService moveService;
+	private IMoveService moveService;
 	@Autowired
-	IGameService gameService;
+	private IGameService gameService;
 	@Autowired
-	IPlayerService playerService;
+	private IPlayerService playerService;
 
 	@RequestMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.POST)
 	public ResponseEntity insertData(@RequestBody Move move,

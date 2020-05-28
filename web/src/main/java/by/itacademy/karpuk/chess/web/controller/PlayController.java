@@ -35,13 +35,13 @@ import by.itacademy.karpuk.chess.web.utils.UsersHolderWithExpiration;
 public class PlayController extends AbstractController {
 
 	@Autowired
-	IGameService gameService;
+	private IGameService gameService;
 	@Autowired
-	IPlayerService playerService;
+	private IPlayerService playerService;
 	@Autowired
-	IBoardService boardService;
+	private IBoardService boardService;
 	@Autowired
-	IMoveService moveService;
+	private IMoveService moveService;
 
 	@RequestMapping(value = "/live_chess", method = RequestMethod.GET)
 	public ModelAndView playLiveChess(

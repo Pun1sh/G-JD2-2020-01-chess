@@ -22,7 +22,7 @@ import by.itacademy.karpuk.chess.web.security.PasswordUtils;
 public class SignUpController extends AbstractController {
 
 	@Autowired
-	IPlayerService playerService;
+	private IPlayerService playerService;
 	@Autowired
 	private PlayerFromDTOConverter fromDtoConverter;
 
