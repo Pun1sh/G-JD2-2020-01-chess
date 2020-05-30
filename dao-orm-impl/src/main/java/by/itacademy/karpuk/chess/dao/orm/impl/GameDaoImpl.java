@@ -133,8 +133,9 @@ public class GameDaoImpl extends AbstractDaoImpl<IGame, Integer> implements IGam
 
 		cq.orderBy(new OrderImpl(from.get(Game_.started), false));
 		Predicate isNotEnded = cb.isNull(from.get(Game_.ended));
-		cq.where(cb.and(isNotEnded, cb.or(cb.equal(from.get(Game_.blackPlayer), playerId),
-				cb.equal(from.get(Game_.whitePlayer), playerId))));
+		Predicate blackPlayerId = cb.equal(from.get(Game_.blackPlayer), playerId);
+		Predicate whitePlayerId = cb.equal(from.get(Game_.whitePlayer), playerId);
+		cq.where(cb.and(isNotEnded, cb.or(blackPlayerId, whitePlayerId)));
 
 		final TypedQuery<IGame> q = em.createQuery(cq);
 		q.setMaxResults(1);
