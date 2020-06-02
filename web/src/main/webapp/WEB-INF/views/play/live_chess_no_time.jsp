@@ -16,7 +16,7 @@
 			<div id="myBoard" style="width: 600px"></div>
 		</div>
         
-        <div class="col s12 l3">
+        <div class="col s12 l3 push-l2">
 			          	
           	<div class="card">
    			 	<div class="card-content center-align">
@@ -34,7 +34,7 @@
           	
           </div>
         
-		<div class="col s12 l3 push-l1 ">
+		<div class="col s12 l3 push-l3 ">
 			<label>Status:</label>
 			<div id="status"></div>
 		</div>
@@ -81,9 +81,9 @@
 	
 	
 	
-	/* function removeHighlights(color) {
+	 function removeHighlights(color) {
 		$board.find('.' + squareClass).removeClass('highlight-' + color)
-	} */
+	} 
 	
 	function removeGreySquares() {
 		$('#myBoard .square-55d63').css('background', '')
@@ -134,11 +134,11 @@
 		if (move === null)
 			return 'snapback'
 
-		/* 	// highlight moves
+		 	// highlight moves
 		removeHighlights('white')
 		$board.find('.square-' + source).addClass('highlight-white')
-		$board.find('.square-' + target).addClass('highlight-white') */
-		
+		$board.find('.square-' + target).addClass('highlight-white')  
+	
 		
 		updateStatus()
 		
@@ -327,6 +327,9 @@
 
 			if (latestId < lastIdFromServer) {
 				$.get("${pagesLiveChess}/last_move?game_id=" + GAME_ID, function(lastMoveFromServer) {
+					removeHighlights('white')
+					$board.find('.square-' + lastMoveFromServer.moveNotationFrom).addClass('highlight-white')
+					$board.find('.square-' + lastMoveFromServer.moveNotationTo).addClass('highlight-white') 
 					game.move({
 						from : lastMoveFromServer.moveNotationFrom,
 						to : lastMoveFromServer.moveNotationTo,
@@ -396,7 +399,7 @@
 			}
 		})
 	}
-	var timer2 = setInterval(periodicFunction2, 29 * 1000);
+	var timer2 = setInterval(periodicFunction2, 59 * 1000);
 	
 </script>
 

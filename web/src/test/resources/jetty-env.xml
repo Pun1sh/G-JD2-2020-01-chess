@@ -4,7 +4,7 @@
 	<New id="jndiDatasource"
 		class="org.eclipse.jetty.plus.jndi.Resource">
 		<Arg></Arg>
-		<Arg>jdbc/postgres</Arg>
+		<Arg>jdbc/chess</Arg>
 		<Arg>
 			<New class="org.apache.commons.dbcp.BasicDataSource">
 				<Set name="username">postgres</Set>
@@ -19,7 +19,7 @@
 	<New id="jndiProperties"
 		class="org.eclipse.jetty.plus.jndi.Resource">
 		<Arg></Arg>
-		<Arg>mycustom/customProperties</Arg>
+		<Arg>mychess/chessProperties</Arg>
 		<Arg>
 			<New class="by.itacademy.karpuk.chess.web.jndi.SMTPCredentials">
 				<Set name="email">email@gmail.com</Set>

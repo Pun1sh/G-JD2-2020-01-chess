@@ -65,6 +65,9 @@ public class PlayController extends AbstractController {
 		if (mode.equals("NO_TIME")) {
 			return new ModelAndView("live_chess_no_time", hashMap);
 		}
+		if (mode.equals("SIXTY")) {
+			return new ModelAndView("live_chess_over_hour", hashMap);
+		}
 		return new ModelAndView("live_chess", hashMap);
 	}
 

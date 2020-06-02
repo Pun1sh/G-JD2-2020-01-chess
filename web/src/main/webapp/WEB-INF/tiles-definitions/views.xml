@@ -86,4 +86,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/play/live_chess_no_time.jsp" />
 	</definition>
+	<definition name="live_chess_over_hour" extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/play/live_chess_over_hour.jsp" />
+	</definition>
 </tiles-definitions>

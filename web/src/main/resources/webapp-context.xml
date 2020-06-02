@@ -12,10 +12,10 @@
 
 
 	<jee:jndi-lookup id="dataSource"
-		jndi-name="jdbc/postgres" />
+		jndi-name="jdbc/chess" />
 
-	<jee:jndi-lookup id="customProperties"
-		jndi-name="mycustom/customProperties" />
+	<jee:jndi-lookup id="chessProperties"
+		jndi-name="mychess/chessProperties" />
 
 	<import resource="service-context.xml" />
 

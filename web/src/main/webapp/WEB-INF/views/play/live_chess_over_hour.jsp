@@ -8,6 +8,7 @@
 }
 </style>
 
+
 <div class="container">
 	<br><br>
 	<div class="row">
@@ -294,7 +295,7 @@
 	 		$('#clock-black').countdown('stop').countdown('start').countdown('stop');
 	 		$('#clock-white').countdown(new Date().getTime() + whiteRemainingTime);
 			var stringDate = document.getElementById("clock-black").innerText;
-			blackRemainingTime = Number(stringDate.split(':')[0]) * 60 * 1000 + Number(stringDate.split(':')[1]) * 1000;
+			blackRemainingTime = Number(stringDate.split(':')[0]) * 60 * 60 * 1000+ Number(stringDate.split(':')[1]) * 60 * 1000 + Number(stringDate.split(':')[2]) * 1000;
 			console.log(blackRemainingTime);	
 		}
 			
@@ -302,7 +303,7 @@
 			$('#clock-white').countdown('stop').countdown('start').countdown('stop');
 			$('#clock-black').countdown(new Date().getTime() + blackRemainingTime);
 			var stringDate = document.getElementById("clock-white").innerText;
-			whiteRemainingTime = Number(stringDate.split(':')[0]) * 60 * 1000 + Number(stringDate.split(':')[1]) * 1000;
+			whiteRemainingTime = Number(stringDate.split(':')[0]) * 60 * 60 * 1000+ Number(stringDate.split(':')[1]) * 60 * 1000 + Number(stringDate.split(':')[2]) * 1000;
 			console.log(whiteRemainingTime);
 		} 
 		
@@ -351,7 +352,7 @@
 		}); 
 
 	$('#clock-white').countdown(new Date().getTime() + whiteRemainingTime).on('update.countdown', function(event) {
-		  var $this = $(this).html(event.strftime('<span>%M:%S</span>'));
+		  var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
 				}).on('finish.countdown',function(){
 			$.ajax({
 				url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ BLACK_PLAYER_ID
@@ -371,7 +372,7 @@
 	
 	
 	$('#clock-black').countdown(new Date().getTime() + blackRemainingTime).on('update.countdown', function(event) {
-	  	var $this = $(this).html(event.strftime('<span>%M:%S</span>'));
+	  	var $this = $(this).html(event.strftime('<span>%H:%M:%S</span>'));
 			}).on('finish.countdown',function(){
 		$.ajax({
 			url : CONTEXT_PATH + "/play/game_over_with_result" + "?game_id=" + GAME_ID + "&winner_id="+ WHITE_PLAYER_ID

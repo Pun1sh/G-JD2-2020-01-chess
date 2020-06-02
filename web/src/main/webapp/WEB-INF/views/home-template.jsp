@@ -47,7 +47,7 @@
 header {
 	background: url(https://images8.alphacoders.com/460/460230.png);
 	background-size: cover;
-	background-position: center;
+	background-position: left;
 	min-height: 1000px;
 }
 
@@ -63,6 +63,9 @@ header {
 }
 .tap-target{
 border-radius: 200px;
+}
+nav .brand-logo{
+margin-left: 2em;
 }
 </style>
 </head>
@@ -103,7 +106,8 @@ border-radius: 200px;
 	<!-- navbar -->
 	<header>
 		<nav class="nav-wrapper transparent">
-			<div class="container">
+			<!-- <div class="container"> -->
+			
 				<a href="${contextPath}" class="brand-logo">Pure Chess</a> <a
 					href="#" class="sidenav-trigger" data-target="mobile-menu"> <i
 					class="material-icons">menu</i>
@@ -186,7 +190,7 @@ border-radius: 200px;
 
 				</ul>
 
-			</div>
+			<!-- </div> -->
 			<ul class='dropdown-content brown lighten-2' id='mydropdown'>
 				<li><a class="white-text" href="${pagesQueue}"><i
 						class="fas fa-chess"></i> <spring:message code="get.in.line" /></a></li>
@@ -352,6 +356,8 @@ border-radius: 200px;
 									code="all.players" /></a></li>
 						<li><a class="grey-text text-lighten-3" target="_blank" href="${contextPath}/resources/footer_links/mindmup.png"><spring:message
 									code="mindmup" /></a></li>
+						<li><a class="grey-text text-lighten-3" target="_blank" href="${contextPath}/resources/footer_links/jmeter-threads.png">JMeter Threads</a></li>
+						<li><a class="grey-text text-lighten-3" target="_blank" href="${contextPath}/resources/footer_links/jmeter-summary.png">JMeter Summary</a></li>
 					</ul>
 				</div>
 			</div>
