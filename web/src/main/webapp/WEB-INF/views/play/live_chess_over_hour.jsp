@@ -469,12 +469,14 @@
 	var periodicFunction2 = function(){
 		$.get("${contextPath}/play/user_here?game_id=" + GAME_ID,function(data){
 			if(!!data){
+				if (!game.in_checkmate() && !game.in_draw()) {
 				alert("Game over. You win. Another user left the game.");
 				window.location = CONTEXT_PATH+"/game";
+				}
 			}
 		})
 	}
-	var timer2 = setInterval(periodicFunction2, 59 * 1000);
+	var timer2 = setInterval(periodicFunction2, 30 * 1000);
 </script>
 
 
