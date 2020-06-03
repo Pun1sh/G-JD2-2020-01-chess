@@ -475,7 +475,7 @@
 			}
 		})
 	}
-	var timer2 = setInterval(periodicFunction2, 30 * 1000);
+	var timer2 = setInterval(periodicFunction2, 60 * 1000);
 </script>
 
 
